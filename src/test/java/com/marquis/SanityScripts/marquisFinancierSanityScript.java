@@ -45,6 +45,7 @@ public class marquisFinancierSanityScript {
 		SeritiLoginPage.login(userName, password);
 		SeritiCreateCustomerFormPage.createCustomerTransactionForm();
 		MarquisFinanceTransactionPage.marquisFinancePageForm();
+		//Test File 
 	/*	ClientDetailsPage.addClientDetails();
 		ClientDetailsPage.selectClientDetails();
 	*/}
