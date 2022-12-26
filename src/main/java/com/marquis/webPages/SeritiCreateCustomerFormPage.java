@@ -21,6 +21,9 @@ static ExcelFunctions xcl = new ExcelFunctions();
 	//Create customer footer button
 	public static By createCustomerTransactionButton = By.id("btn-footer-create");
 	
+	
+	
+	
 	//Create transaction header
 	public static By createTransactionHeader = By.id("modal-title");
 	
@@ -58,7 +61,7 @@ static ExcelFunctions xcl = new ExcelFunctions();
 	public static By financeSelect = By.name("CashInd");
 	
 	//Finance select text retrieval
-	public static By financeSelected = By.xpath("//*[@name=\"CashInd\"]//*[text()=\"CASH\"]");
+	public static By financeSelected = By.xpath("//*[@name=\"CashInd\"]//*[text()=\"FINANCE\"]");
 	
 	//Create transaction button
 	public static By createSubmitButton = By.xpath("//*[@type=\"submit\" and contains(text(),\"CREATE\")]");
@@ -71,17 +74,19 @@ static ExcelFunctions xcl = new ExcelFunctions();
 	//-------------------------------------
 	/**
 	 * Method for create customer create form
-	 * 
+	 * `
 	 * 
 	 *
 	 */
 	
 	public static void createCustomerTransactionForm() throws Exception {
 		ExtentReporter.HeaderChildNode("Customer Form");
-		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.dashBoardHeader,15);
-		String dashboardHeaderText = Utilities.getText(SeritiCreateCustomerFormPage.dashBoardHeader);
-		Assert.assertEquals(dashboardHeaderText,"MY DASHBOARD");
+//		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.dashBoardHeader,20);
+//		String dashboardHeaderText = Utilities.getText(SeritiCreateCustomerFormPage.dashBoardHeader);
+//		Assert.assertEquals(dashboardHeaderText,"MY DASHBOARD");
 		
+		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.createCustomerTransactionButton,20);
+
 		Utilities.verifyElementPresentAndClick(SeritiCreateCustomerFormPage.createCustomerTransactionButton,"Create Transaction footer button");
 		logger.info("Create Transaction footer button");
 		ExtentReporter.extentLoggerPass("Create Transaction footer button", "Create transaction footer button is clicked");
@@ -117,9 +122,9 @@ static ExcelFunctions xcl = new ExcelFunctions();
 		Utilities.type(SeritiCreateCustomerFormPage.lastName,readLastName,"Last Name text field");
 		logger.info("LastName is entered");
 		ExtentReporter.extentLoggerPass("LastName field", "Last name is entered");
-		Utilities.waitTime(3000);
-		Utilities.robotClassDown();
-		Utilities.waitTime(3000);
+//		Utilities.waitTime(3000);
+//		Utilities.robotClassDown();
+//		Utilities.waitTime(3000);
 		
 		logger.info("Filling Finance section");
 		String readDeal = xcl.getCellValue(xlpath,"Sheet1",5,7);
@@ -127,10 +132,10 @@ static ExcelFunctions xcl = new ExcelFunctions();
 		String selectedFinanceType = Utilities.getText(SeritiCreateCustomerFormPage.financeSelected);
 		Assert.assertEquals(selectedFinanceType, readDeal);
 		//modalScrollUp();
-		Utilities.waitTime(3000);
-		Utilities.robotClassUp();
-		Utilities.waitTime(3000);
-		Utilities.JSClick(SeritiCreateCustomerFormPage.cancelButton,"Cancel Transaction button");
+//		Utilities.waitTime(3000);
+//		Utilities.robotClassUp();
+//		Utilities.waitTime(3000);
+		Utilities.JSClick(SeritiCreateCustomerFormPage.createSubmitButton,"Create Transaction ");
 	}
 
 }

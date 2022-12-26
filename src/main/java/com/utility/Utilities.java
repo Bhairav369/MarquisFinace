@@ -687,6 +687,14 @@ public class Utilities extends ExtentReporter{
         }
     }
 
+    public static void refresh() {
+        try {
+            getDriver().navigate().refresh();
+        } catch (Exception e) {
+//			logger.error(e);
+        }
+    }
+    
     public static void waitTime(int x) {
         try {
             Thread.sleep(x);
