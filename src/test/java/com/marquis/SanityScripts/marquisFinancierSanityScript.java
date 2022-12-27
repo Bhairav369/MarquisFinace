@@ -16,7 +16,7 @@ import com.utility.Utilities;
 
 public class marquisFinancierSanityScript {
 
-	private MarquisFinancierBusinessLogic MarquisFinancierBusinessLogic;
+	public  MarquisFinancierBusinessLogic MarquisFinancierBusinessLogic;
 	
 	
 	@BeforeMethod(groups = { "All" })
@@ -24,13 +24,13 @@ public class marquisFinancierSanityScript {
 		MarquisFinancierBusinessLogic = new MarquisFinancierBusinessLogic("Chrome");	
 	}
 
-	@Test(priority = 1)
-    @Parameters({"UserName","Password"})
-    public void loginMark(String userName,String password) throws Exception {
-    	
-		SeritiLoginPage.login(userName, password);
-		MarquisFinanceTransactionPage.marquisFinancePageForm();
-    }
+//	@Test(priority = 1)
+//    @Parameters({"UserName","Password"})
+//    public void loginMark(String userName,String password) throws Exception {
+//    	
+//		SeritiLoginPage.login(userName, password);
+//		MarquisFinanceTransactionPage.marquisFinancePageForm();
+//    }
 /*	
 	@Test(priority = 1)
 	@Parameters({"UserName","Password"})
@@ -45,9 +45,10 @@ public class marquisFinancierSanityScript {
 		SeritiLoginPage.login(userName, password);
 		SeritiCreateCustomerFormPage.createCustomerTransactionForm();
 		MarquisFinanceTransactionPage.marquisFinancePageForm();
-	/*	ClientDetailsPage.addClientDetails();
-		ClientDetailsPage.selectClientDetails();
-	*/}
+		ClientDetailsPage.addClientDetails();
+		MarquisFinanceTransactionPage.enterMandatoryTransactionMarquisFinancePage();
+		ClientDetailsPage.selectClientDetails();	
+	}
 
 	@AfterMethod
 	public synchronized void tearDown() {
