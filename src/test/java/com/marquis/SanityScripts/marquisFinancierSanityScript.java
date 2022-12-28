@@ -1,22 +1,17 @@
 package com.marquis.SanityScripts;
 
-import static org.testng.Assert.assertTrue;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.business.marquis.MarquisFinancierBusinessLogic;
-import com.driverInstance.DriverManager;
-import com.global.TestGroup;
 import com.marquis.webPages.*;
-import com.utility.CustomSoftAssert;
-import com.utility.Utilities;
+
 
 public class marquisFinancierSanityScript {
 
-	public  MarquisFinancierBusinessLogic MarquisFinancierBusinessLogic;
+	private  MarquisFinancierBusinessLogic MarquisFinancierBusinessLogic;
 	
 	
 	@BeforeMethod(groups = { "All" })
@@ -27,7 +22,7 @@ public class marquisFinancierSanityScript {
 //	@Test(priority = 1)
 //    @Parameters({"UserName","Password"})
 //    public void loginMark(String userName,String password) throws Exception {
-//    	
+//    	 
 //		SeritiLoginPage.login(userName, password);
 //		MarquisFinanceTransactionPage.marquisFinancePageForm();
 //    }
@@ -47,7 +42,13 @@ public class marquisFinancierSanityScript {
 		MarquisFinanceTransactionPage.marquisFinancePageForm();
 		ClientDetailsPage.addClientDetails();
 		MarquisFinanceTransactionPage.enterMandatoryTransactionMarquisFinancePage();
-		ClientDetailsPage.selectClientDetails();	
+		ClientDetailsPage.selectClientDetails();
+		
+		//TODO: 
+		//In-progress to Refresh Applciation Status and Read Agreement number and Document Upload
+		//MarquisFinanceTransactionPage.verifyApplicationStatus();
+
+		
 	}
 	
 
