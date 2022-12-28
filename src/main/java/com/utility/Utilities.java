@@ -1540,8 +1540,8 @@ public class Utilities extends ExtentReporter{
     /**
      * Function for implicitWait
      */
-    public void implicitWait() {
-        DriverManager.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    public static void implicitWait(int time) {
+        DriverManager.getDriver().manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
     }
 
     /**
