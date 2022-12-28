@@ -62,7 +62,7 @@ public class marquisFinancierSanityScript {
 
 	@AfterMethod
 	public synchronized void tearDown() {
-	//	MarquisFinancierBusinessLogic.tearDown();
+		MarquisFinancierBusinessLogic.tearDown();
 	}
 	
 	
