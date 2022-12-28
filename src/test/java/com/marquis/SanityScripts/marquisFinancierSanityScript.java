@@ -6,12 +6,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.business.marquis.MarquisFinancierBusinessLogic;
-import com.marquis.webPages.ClientDetailsPage;
-import com.marquis.webPages.MarquisFinanceTransactionPage;
-import com.marquis.webPages.Ops_LandingPAge;
-import com.marquis.webPages.Ops_Login;
-import com.marquis.webPages.SeritiCreateCustomerFormPage;
-import com.marquis.webPages.SeritiLoginPage;
+import com.marquis.webPages.*;
+
 
 public class marquisFinancierSanityScript {
 
@@ -50,7 +46,7 @@ public class marquisFinancierSanityScript {
 		
 		//TODO: 
 		//In-progress to Refresh Applciation Status and Read Agreement number and Document Upload
-		//MarquisFinanceTransactionPage.verifyApplicationStatus();
+		MarquisFinanceTransactionPage.verifyApplicationStatus();
 
 		
 	}
