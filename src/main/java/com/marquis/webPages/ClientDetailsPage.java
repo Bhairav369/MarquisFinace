@@ -59,8 +59,12 @@ public class ClientDetailsPage {
 		public static By countryBirthSelect = By.id("ddlCountryOfBirth");
 
 		//Selected country of birth
-		public static By selectedCountryBirth = By.xpath("//*[@id=\"ddlCountryOfBirth\"]//*[text()=\"SOUTH AFRICA\"]");
-
+		public static By selectedCountryBirth(String countryBirth) {
+	        return By.xpath("//*[@id='ddlCountryOfBirth']//*[text()='"+countryBirth+"']");
+	    }
+		
+		
+		
 		//Public official yes/no radio buttons
 		public static By publicOfficial_no = By.id("rbnProminentlyInfluentialPersonsInAuthority_1");
 
@@ -123,8 +127,12 @@ public class ClientDetailsPage {
 		public static By eduationalLevelSelect = By.id("ddlEducationLevel");
 
 		//Selected education level text
-		public static By selectedEducationLevel = By.xpath("//*[@id=\"ddlEducationLevel\"]//*[text()=\"PROFESSIONAL QUALIFICATION\"]");
-
+		public static By selectedEducationLevel(String selectedEducationLevel) {
+	        return By.xpath("//*[@id='ddlEducationLevel']//*[text()='"+selectedEducationLevel+"']");
+	    }
+		
+		
+		
 		//Employment type radio buttons
 		public static By employmentType = By.id("rblEmpEmploymentType_0");
 
@@ -135,14 +143,20 @@ public class ClientDetailsPage {
 		public static By occupationSelect = By.id("ddlEmpOccupationId");
 
 		//Selected occupation
-		public static By selectedOccupation = By.xpath("//*[@id=\"ddlEmpOccupationId\"]//*[text()=\"ENGINEER\"]");
-
+		public static By selectedOccupation(String selOccupation) {
+	        return By.xpath("//*[@id='ddlEmpOccupationId']//*[text()='"+selOccupation+"']");
+	    }
+		
+		
 		//Occupational level select
 		public static By occupationLevelSelect = By.id("ddlEmpOccupationLevel");
 
 		//Selected occupation level
-		public static By selectedOccupationLevel = By.xpath("//*[@id=\"ddlEmpOccupationLevel\"]//*[text()=\"JUNIOR POSITION\"]");
-
+		public static By selectedOccupationLevel(String selOccupationLevel) {
+	        return By.xpath("//*[@id='ddlEmpOccupationLevel']//*[text()='"+selOccupationLevel+"']");
+	    }
+		
+		
 		//Type of industry
 		public static By industryTypeSelect = By.id("ddlEmpIndustry");
 
@@ -244,7 +258,9 @@ public class ClientDetailsPage {
 		
 
 		/**
-		 * Method for adding new clients for existing customer
+		 * Method for adding new clients for Finance Form Created in earlier steps
+		 * All the Client fields will be loaded with data from Excel sheet 
+		 * 
 		 * @throws Exception
 		 * 
 		 *
@@ -322,7 +338,7 @@ public class ClientDetailsPage {
 			try {
 				String readCountryBirth = ExcelFunctions.getCellValue(xlpath,"Sheet1",8,12);
 				Utilities.selectByVisibleTextByLocator(ClientDetailsPage.countryBirthSelect,readCountryBirth);
-			String selectedCountryBirthText = Utilities.getText(ClientDetailsPage.selectedCountryBirth);
+			String selectedCountryBirthText = Utilities.getText(ClientDetailsPage.selectedCountryBirth(readCountryBirth));
 			Assert.assertEquals(selectedCountryBirthText, readCountryBirth);
 			
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.publicOfficial_no,"Public official radio button");
@@ -429,7 +445,7 @@ public class ClientDetailsPage {
 			
 			String readEduLevel = ExcelFunctions.getCellValue(xlpath,"Sheet1",16,12);
 			Utilities.selectByVisibleTextByLocator(ClientDetailsPage.eduationalLevelSelect,readEduLevel);
-			String selectedEduQual = Utilities.getText(ClientDetailsPage.selectedEducationLevel);
+			String selectedEduQual = Utilities.getText(ClientDetailsPage.selectedEducationLevel(readEduLevel));
 			Assert.assertEquals(selectedEduQual, readEduLevel);
 			
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.employmentType,"Employment type radio button");
@@ -442,12 +458,12 @@ public class ClientDetailsPage {
 			
 			String readOccupation = ExcelFunctions.getCellValue(xlpath,"Sheet1",17,12);
 			Utilities.selectByVisibleTextByLocator(ClientDetailsPage.occupationSelect,readOccupation);
-			String selectedOccupationTxt = Utilities.getText(ClientDetailsPage.selectedOccupation);
+			String selectedOccupationTxt = Utilities.getText(ClientDetailsPage.selectedOccupation(readOccupation));
 			Assert.assertEquals(selectedOccupationTxt, readOccupation);
 			
 			String readOccupationLevel = ExcelFunctions.getCellValue(xlpath,"Sheet1",18,12);
 			Utilities.selectByVisibleTextByLocator(ClientDetailsPage.occupationLevelSelect,readOccupationLevel);
-			String occupationLevelTxt = Utilities.getText(ClientDetailsPage.selectedOccupationLevel);
+			String occupationLevelTxt = Utilities.getText(ClientDetailsPage.selectedOccupationLevel(readOccupationLevel));
 			Assert.assertEquals(occupationLevelTxt, readOccupationLevel);
 			
 			String readIndustryType = ExcelFunctions.getCellValue(xlpath,"Sheet1",19,12);
@@ -613,7 +629,10 @@ public class ClientDetailsPage {
 		}
 		
 		/*Method for Selecting client Details
+		 * This method will only select the already created Client
+		 * and only Save (Not apply) the Marquis application form.
 		 * 
+		 * @throws Exception
 		 * 
 		 */
 		public static void selectClientDetails() throws Exception {

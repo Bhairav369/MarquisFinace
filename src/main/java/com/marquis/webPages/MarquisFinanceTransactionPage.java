@@ -153,6 +153,11 @@ public class MarquisFinanceTransactionPage {
 	/**
 	 * Method for Marquis Finance main page
 	 * 
+	 * This method helps user navigate to the Marquis Transaction page
+	 * by selecting the required Application that is been created in earlier step
+	 * by selecting 
+	 * 
+	 * @throws Exception
 	 * 
 	 *
 	 */
@@ -193,6 +198,11 @@ public class MarquisFinanceTransactionPage {
 		Assert.assertEquals(mainHeaderText, "MARQUIS FINANCE APPLICATIONS");
 	}
 
+	/**
+	 * This is Continuation step in filling the Finance Application
+	 * 
+	 * @throws Exception
+	 */
 	public static void enterMandatoryTransactionMarquisFinancePage() throws Exception {
 		ExtentReporter.HeaderChildNode("TC_014 : Verify user is able to add the details to Marquis finance application");
 
@@ -200,6 +210,8 @@ public class MarquisFinanceTransactionPage {
 		addInterestDetails();
 	}
 
+	
+	
 	// Added separate method, need to do for others as well later
 	/***
 	 * Method to add Vehicle Details

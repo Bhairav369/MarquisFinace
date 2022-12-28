@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 import com.business.marquis.MarquisFinancierBusinessLogic;
 import com.marquis.webPages.ClientDetailsPage;
 import com.marquis.webPages.MarquisFinanceTransactionPage;
+import com.marquis.webPages.Ops_LandingPAge;
+import com.marquis.webPages.Ops_Login;
 import com.marquis.webPages.SeritiCreateCustomerFormPage;
 import com.marquis.webPages.SeritiLoginPage;
 
@@ -46,7 +48,8 @@ public class marquisFinancierSanityScript {
 		MarquisFinanceTransactionPage.enterMandatoryTransactionMarquisFinancePage();
 		ClientDetailsPage.selectClientDetails();
 		
-		//TODO: In-progress to Refresh Applciation Status and Read Agreement number and Document Upload
+		//TODO: 
+		//In-progress to Refresh Applciation Status and Read Agreement number and Document Upload
 		//MarquisFinanceTransactionPage.verifyApplicationStatus();
 
 		

@@ -77,7 +77,7 @@ static ExcelFunctions xcl = new ExcelFunctions();
 	//Create transaction button
 	public static By createSubmitButton = By.xpath("//*[@type=\"submit\" and contains(text(),\"CREATE\")]");
 	
-	//Cancel transaction button
+	//not used:No Such Button present now //Cancel transaction button
 	public static By cancelButton = By.xpath("//*[@type=\"button\" and contains(text(),\"Cancel\")]");
 	
 	   
@@ -85,6 +85,8 @@ static ExcelFunctions xcl = new ExcelFunctions();
 	//-------------------------------------
 	/**
 	 * Method To create Customer Transaction Form
+	 * This method is first step to collect customer details
+	 * and Dealer/D-Group details
 	 * @throws Exception
 	 * 
 	 *
