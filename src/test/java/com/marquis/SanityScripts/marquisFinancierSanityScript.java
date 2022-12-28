@@ -55,6 +55,7 @@ public class marquisFinancierSanityScript {
 	public void Ops_Login() throws Exception{
 		Ops_Login.Login();
 		Ops_LandingPAge.OPs_LandPage();
+		DocVals.DocVals_Landing_PAge();
 	}
 	
 
