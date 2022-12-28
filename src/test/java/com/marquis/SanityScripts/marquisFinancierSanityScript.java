@@ -46,7 +46,7 @@ public class marquisFinancierSanityScript {
 		
 		//TODO: 
 		//In-progress to Refresh Applciation Status and Read Agreement number and Document Upload
-		MarquisFinanceTransactionPage.verifyApplicationStatus();
+		//MarquisFinanceTransactionPage.verifyApplicationStatus();
 
 		
 	}
