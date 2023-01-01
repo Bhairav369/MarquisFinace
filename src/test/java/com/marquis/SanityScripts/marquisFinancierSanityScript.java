@@ -47,11 +47,11 @@ public class marquisFinancierSanityScript {
 
 	}
 
-//	@Test(priority = 1)
-//	public void Ops_Login() throws Exception{
-//		Ops_Login.Login();
-//		Ops_LandingPAge.OPs_LandPage();
-//	}
+	@Test(priority = 1)
+	public void Ops_Login() throws Exception{
+		Ops_Login.Login();
+		Ops_LandingPAge.OPs_LandPage();
+	}
 
 	@AfterMethod
 	public synchronized void tearDown() {
