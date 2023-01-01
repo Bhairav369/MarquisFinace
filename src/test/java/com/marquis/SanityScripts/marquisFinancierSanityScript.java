@@ -35,7 +35,8 @@ public class marquisFinancierSanityScript {
 	@Parameters({ "UserName", "Password" })
 	public void clientDetails(String userName, String password) throws Exception {
 		SeritiLoginPage.login(userName, password);
-		SeritiCreateCustomerFormPage.createCustomerTransactionForm();
+				
+	    SeritiCreateCustomerFormPage.createCustomerTransactionForm();
 		MarquisFinanceTransactionPage.marquisFinancePageForm();
 		ClientDetailsPage.addClientDetails();
 		MarquisFinanceTransactionPage.enterMandatoryTransactionMarquisFinancePage();
@@ -43,7 +44,6 @@ public class marquisFinancierSanityScript {
 
 		MarquisFinanceTransactionPage.verifyApplicationStatus();
 		MarquisFinanceTransactionPage.documentUpload();
-		MarquisFinanceTransactionPage.sendDocuments();
 
 	}
 

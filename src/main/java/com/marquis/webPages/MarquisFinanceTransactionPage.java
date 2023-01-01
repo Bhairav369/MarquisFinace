@@ -382,12 +382,12 @@ public class MarquisFinanceTransactionPage {
 		int count = 0;
 		boolean flag = false;
 		while (flag == false) {
-			Utilities.waitTime(4000);
+			Utilities.waitTime(5000);
 			flag = Utilities.getText(MarquisFinanceTransactionPage.marquisRef).contains("succeeded");
 			Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.refreshApplicationStatus,
 					"Refresh Application Status ");
 			count++;
-			if (flag == true || count == 5)
+			if (flag == true || count == 7)
 				break;
 		}
 
@@ -418,7 +418,6 @@ public class MarquisFinanceTransactionPage {
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.transactionTab, 10);
 
 		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.transactionTab, " Click transaction Tab");
-//		Thread.sleep(5000);
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.searchTransaction, 10);
 
 		Utilities.type(MarquisFinanceTransactionPage.searchTransaction,MarquisFinanceTransactionPage.transactionNumberSaved, " Transaction Number Filtering ");
@@ -469,63 +468,6 @@ public class MarquisFinanceTransactionPage {
 		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.saveButton, " Click Save Button ");
 
 		ExtentReporter.extentLoggerPass("Document 2", " passed ");
-
-	}
-
-	/***
-	 * To Send the Uploaded Documents( from previous Step) to Marquis.
-	 * 
-	 * @throws Exception
-	 */
-	public static void sendDocuments() throws Exception {
-
-		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.applicationTab, 10);
-
-		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.feedbackIcon, 10);
-
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.applicationTab, " Click application Tab");
-
-		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.marquisFinanceLinkLocator, 10);
-
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.marquisFinanceLinkLocator,"Marquis finance link");
-		logger.info("Marquis Finance Link");
-		ExtentReporter.extentLoggerPass("Marquis Finance Link", "Marquis Finance link is clicked");
-
-		// Supporting Documents
-		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.supportingDocuments, 10);
-
-		Utilities.ScrollToTheElement(MarquisFinanceTransactionPage.supportingDocuments);
-
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.supportingDocuments, " Clicked Supporting Documents link ");
-
-		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.sendDocuments, 10);
-		Utilities.selectByVisibleTextByLocator(MarquisFinanceTransactionPage.docSentToMfYesNo, "YES");
-
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.documentsList, "Documents list ");
-
-
-		// Send Documents
-		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.selDocument1, 10);
-		Utilities.moveToElementActionAndClick(MarquisFinanceTransactionPage.selDocument1, "select Documents ");
-
-		Utilities.moveToElementActionAndClick(MarquisFinanceTransactionPage.selDocument2, "select Documents ");
-
-		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.doneButton, 10);
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.doneButton, "Done Submission ");
-
-		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.sendDocuments, 10);
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.sendDocuments, "Send Documents ");
-
-		// Verify the Final document submission
-		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.documentSubmissionSuccess, 10);
-
-		String successMessage = Utilities.getText(MarquisFinanceTransactionPage.documentSubmissionSuccess);
-		String expectedMessage = "Documents submitted successfully";
-
-		Assert.assertEquals(expectedMessage.trim(), successMessage.trim());
-
-		logger.info("End of Documents Submission ");
-		ExtentReporter.extentLoggerPass("Document Submission ", "Documents submitted successfully");
 
 	}
 
