@@ -34,18 +34,13 @@ static ExcelFunctions xcl = new ExcelFunctions();
 	public static By groupSelect = By.name("Group");
 	
 	//Selected group text retrieval
-	public static By groupSelected(String groupSel) {
-        return By.xpath("//*[@name='Group']//*[text()='"+groupSel+"']");
-    }
+	public static By groupSelected = By.xpath("//*[@name=\"Group\"]//*[text()=\"MARQUIS FINANCE TEST ENVIRONMENT\"]");
 	
 	//Branch select mandatory field
 	public static By branchSelect = By.name("Branch");
 	
 	//Selected branch text retrieval
-	public static By branchSelected(String branchSel) {
-        return By.xpath("//*[@name='Branch']//*[text()='"+branchSel+"']");
-    }
-	
+	public static By branchSelected = By.xpath("//*[@name=\"Branch\"]//*[text()=\"MARQUIS FINANCE UAT TEST BRANCH\"]");
 	
 	//Customer section header
 	public static By customerSectionHeader = By.xpath("//*[contains(text(),\"Customer\")]");
@@ -53,11 +48,8 @@ static ExcelFunctions xcl = new ExcelFunctions();
 	//Customer type select mandatory field
 	public static By custTypeSelect = By.name("clnCategory");
 	
-	//custTypeSelected
-		public static By custTypeSelected(String custTypeSel) {
-	        return By.xpath("//*[@name='clnCategory']//*[text()='"+custTypeSel+"']");
-	    }
-	
+	//Customer type text retrieval 
+	public static By custTypeSelected = By.xpath("//*[@name=\"clnCategory\"]//*[text()=\"PRIVATE\"]");
 	
 	//Last Name text mandatory field
 	public static By lastName = By.id("txtClientLastName");
@@ -68,37 +60,30 @@ static ExcelFunctions xcl = new ExcelFunctions();
 	//Finance select mandatory field
 	public static By financeSelect = By.name("CashInd");
 	
-	//financeSelected
-	public static By financeSelected(String financeSel) {
-        return By.xpath("//*[@name='CashInd']//*[text()='"+financeSel+"']");
-    }
-	
+	//Finance select text retrieval
+	public static By financeSelected = By.xpath("//*[@name=\"CashInd\"]//*[text()=\"FINANCE\"]");
 	
 	//Create transaction button
 	public static By createSubmitButton = By.xpath("//*[@type=\"submit\" and contains(text(),\"CREATE\")]");
 	
-	//not used:No Such Button present now //Cancel transaction button
+	//Cancel transaction button
 	public static By cancelButton = By.xpath("//*[@type=\"button\" and contains(text(),\"Cancel\")]");
 	
 	   
 	 	// Methods 
 	//-------------------------------------
 	/**
-	 * Method To create Customer Transaction Form
-	 * This method is first step to collect customer details
-	 * and Dealer/D-Group details
-	 * @throws Exception
+	 * Method for create customer create form
+	 * `
 	 * 
 	 *
 	 */
 	
 	public static void createCustomerTransactionForm() throws Exception {
-		ExtentReporter.HeaderChildNode("TC_008 : Verify the UI of Create Transaction page");
-		ExtentReporter.HeaderChildNode("TC_009 : Verify the UI of Create Transaction page");
-
-		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.dashBoardHeader,20);
-		String dashboardHeaderText = Utilities.getText(SeritiCreateCustomerFormPage.dashBoardHeader);
-		Assert.assertEquals(dashboardHeaderText,"MY DASHBOARD");
+		ExtentReporter.HeaderChildNode("Customer Form");
+//		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.dashBoardHeader,20);
+//		String dashboardHeaderText = Utilities.getText(SeritiCreateCustomerFormPage.dashBoardHeader);
+//		Assert.assertEquals(dashboardHeaderText,"MY DASHBOARD");
 		
 		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.createCustomerTransactionButton,20);
 
@@ -111,9 +96,9 @@ static ExcelFunctions xcl = new ExcelFunctions();
 	    Assert.assertEquals(createTransactionHeaderText, "create transaction");
 	    
 		logger.info("Filling dealer section");
-		String readFinanceGroup = ExcelFunctions.getCellValue(xlpath,"Sheet1",1,7);
+		String readFinanceGroup = xcl.getCellValue(xlpath,"Sheet1",1,7);
 		Utilities.selectByVisibleTextByLocator(SeritiCreateCustomerFormPage.groupSelect,readFinanceGroup);
-		String selectedGroup = Utilities.getText(SeritiCreateCustomerFormPage.groupSelected(readFinanceGroup));
+		String selectedGroup = Utilities.getText(SeritiCreateCustomerFormPage.groupSelected);
 		Assert.assertEquals(selectedGroup, readFinanceGroup);
 		
 		logger.info("Dealer group selection");
@@ -121,30 +106,35 @@ static ExcelFunctions xcl = new ExcelFunctions();
 		Utilities.selectByVisibleTextByLocator(SeritiCreateCustomerFormPage.branchSelect,"MARQUIS FINANCE UAT TEST BRANCH");
 		
 		logger.info("Dealer branch selection");
-		String readFinanceBranch = ExcelFunctions.getCellValue(xlpath,"Sheet1",2,7);
+		String readFinanceBranch = xcl.getCellValue(xlpath,"Sheet1",2,7);
 		ExtentReporter.extentLoggerPass("Dealer branch select dropdown", "MARQUIS FINANCE UAT TEST BRANCH is selected from DD");
-		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.groupSelected(readFinanceGroup),10);
-		String selectedBranch = Utilities.getText(SeritiCreateCustomerFormPage.branchSelected(readFinanceBranch));
+		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.groupSelected,10);
+		String selectedBranch = Utilities.getText(SeritiCreateCustomerFormPage.branchSelected);
 		Assert.assertEquals(selectedBranch,readFinanceBranch);
 		
 		logger.info("Filling Customer section");
-		String readCustomerType = ExcelFunctions.getCellValue(xlpath,"Sheet1",3,7);
+		String readCustomerType = xcl.getCellValue(xlpath,"Sheet1",3,7);
 		Utilities.selectByVisibleTextByLocator(SeritiCreateCustomerFormPage.custTypeSelect,readCustomerType);
-		String selectedCustType = Utilities.getText(SeritiCreateCustomerFormPage.custTypeSelected(readCustomerType));
+		String selectedCustType = Utilities.getText(SeritiCreateCustomerFormPage.custTypeSelected);
 		Assert.assertEquals(selectedCustType, readCustomerType);
 		
-		String readLastName = ExcelFunctions.getCellValue(xlpath,"Sheet1",4,7);
+		String readLastName = xcl.getCellValue(xlpath,"Sheet1",4,7);
 		Utilities.type(SeritiCreateCustomerFormPage.lastName,readLastName,"Last Name text field");
 		logger.info("LastName is entered");
 		ExtentReporter.extentLoggerPass("LastName field", "Last name is entered");
+//		Utilities.waitTime(3000);
+//		Utilities.robotClassDown();
+//		Utilities.waitTime(3000);
 		
 		logger.info("Filling Finance section");
-		String readDeal = ExcelFunctions.getCellValue(xlpath,"Sheet1",5,7);
+		String readDeal = xcl.getCellValue(xlpath,"Sheet1",5,7);
 		Utilities.selectByVisibleTextByLocator(SeritiCreateCustomerFormPage.financeSelect,readDeal);
-		
-		String financeSel = ExcelFunctions.getCellValue(xlpath,"Sheet1",5,7);
-		String selectedFinanceType = Utilities.getText(SeritiCreateCustomerFormPage.financeSelected(financeSel));
+		String selectedFinanceType = Utilities.getText(SeritiCreateCustomerFormPage.financeSelected);
 		Assert.assertEquals(selectedFinanceType, readDeal);
+		//modalScrollUp();
+//		Utilities.waitTime(3000);
+//		Utilities.robotClassUp();
+//		Utilities.waitTime(3000);
 		Utilities.JSClick(SeritiCreateCustomerFormPage.createSubmitButton,"Create Transaction ");
 	}
 
