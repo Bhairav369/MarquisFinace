@@ -1,19 +1,8 @@
 package com.marquis.webPages;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.Reporter;
 
-import com.driverInstance.DriverManager;
 //import com.marquis.Financier.WebPages.portalLoginPage;
 import com.utility.ExtentReporter;
 import com.utility.LoggingUtils;
@@ -62,7 +51,7 @@ public class SeritiLoginPage {
 		
 		/**
 		 * Method for login into Marquis Financier DMS
-		 * 
+		 * @throws Exception
 		 * 
 		 *
 		 */

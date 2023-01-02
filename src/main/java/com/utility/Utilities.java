@@ -11,9 +11,12 @@ import java.util.Base64;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import javax.mail.*;
 
 import com.driverInstance.DriverInstance;
 import com.driverInstance.DriverManager;
@@ -227,7 +230,7 @@ public class Utilities extends ExtentReporter{
             return true;
         }
     }
-
+    
     /**
      * Check element not present.
      *
@@ -1533,7 +1536,7 @@ public class Utilities extends ExtentReporter{
      *
      * @throws Exception
      */
-    public void explicitWaitForElementRefresh(By element) throws Exception {
+    public static void explicitWaitForElementRefresh(By element) throws Exception {
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.stalenessOf(getDriver().findElement(element))));
     }
 
@@ -2417,6 +2420,26 @@ public class Utilities extends ExtentReporter{
 	}
 	
 	/**
+	 * This method will wait for element absence till the given time 
+	 * @param locator
+	 * @param seconds
+	 * @param message
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean waitForElementInVisible(By locator, int seconds, String message) throws Exception {
+		try {
+			WebDriverWait w = new WebDriverWait(DriverManager.getDriver(), seconds);
+			w.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+			logger.info(message + " is displayed");
+			ExtentReporter.extentLogger("element is displayed", message + " is displayed");
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	/**
 	 * Generic method to return browser current url
 	 * @return
 	 * @throws Exception
@@ -2463,6 +2486,28 @@ public class Utilities extends ExtentReporter{
 			ExtentReporter.extentLoggerFail("", "Failed to move to element "+message);
     	}
     }
+    
+    
+    /**
+	 * Method to Move to Element using Actions and click
+	 * @param title
+	 * @throws Exception 
+	 */
+    public static void moveToElementActionAndClick(By byLocator, String message) throws Exception {
+    	try {
+    		
+  		 WebElement element = DriverManager.getDriver().findElement(byLocator);
+    		Actions a = new Actions(DriverManager.getDriver());
+    		a.moveToElement(element).click().build().perform();
+    		logger.info("Moved to element "+message);
+			ExtentReporter.extentLogger("", "Moved to element and Click "+message);
+    	}
+    	catch(Exception e) {
+    		logger.error("Failed to move to element and click "+message);
+			ExtentReporter.extentLoggerFail("", "Failed to move to element "+message);
+    	}
+    }
+    
     
     public static void waitUntilElementVisible_NoCustomMessage(By by) {
     	String platform = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getSuite().getName();		
@@ -2571,4 +2616,5 @@ public class Utilities extends ExtentReporter{
 	public static void switchFrame_parent() {
 		DriverManager.getDriver().switchTo().parentFrame();
 	}
-}
+	
+	}
