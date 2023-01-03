@@ -47,7 +47,9 @@ public class marquisFinancierSanityScript {
 		MarquisFinanceTransactionPage.marquisFinancePageForm();
 		ClientDetailsPage.addClientDetails();
 		MarquisFinanceTransactionPage.enterMandatoryTransactionMarquisFinancePage();
+		//Ok
 		ClientDetailsPage.selectClientDetails();	
+		
 	}
 	
 
