@@ -220,7 +220,7 @@ public class MarquisFinanceTransactionPage {
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.applicationHeader, 10);
 		String applicationsHeaderText = Utilities.getText(MarquisFinanceTransactionPage.applicationHeader);
 
-		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.transactionNumberElement, 10);
+		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.transactionNumberElement, 15);
 
 		transactionNumberSaved = Utilities.getText(transactionNumberElement);
 		System.out.println(" Transaction Number *** " + transactionNumberSaved);
@@ -335,8 +335,7 @@ public class MarquisFinanceTransactionPage {
 		Utilities.type(MarquisFinanceTransactionPage.firstRegDateVehicle, firstRegDate, " First Reg Date ");
 
 		String agreementType = ExcelFunctions.getCellValue(xlpath, "Sheet1", 38, 12);
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.agreementType(agreementType),
-				" Agreement Type ");
+		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.agreementType(agreementType)," Agreement Type ");
 		logger.info("Enter Agreement Tye");
 		ExtentReporter.extentLoggerPass(" Enter Agreement Type ", "Entered Agreement Type ");
 
@@ -378,11 +377,13 @@ public class MarquisFinanceTransactionPage {
 		while (flag == false) {
 			Utilities.waitTime(4000);
 			flag = Utilities.getText(MarquisFinanceTransactionPage.marquisRef).contains("succeeded");
+			
+			if (flag == true || count == 6)
+				break;
 			Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.refreshApplicationStatus,
 					"Refresh Application Status ");
 			count++;
-			if (flag == true || count == 6)
-				break;
+			
 		}
 
 		logger.info(" To Retrieve Marquis Reference Number ");
@@ -417,22 +418,16 @@ public class MarquisFinanceTransactionPage {
 		Utilities.type(MarquisFinanceTransactionPage.searchTransaction,
 				MarquisFinanceTransactionPage.transactionNumberSaved, " Transaction Number Filtering ");
 
-		// Uploading 1st Document
+		//Uploading 1st Document
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.documentsUpload, 10);
 
-		// Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.transactionTab,
-		// "Click on Transaction Tab ");
 		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.documentsUpload, " Documents Upload ");
-
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.documentsUpload, " Documents Upload ");
-//		Thread.sleep(5000);
 
 		Utilities.type(MarquisFinanceTransactionPage.fileUploadButton,"C:\\Users\\Likhitha\\Downloads\\BANK STATEMENT.pdf", "");
 
 		Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 10, "");
 		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.documentCategory, 15, " Document Category ");
 
-		// Thread.sleep(7000);
 		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.documentCategory, "");
 		 documentType = ExcelFunctions.getCellValue(xlpath, "Sheet1", 41, 12);
 		Utilities.selectByVisibleTextByLocator(MarquisFinanceTransactionPage.documentCategory, "BANK STATEMENT");
@@ -470,6 +465,8 @@ public class MarquisFinanceTransactionPage {
 
 	}
 
+
+	
 	public static void sendDocuments() throws Exception {
 
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.applicationTab, 10);
