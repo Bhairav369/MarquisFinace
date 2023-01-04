@@ -47,7 +47,13 @@ public class marquisFinancierSanityScript {
 		MarquisFinanceTransactionPage.marquisFinancePageForm();
 		ClientDetailsPage.addClientDetails();
 		MarquisFinanceTransactionPage.enterMandatoryTransactionMarquisFinancePage();
+		
 		ClientDetailsPage.selectClientDetails();	
+		
+		MarquisFinanceTransactionPage.verifyApplicationStatus();
+		MarquisFinanceTransactionPage.documentUpload();
+		MarquisFinanceTransactionPage.sendDocuments();
+		
 	}
 	
 

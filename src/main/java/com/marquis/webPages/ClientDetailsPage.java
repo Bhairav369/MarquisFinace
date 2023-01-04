@@ -604,9 +604,11 @@ public class ClientDetailsPage {
 
 			
 		}
-		
 		/*Method for Selecting client Details
+		 * This method will only select the already created Client
+		 * and only Save (Not apply) the Marquis application form.
 		 * 
+		 * @throws Exception
 		 * 
 		 */
 		public static void selectClientDetails() throws Exception {
@@ -622,7 +624,6 @@ public class ClientDetailsPage {
 			Assert.assertEquals(selectClientHeaderText,"Select Client");
 			
 			Utilities.switchFrame_id("personClient_ifrm");
-			System.out.println("************* "+ Utilities.getText(ClientDetailsPage.selectedClientName));
 			Utilities.explicitWaitVisible(ClientDetailsPage.selectedClientName,10);
 			String selectedName_modal = Utilities.getText(ClientDetailsPage.selectedClientName);
 			
@@ -641,68 +642,14 @@ public class ClientDetailsPage {
 			Utilities.JSClick(MarquisFinanceTransactionPage.applyCheckButton,"Apply check button");
 			logger.info("Apply check button");
 			ExtentReporter.extentLoggerPass("Apply check button", "Apply check button clicked");
-			
-			//String failMsg = Utilities.getText(MarquisFinanceTransactionPage.transactionFailMsg);
-		    //failMsg = failMsg.split(":")[0];
-		    //Assert.assertEquals(failMsg, "The application could not be made");
 		    
-//		    Utilities.ScrollToTheElement(MarquisFinanceTransactionPage.clientDetailsSelectButton);
-//		    Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.clientDetailsSelectButton,"Select client detail button");
-//			logger.info("Select client detail button");
-//			ExtentReporter.extentLoggerPass("Select client detail button", "Select client detail button clicked");
-//			
-//			Utilities.explicitWaitVisible(ClientDetailsPage.selectClientHeader,10);
-//			Assert.assertEquals(selectClientHeaderText,"Select Client");
-			
-//			Utilities.switchFrame_id("personClient_ifrm");
-//			
-//			Utilities.explicitWaitVisible(ClientDetailsPage.selectedClientName,10);
-//			String selectedName_modal_1 =  Utilities.getText(ClientDetailsPage.selectedClientName_Approved);
-//			Utilities.verifyElementPresentAndClick(ClientDetailsPage.selectAddedClient_Approved,"Select added client approved button");
-//			logger.info("Select added client button");
-//			ExtentReporter.extentLoggerPass("Select added client button", "Added client approved selected");
-//			
-//			Utilities.switchFrame_parent();
-//			
-//			Utilities.explicitWaitVisible(ClientDetailsPage.selectedClientName_Approved,10);
-//			String selectedName_main_approved = Utilities.getText(ClientDetailsPage.selectedClientName_Approved);
-//			Assert.assertEquals(selectedName_modal_1, selectedName_main_approved);
 			
 			Utilities.ScrollToTheElement(MarquisFinanceTransactionPage.saveFooterBtn);
 			Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.saveFooterBtn,"Save client details footer button");
 			logger.info("Save client details footer button");
 			ExtentReporter.extentLoggerPass("Save client details footer button", "Save client details footer button clicked");
 			
-			Utilities.ScrollToTheElement(MarquisFinanceTransactionPage.applyFooterBtn);
-			Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.applyFooterBtn,"Apply footer button");
-			logger.info("Apply footer button");
-			ExtentReporter.extentLoggerPass("Apply footer button", "Apply footer button is clicked");
-
-
-			Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.applySuccessMsg,10);
-			String applySuccessText = Utilities.getText(MarquisFinanceTransactionPage.applySuccessMsg);
-			System.out.println("********************************  "+applySuccessText);
-			Assert.assertEquals(applySuccessText,"Application has been made:\n" +
-					"The information is currently being processed, this may take up to 5 minutes. The results will be displayed as soon as they become available.");
-
-//			String transactionNumber = Utilities.getText(MarquisFinanceTransactionPage.transactionNumber);
-//			System.out.println(" Transaction Number ******  "+transactionNumber);
-//			
-			
-
-			
-//			String marquisReferenceNumber = Utilities.getText(MarquisFinanceTransactionPage.marquisRef);
-//			System.out.println(" marquisReferenceNumber  ******  "+marquisReferenceNumber);
-//			System.out.println(" MQ REF  "+ marquisReferenceNumber.substring(9,marquisReferenceNumber.length()-1));
-			
-//			Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.approvedMsg,10);
-//			Utilities.ScrollToTheElement(MarquisFinanceTransactionPage.approvedMsg);
-//			String approvedMsgTxt = Utilities.getText(MarquisFinanceTransactionPage.approvedMsg);
-//			Assert.assertEquals(approvedMsgTxt,"This application has been approved.");
-		
 		}
-
-
 
 
 }
