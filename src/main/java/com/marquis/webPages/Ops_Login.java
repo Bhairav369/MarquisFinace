@@ -111,13 +111,14 @@ public class Ops_Login {
 
 	// Enter OTP Text Placeholder
 	public static By EntrOtpTxtPlc = By
-			.xpath("//input[@id='Enter OTP']//following::span[@class='bg-white']");
+			.xpath("//label[@for='Enter OTP']//span[@class='bg-white'] || (//span[@class='bg-white'])[3]");
 
 	// Resend OTP Via Mobile no
 	public static By ResendOtpViMob = By.xpath("(//button[@type='button'])[1]");
 
 	// Resend OTP Via Email
-	public static By ResendOtpViEmail = By.xpath("//button[@ng-reflect-text='Resent OTP Via Email on bh****']/..//i[@class='pi pi-envelope pt-2']");
+	public static By ResendOtpViEmail = By.xpath(
+			"(//button[@ng-reflect-text='Resent OTP Via Email on bh****'])[1] || /html[1]/body[1]/app-root[1]/app-login[1]/div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/button[2]");
 
 	// Back Button
 	public static By Backbtns = By.xpath("(//button[@class='btn btn-danger'])[1]");
@@ -244,7 +245,7 @@ public class Ops_Login {
 		 * 
 		 * Utilities.click(Ops_Login.GetotpBtn, "Get OTP Button");
 		 */
-		Utilities.waitTime(30000);
+		Utilities.waitTime(50000);
 		Utilities.click(Ops_Login.SubMitButton1, "SubMit Button");
 
 	}

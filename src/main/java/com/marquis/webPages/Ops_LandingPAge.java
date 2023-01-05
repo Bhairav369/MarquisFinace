@@ -12,7 +12,7 @@ import ch.qos.logback.classic.pattern.Util;
 
 public class Ops_LandingPAge 
 {
-static LoggingUtils logger=new LoggingUtils();
+	static LoggingUtils logger=new LoggingUtils();
 	
 	static ExcelFunctions xcl=new ExcelFunctions();
 	
@@ -27,7 +27,7 @@ static LoggingUtils logger=new LoggingUtils();
 	
 	
 	//MQ Logo
-	public static By MqLogos=By.xpath("//div[@class='col-4 align-items-center']/..//img[@class='img-fluid-logo']");
+	public static By MqLogos=By.xpath("//img[@class='img-fluid-logo']");
 	
 	//HAmburger Button
 	public static By HamburgrBtn=By.xpath("(//i[@class='pi pi-bars '])[1]");
@@ -160,7 +160,7 @@ static LoggingUtils logger=new LoggingUtils();
 		ExtentReporter.extentLogger(ActualURl, ExpectedUrl);
 		
 		
-		Utilities.verifyElementPresent(Ops_LandingPAge.MqLogos, "MQ Logo");
+		Utilities.verifyIsElementDisplayed(Ops_LandingPAge.MqLogos, "MQ Logo");
 		//Utilities.imageVerification(Ops_LandingPAge.MqLogos, "Marquis Finance Logo");
 		
 		Utilities.verifyElementPresent(Ops_LandingPAge.HamburgrBtn, "Hamburger Button");
@@ -228,6 +228,12 @@ static LoggingUtils logger=new LoggingUtils();
 		Utilities.verifyElementPresent(Ops_LandingPAge.Deallsthedr, "Dealers List page header");
 		
 		Utilities.click(Ops_LandingPAge.HamburgrBtn, "HAmburger Button");
+
+		
+		//Utilities.verifyElementPresent(Ops_LandingPAge.DealerShpReqMnu, "Dealerships Requests side-menu");
+		//logger.info("If the Dealerships Requests side-menu is not displayed it mean that the menu title text are not displayed");
+	//	ExtentReporter.extentLoggerPass("Dealerships Requests side-menu", "is Not Displayed mean that would be considered as onll menu Icons are displayed");
+		
 		
 		Utilities.verifyElementPresent(Ops_LandingPAge.CarIconfrDelrShpReq, "Car Icon for the Dealerships Requests side-menu");
 		
