@@ -39,7 +39,7 @@ public class marquisFinancierSanityScript {
 		SeritiCreateCustomerFormPage.createCustomerTransactionForm();
     }  
 	*/
-	@Test(priority = 1)
+	/*@Test(priority = 1)
 	@Parameters({"UserName","Password"})
     public void clientDetails(String userName,String password) throws Exception {
 		SeritiLoginPage.login(userName, password);
@@ -54,14 +54,19 @@ public class marquisFinancierSanityScript {
 		MarquisFinanceTransactionPage.documentUpload();
 		MarquisFinanceTransactionPage.sendDocuments();
 		
-	}
+	}*/
 	
 
 	@Test(priority = 1)
 	public void Ops_Login() throws Exception{
 		Ops_Login.Login();
-		Ops_LandingPAge.OPs_LandPage();
-		DocVals.DocVals_Landing_PAge();
+		//Ops_LandingPAge.OPs_LandPage();
+		//DocVals.DocVals_Landing_PAge();
+		
+		payouts.pendingdocumentsearch();
+		payouts.document();
+		payouts.Drawdownpending();
+		payouts.generated();
 	}
 	
 
