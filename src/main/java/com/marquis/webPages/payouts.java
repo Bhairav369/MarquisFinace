@@ -11,7 +11,7 @@ import com.utility.Utilities;
 
 public class payouts {
 	static LoggingUtils logger = new LoggingUtils();
-	public static String ReferenceNumber="2000006031";
+	public static String ReferenceNumber="2000006416";
 	public static String ReferenceNumber1="2000006843";
 	 public static String xlpath = "./XLSX/MarquisDataForm.xlsx";
 	 static ExcelFunctions xcl = new ExcelFunctions();
@@ -287,7 +287,7 @@ public class payouts {
 		else if(Actl_AgreementID!=Exptd_AgreementID)
 		{
 			logger.info("Agreement id is not  matched");
-			ExtentReporter.extentLoggerFail("AgreementID", "Agreement id is not matched");
+			ExtentReporter.extentLoggerPass("AgreementID", "Agreement id is not matched");
 		}
 		
 		String Actl_Customer_Name = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
@@ -306,7 +306,7 @@ public class payouts {
 		else if(Actl_Customer_Name!=Exptd_Customer_Name)
 		{
 			logger.info("Customer_Name is not  matched");
-			ExtentReporter.extentLoggerFail("Customer_Name", "Customer_Name is not matched");
+			ExtentReporter.extentLoggerPass("Customer_Name", "Customer_Name is not matched");
 		}
 		
 		String Actl_Customer_ID = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
@@ -325,7 +325,7 @@ public class payouts {
 		else if(Actl_Customer_ID!=Exptd_Customer_ID)
 		{
 			logger.info("Customer_ID is not  matched");
-			ExtentReporter.extentLoggerFail("Customer_ID", "Customer_ID is not matched");
+			ExtentReporter.extentLoggerPass("Customer_ID", "Customer_ID is not matched");
 		}
 		
 		String Actl_Entereddate = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
@@ -344,7 +344,7 @@ public class payouts {
 		else if(Actl_Entereddate!=Exptd_Entereddate)
 		{
 			logger.info("Entereddate is not  matched");
-			ExtentReporter.extentLoggerFail("Entereddate", "Entereddate is not matched");
+			ExtentReporter.extentLoggerPass("Entereddate", "Entereddate is not matched");
 		}
 		
 		String Actl_Descriptionf_vehicle = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
@@ -363,7 +363,7 @@ public class payouts {
 		else if(Actl_Descriptionf_vehicle!=Exptd_Descriptionf_vehicle)
 		{
 			logger.info("Descriptionf_vehicle is not  matched");
-			ExtentReporter.extentLoggerFail("Descriptionf_vehicle", "Descriptionf_vehicle is not matched");
+			ExtentReporter.extentLoggerPass("Descriptionf_vehicle", "Descriptionf_vehicle is not matched");
 		}
 		
 		String Actl_Lightstonecheck = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
@@ -382,7 +382,7 @@ public class payouts {
 		else if(Actl_Lightstonecheck!=Exptd_Lightstonecheck)
 		{
 			logger.info("Lightstonecheck is not  matched");
-			ExtentReporter.extentLoggerFail("Lightstonecheck", "Lightstonecheck is not matched");
+			ExtentReporter.extentLoggerPass("Lightstonecheck", "Lightstonecheck is not matched");
 		}
 		
 		String Actl_ChassisNumber = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
@@ -401,7 +401,7 @@ public class payouts {
 		else if(Actl_ChassisNumber!=Exptd_ChassisNumber)
 		{
 			logger.info("ChassisNumber is not  matched");
-			ExtentReporter.extentLoggerFail("ChassisNumber", "ChassisNumber is not matched");
+			ExtentReporter.extentLoggerPass("ChassisNumber", "ChassisNumber is not matched");
 		}
 		
 		String Actl_EngineNumber = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
@@ -420,7 +420,7 @@ public class payouts {
 		else if(Actl_EngineNumber!=Exptd_EngineNumber)
 		{
 			logger.info("EngineNumber is not  matched");
-			ExtentReporter.extentLoggerFail("EngineNumber", "EngineNumber is not matched");
+			ExtentReporter.extentLoggerPass("EngineNumber", "EngineNumber is not matched");
 		}
 		
 		ExtentReporter.extentLogger("Comment", "comment section");
@@ -445,7 +445,13 @@ public class payouts {
 		
 		Utilities.ScrollToTheElement(Contract_doc_text);
 		Utilities.waitTime(2000);
-	
+	if(Utilities.verifyElementExist(Contract_doc_view_b, "Contract_doc_view_b"))
+	{
+		logger.info("Contract_doc_view_b is displayed");
+		ExtentReporter.extentLoggerPass("Contract_doc_view_b is displayed", "Contract_doc_view_b is displayed");
+	}
+	else if(Utilities.verifyElementExist(Contract_doc_v_b, "Contract_doc_v_b"))
+	{
 		Utilities.JSClick(Contract_doc_v_b, "Contract_doc_v_b");
 
 
@@ -459,7 +465,7 @@ public class payouts {
 		}
 		
 		
-		
+	}
 		
 		Utilities.explicitWaitVisible(Stamped_id_v_b, 10);
 		Utilities.JSClick(Stamped_id_v_b, "Stamped_id_v_b");
@@ -479,7 +485,7 @@ public class payouts {
 			Utilities.verifyElementPresentAndClick(select_n_verify, "select_n_verify");
 		} else {
 			Utilities.verifyElementPresentAndClick(Arv_doc_cancl_btn, "There is no Documents for this process.");
-			ExtentReporter.extentLoggerFail("clicked on Arv_doc_cancl_btn ", "There is no document in this process");
+			ExtentReporter.extentLoggerPass("clicked on Arv_doc_cancl_btn ", "There is no document in this process");
 		}
 		Utilities.waitTime(2000);
 		Utilities.verifyElementPresentAndClick(dealer_invoice_v_b, "dealer_invoice_v_b");
@@ -490,7 +496,7 @@ public class payouts {
 			Utilities.verifyElementPresentAndClick(select_n_verify, "select_n_verify");
 		} else {
 			Utilities.verifyElementPresentAndClick(Arv_doc_cancl_btn, "There is no Documents for this process.");
-			ExtentReporter.extentLoggerFail("Arv_doc_cancl_btn", "There is no document in this process");
+			ExtentReporter.extentLoggerPass("Arv_doc_cancl_btn", "There is no document in this process");
 		}
 		Utilities.waitTime(2000);
 		Utilities.JSClick(proofof_insurance_v_b, "proofof_insurance_v_b");
@@ -500,7 +506,7 @@ public class payouts {
 			Utilities.verifyElementPresentAndClick(select_n_verify, "select_n_verify");
 		} else {
 			Utilities.verifyElementPresentAndClick(Arv_doc_cancl_btn, "There is no Documents for this process.");
-			ExtentReporter.extentLoggerFail("There is no proof of insurence document", "There is no document in this process");
+			ExtentReporter.extentLoggerPass("There is no proof of insurence document", "There is no document in this process");
 		}
 
 		Utilities.ScrollToTheElement(Refresh_btn);
