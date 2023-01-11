@@ -246,7 +246,7 @@ public class ClientDetailsPage {
 		
 		public static void addClientDetails() throws Exception {
 			
-			ExtentReporter.HeaderChildNode("Add client details form");
+			ExtentReporter.HeaderChildNode(" TC012 & TC013 Verify user is able add the client details");
 //			Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.applicationTab,10);
 //			Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.applicationTab," Click Application Tab");
 
@@ -263,7 +263,7 @@ public class ClientDetailsPage {
 			ExtentReporter.extentLoggerPass("Add client frame", "Switched to add client frame modal");
 			
 			Utilities.explicitWaitVisible(ClientDetailsPage.addFirstName,10);
-			String readFirstName = xcl.getCellValue(xlpath,"Sheet1",1,12);
+			String readFirstName = ExcelFunctions.getCellValue(xlpath,"Sheet1",1,12);
 			Utilities.clearField(ClientDetailsPage.addFirstName, "Clear First Name Field ");
 
 			Utilities.type(ClientDetailsPage.addFirstName,readFirstName, "Typed " + readFirstName +" in add client first name field");
@@ -273,7 +273,7 @@ public class ClientDetailsPage {
 			logger.info("Add client first name");
 			ExtentReporter.extentLoggerPass("Add client first name", "Typed " + readFirstName +" in add client first name field");
 			
-			String readLastName = xcl.getCellValue(xlpath,"Sheet1",2,12);
+			String readLastName = ExcelFunctions.getCellValue(xlpath,"Sheet1",2,12);
 			Utilities.clearField(ClientDetailsPage.addLastName, "Clear last Name Field ");
 			Utilities.type(ClientDetailsPage.addLastName,readLastName, "Typed " +  readLastName+" in add client last name field");
 			String lastNameValue = Utilities.getAttributValue("value",ClientDetailsPage.addLastName);
@@ -281,31 +281,31 @@ public class ClientDetailsPage {
 			logger.info("Add client last name");
 			ExtentReporter.extentLoggerPass("Add client last name", "Typed " + readLastName+" in add client last name field");
 			
-			String readTitle = xcl.getCellValue(xlpath,"Sheet1",3,12);
+			String readTitle = ExcelFunctions.getCellValue(xlpath,"Sheet1",3,12);
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.titleRadioButton(readTitle),"Title radio button");
 			logger.info("Client Title");
 			ExtentReporter.extentLoggerPass("Client Title", "Client title"+ readTitle+" Clicked");
 			
-			String readIdType = xcl.getCellValue(xlpath,"Sheet1",4,12);
+			String readIdType = ExcelFunctions.getCellValue(xlpath,"Sheet1",4,12);
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.idTypeRadioButton(readIdType),"ID Type radio button");
 			logger.info("ID Type");
 			ExtentReporter.extentLoggerPass("ID Type", "ID Type "+ readIdType+" Clicked");
 			
-			String readIdNumber = xcl.getCellValue(xlpath,"Sheet1",5,12);
+			String readIdNumber = ExcelFunctions.getCellValue(xlpath,"Sheet1",5,12);
 			Utilities.type(ClientDetailsPage.idNumber,readIdNumber, "Typed "+readIdNumber+" in add client id number field");
 			String idNumberValue = Utilities.getAttributValue("value",ClientDetailsPage.idNumber);
 			Assert.assertEquals(idNumberValue, readIdNumber);
 			logger.info("Add client id number");
 			ExtentReporter.extentLoggerPass("Add client id number", "Typed " +readIdNumber+" in add client id number field");
 			
-			String readDob = xcl.getCellValue(xlpath,"Sheet1",6,12);
+			String readDob = ExcelFunctions.getCellValue(xlpath,"Sheet1",6,12);
 			Utilities.type(ClientDetailsPage.dateOfBirth,readDob, "Typed " +readDob+" in add dob field");
 			logger.info("Add client date of birth");
 			ExtentReporter.extentLoggerPass("Add client date of birth", "Typed " +readDob+" in add dob field");
 			
 
 			
-			String readCitizenship = xcl.getCellValue(xlpath,"Sheet1",7,12);
+			String readCitizenship = ExcelFunctions.getCellValue(xlpath,"Sheet1",7,12);
 			Utilities.selectByVisibleTextByLocator(ClientDetailsPage.citizenShipSelect,readCitizenship);
 			
 //			String selecedCitizenshipText = getText(ClientDetailsPage.selectedCitizenship);
@@ -314,7 +314,7 @@ public class ClientDetailsPage {
 			logger.info("Add client Citizenship ");
 
 			try {
-				String readCountryBirth = xcl.getCellValue(xlpath,"Sheet1",8,12);
+				String readCountryBirth = ExcelFunctions.getCellValue(xlpath,"Sheet1",8,12);
 				Utilities.selectByVisibleTextByLocator(ClientDetailsPage.countryBirthSelect,readCountryBirth);
 			String selectedCountryBirthText = Utilities.getText(ClientDetailsPage.selectedCountryBirth);
 			Assert.assertEquals(selectedCountryBirthText, readCountryBirth);
@@ -330,7 +330,7 @@ public class ClientDetailsPage {
 			logger.info("Public offical associavity radio button");
 			ExtentReporter.extentLoggerPass("Public offical associavity radio button", "Radio button - No clicked");
 			
-			String readMobileNumber = xcl.getCellValue(xlpath,"Sheet1",9,12);
+			String readMobileNumber = ExcelFunctions.getCellValue(xlpath,"Sheet1",9,12);
 			Utilities.type(ClientDetailsPage.mobileNumber,readMobileNumber,"Typed"+ readMobileNumber + " in mobile number text field");
 			String mobileNumber = Utilities.getAttributValue("value",ClientDetailsPage.mobileNumber);
 			Assert.assertEquals(mobileNumber, readMobileNumber);
@@ -338,7 +338,7 @@ public class ClientDetailsPage {
 			ExtentReporter.extentLoggerPass("Add client mobile number", "Typed"+ readMobileNumber + " in mobile number text field");
 
 			//Likihtha's Changes
-			String readEmail = xcl.getCellValue(xlpath,"Sheet1",27,12);
+			String readEmail = ExcelFunctions.getCellValue(xlpath,"Sheet1",27,12);
 			Utilities.type(ClientDetailsPage.clientEmail, readEmail, "Client Email address");
 
 			String email = Utilities.getAttributValue("value",ClientDetailsPage.clientEmail);
@@ -352,7 +352,7 @@ public class ClientDetailsPage {
 
 
 
-			String readTelecode = xcl.getCellValue(xlpath,"Sheet1",10,12);
+			String readTelecode = ExcelFunctions.getCellValue(xlpath,"Sheet1",10,12);
 			//System.out.println(readTelecode);
 			//String readSplitTelecode = readTelecode.split(".")[0];
 			//System.out.println(readSplitTelecode);
@@ -362,14 +362,14 @@ public class ClientDetailsPage {
 			logger.info("Add client telephone code");
 			ExtentReporter.extentLoggerPass("Add client telephone code", "Typed"+ readTelecode +" in telephone code text field");
 			
-			String readTeleNumber = xcl.getCellValue(xlpath,"Sheet1",11,12);
+			String readTeleNumber = ExcelFunctions.getCellValue(xlpath,"Sheet1",11,12);
 			Utilities.type(ClientDetailsPage.telephoneNumber,readTeleNumber,"Typed"+ readTeleNumber +" in telephone number text field");
 			String telephoneNumber = Utilities.getAttributValue("value",ClientDetailsPage.telephoneNumber);
 			Assert.assertEquals(telephoneNumber, readTeleNumber);
 			logger.info("Add client telephone number");
 			ExtentReporter.extentLoggerPass("Add client telephone number", "Typed"+ readTeleNumber +" in telephone number text field");
 			
-			String readMobContractType = xcl.getCellValue(xlpath,"Sheet1",12,12);
+			String readMobContractType = ExcelFunctions.getCellValue(xlpath,"Sheet1",12,12);
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.mobContractType,"Mobile contract type radio button");
 			logger.info("Mobile contract type radio button");
 			ExtentReporter.extentLoggerPass("Mobile contract type radio button", "Radio button - "+readMobContractType +" clicked");
@@ -381,8 +381,8 @@ public class ClientDetailsPage {
 			
 			Utilities.switchFrame_id("addrPhysicalAddressId_ifrm");
 			
-			String readAddrLine_1 = xcl.getCellValue(xlpath,"Sheet1",13,12);
-			String readAddrLine_2 = xcl.getCellValue(xlpath,"Sheet1",14,12);
+			String readAddrLine_1 = ExcelFunctions.getCellValue(xlpath,"Sheet1",13,12);
+			String readAddrLine_2 = ExcelFunctions.getCellValue(xlpath,"Sheet1",14,12);
 			Utilities.explicitWaitVisibility(ClientDetailsPage.phyaddr_1,10);
 			Utilities.type(ClientDetailsPage.phyaddr_1,readAddrLine_1,"Address line 1");
 			Utilities.type(ClientDetailsPage.phyaddr_2,"0"+readAddrLine_2,"Address line 2");
@@ -405,7 +405,7 @@ public class ClientDetailsPage {
 			Utilities.explicitWaitVisibility(ClientDetailsPage.physicalAddressDate,10);
 			Utilities.ScrollToTheElement(ClientDetailsPage.physicalAddressDate);
 			Utilities.explicitWaitVisible(ClientDetailsPage.physicalAddressDate,10);
-			String readPhyAddrDate = xcl.getCellValue(xlpath,"Sheet1",15,12);
+			String readPhyAddrDate = ExcelFunctions.getCellValue(xlpath,"Sheet1",15,12);
 			Utilities.type(ClientDetailsPage.physicalAddressDate,readPhyAddrDate,"Physical address date since");
 			logger.info("Physical address date since");
 			ExtentReporter.extentLoggerPass("Physical address date since", "Typed"+ readPhyAddrDate+" in physical address date since text field");
@@ -421,7 +421,7 @@ public class ClientDetailsPage {
 			ExtentReporter.extentLoggerPass("Mobile contract type radio button", "Radio button - Owner bond free clicked");
 			
 			
-			String readEduLevel = xcl.getCellValue(xlpath,"Sheet1",16,12);
+			String readEduLevel = ExcelFunctions.getCellValue(xlpath,"Sheet1",16,12);
 			Utilities.selectByVisibleTextByLocator(ClientDetailsPage.eduationalLevelSelect,readEduLevel);
 			String selectedEduQual = Utilities.getText(ClientDetailsPage.selectedEducationLevel);
 			Assert.assertEquals(selectedEduQual, readEduLevel);
@@ -434,46 +434,46 @@ public class ClientDetailsPage {
 			logger.info("Are you professional checkbox");
 			ExtentReporter.extentLoggerPass("Are you professional checkbox", "Checkbox clicked");
 			
-			String readOccupation = xcl.getCellValue(xlpath,"Sheet1",17,12);
+			String readOccupation = ExcelFunctions.getCellValue(xlpath,"Sheet1",17,12);
 			Utilities.selectByVisibleTextByLocator(ClientDetailsPage.occupationSelect,readOccupation);
 			String selectedOccupationTxt = Utilities.getText(ClientDetailsPage.selectedOccupation);
 			Assert.assertEquals(selectedOccupationTxt, readOccupation);
 			
-			String readOccupationLevel = xcl.getCellValue(xlpath,"Sheet1",18,12);
+			String readOccupationLevel = ExcelFunctions.getCellValue(xlpath,"Sheet1",18,12);
 			Utilities.selectByVisibleTextByLocator(ClientDetailsPage.occupationLevelSelect,readOccupationLevel);
 			String occupationLevelTxt = Utilities.getText(ClientDetailsPage.selectedOccupationLevel);
 			Assert.assertEquals(occupationLevelTxt, readOccupationLevel);
 			
-			String readIndustryType = xcl.getCellValue(xlpath,"Sheet1",19,12);
+			String readIndustryType = ExcelFunctions.getCellValue(xlpath,"Sheet1",19,12);
 			Utilities.selectByVisibleTextByLocator(ClientDetailsPage.industryTypeSelect,readIndustryType);
 			String industryTypeTxt = Utilities.getText(ClientDetailsPage.selectedIndustryType);
 			Assert.assertEquals(industryTypeTxt, readIndustryType);
 			
-			String readEmployer = xcl.getCellValue(xlpath,"Sheet1",20,12);
+			String readEmployer = ExcelFunctions.getCellValue(xlpath,"Sheet1",20,12);
 			Utilities.type(ClientDetailsPage.employerName,readEmployer,"Typed"+ readEmployer+ " in employer name text field");
 			String employerName = Utilities.getAttributValue("value",ClientDetailsPage.employerName);
 			Assert.assertEquals(employerName, readEmployer);
 			logger.info("Add client employer name");
 			ExtentReporter.extentLoggerPass("Add client employer name", "Typed"+ readEmployer+ " in employer name text field");
 			
-			String readEmpStartDate = xcl.getCellValue(xlpath,"Sheet1",21,12);
+			String readEmpStartDate = ExcelFunctions.getCellValue(xlpath,"Sheet1",21,12);
 			Utilities.type(ClientDetailsPage.currEmploymentStartDate,readEmpStartDate,"Typed "+  readEmpStartDate+" in employment startdate field");
 			logger.info("Add client employment start date");
 			ExtentReporter.extentLoggerPass("Add client employment start date", "Typed "+  readEmpStartDate+" in employment startdate field");
 			
-			String readSalaryDay = xcl.getCellValue(xlpath,"Sheet1",22,12);
+			String readSalaryDay = ExcelFunctions.getCellValue(xlpath,"Sheet1",22,12);
 			Utilities.selectByVisibleTextByLocator(ClientDetailsPage.salaryDay,readSalaryDay.substring(0,2));
 			String salaryDayTxt = Utilities.getText(ClientDetailsPage.selectedSalaryDay(readSalaryDay));
 			Assert.assertEquals(salaryDayTxt, readSalaryDay.substring(0, 2));
 			
-			String readGrossSalary = xcl.getCellValue(xlpath,"Sheet1",23,12);
+			String readGrossSalary = ExcelFunctions.getCellValue(xlpath,"Sheet1",23,12);
 			Utilities.type(ClientDetailsPage.grossSalary,readGrossSalary,"Typed "+ readGrossSalary+" in gross salary text field");
 			String grossSalary = Utilities.getAttributValue("value",ClientDetailsPage.grossSalary);
 			Assert.assertEquals(grossSalary, readGrossSalary);
 			logger.info("Add client gross salary");
 			ExtentReporter.extentLoggerPass("Add client gross salary", "Typed "+ readGrossSalary+" in gross salary text field");
 			
-			String readNetSalary = xcl.getCellValue(xlpath,"Sheet1",24,12);
+			String readNetSalary = ExcelFunctions.getCellValue(xlpath,"Sheet1",24,12);
 			Utilities.ScrollToTheElement(ClientDetailsPage.netSalary);
 			Utilities.explicitWaitVisible(ClientDetailsPage.netSalary,10);
 			Utilities.type(ClientDetailsPage.netSalary,readNetSalary,"Typed "+ readNetSalary+" in net salary text field");
@@ -547,8 +547,8 @@ public class ClientDetailsPage {
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.addEmployerAddressDetails,"Add Employer Address button");
 			Utilities.switchFrame_id("addrEmp_ifrm");
 
-			String readAddrLine_e1 = xcl.getCellValue(xlpath,"Sheet1",13,12); String
-					readAddrLine_e2 = xcl.getCellValue(xlpath,"Sheet1",14,12);
+			String readAddrLine_e1 = ExcelFunctions.getCellValue(xlpath,"Sheet1",13,12); String
+					readAddrLine_e2 = ExcelFunctions.getCellValue(xlpath,"Sheet1",14,12);
 			Utilities.explicitWaitVisibility(ClientDetailsPage.phyaddr_1,10);
 			Utilities.type(ClientDetailsPage.phyaddr_1,readAddrLine_1,"Address line 1");
 			Utilities.type(ClientDetailsPage.phyaddr_2,"01"+readAddrLine_2,"Address line 2");
@@ -577,12 +577,12 @@ public class ClientDetailsPage {
 			logger.info("Add client ethnic group");
 			ExtentReporter.extentLoggerPass("Add client ethnic group", "Ethnic group black selected");
 			
-			String readLang = xcl.getCellValue(xlpath,"Sheet1",25,12);
+			String readLang = ExcelFunctions.getCellValue(xlpath,"Sheet1",25,12);
 			Utilities.selectByVisibleTextByLocator(ClientDetailsPage.corresLangSelect,readLang);
 			String corresLangTxt = Utilities.getText(ClientDetailsPage.selectedCorresLang);
 			Assert.assertEquals(corresLangTxt, readLang);
 			
-			String readPrefContact = xcl.getCellValue(xlpath,"Sheet1",26,12);
+			String readPrefContact = ExcelFunctions.getCellValue(xlpath,"Sheet1",26,12);
 			Utilities.selectByVisibleTextByLocator(ClientDetailsPage.prefContactSelect,readPrefContact);
 			String prefContactTxt = Utilities.getText(ClientDetailsPage.selectedprefContact);
 			Assert.assertEquals(prefContactTxt, readPrefContact);
@@ -612,9 +612,10 @@ public class ClientDetailsPage {
 		 * 
 		 */
 		public static void selectClientDetails() throws Exception {
-			ExtentReporter.HeaderChildNode("Select client details form");
+			ExtentReporter.HeaderChildNode("TC_015: Verify if User is able to Select created Client details");
+
 			logger.info("Back to Marquis Finance Transaction main page");
-			
+			Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.clientDetailsSelectButton,10);
 			Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.clientDetailsSelectButton,"Select client detail button");
 			logger.info("Select client detail button");
 			ExtentReporter.extentLoggerPass("Select client detail button", "Select client detail button clicked");
@@ -638,17 +639,21 @@ public class ClientDetailsPage {
 			Assert.assertEquals(selectedName_modal, selectedName_main);
 
 			
-			Utilities.ScrollToTheElement(MarquisFinanceTransactionPage.applyCheckButton);
-			Utilities.JSClick(MarquisFinanceTransactionPage.applyCheckButton,"Apply check button");
-			logger.info("Apply check button");
-			ExtentReporter.extentLoggerPass("Apply check button", "Apply check button clicked");
-		    
-			
-			Utilities.ScrollToTheElement(MarquisFinanceTransactionPage.saveFooterBtn);
-			Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.saveFooterBtn,"Save client details footer button");
-			logger.info("Save client details footer button");
-			ExtentReporter.extentLoggerPass("Save client details footer button", "Save client details footer button clicked");
-			
+			/*
+			 * Utilities.ScrollToTheElement(MarquisFinanceTransactionPage.applyCheckButton);
+			 * Utilities.JSClick(MarquisFinanceTransactionPage.
+			 * applyCheckButton,"Apply check button"); logger.info("Apply check button");
+			 * ExtentReporter.extentLoggerPass("Apply check button",
+			 * "Apply check button clicked");
+			 * 
+			 * 
+			 * Utilities.ScrollToTheElement(MarquisFinanceTransactionPage.saveFooterBtn);
+			 * Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.
+			 * saveFooterBtn,"Save client details footer button");
+			 * logger.info("Save client details footer button");
+			 * ExtentReporter.extentLoggerPass("Save client details footer button",
+			 * "Save client details footer button clicked");
+			 */	 			
 		}
 
 

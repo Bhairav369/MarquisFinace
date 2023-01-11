@@ -39,40 +39,37 @@ public class marquisFinancierSanityScript {
 		SeritiCreateCustomerFormPage.createCustomerTransactionForm();
     }  
 	*/
-	/*@Test(priority = 1)
+	
+	
+	@Test(priority = 1)
 	@Parameters({"UserName","Password"})
-    public void clientDetails(String userName,String password) throws Exception {
+    public void seritiApplicationE2Eflow(String userName,String password) throws Exception {
 		SeritiLoginPage.login(userName, password);
 		SeritiCreateCustomerFormPage.createCustomerTransactionForm();
 		MarquisFinanceTransactionPage.marquisFinancePageForm();
 		ClientDetailsPage.addClientDetails();
-		MarquisFinanceTransactionPage.enterMandatoryTransactionMarquisFinancePage();
-		
-		ClientDetailsPage.selectClientDetails();	
-		
+	    MarquisFinanceTransactionPage.enterMandatoryTransactionMarquisFinancePage();
+		MarquisFinanceTransactionPage.saveTransaction();
+		//ClientDetailsPage.selectClientDetails();	
+		MarquisFinanceTransactionPage.addValueAddedProducts();		
 		MarquisFinanceTransactionPage.verifyApplicationStatus();
 		MarquisFinanceTransactionPage.documentUpload();
 		MarquisFinanceTransactionPage.sendDocuments();
-		
-	}*/
+		  
+	}
 	
 
-	@Test(priority = 1)
-	public void Ops_Login() throws Exception{
-		Ops_Login.Login();
-		//Ops_LandingPAge.OPs_LandPage();
-		//DocVals.DocVals_Landing_PAge();
-		
-		payouts.pendingdocumentsearch();
-		payouts.document();
-		payouts.Drawdownpending();
-		payouts.generated();
-	}
+//	@Test(priority = 1)
+//	public void Ops_Login() throws Exception{
+//		Ops_Login.Login();
+//		Ops_LandingPAge.OPs_LandPage();
+//		DocVals.DocVals_Landing_PAge();
+//	}
 	
 
 	@AfterMethod
 	public synchronized void tearDown() {
-		MarquisFinancierBusinessLogic.tearDown();
+//	MarquisFinancierBusinessLogic.tearDown();
 	}
 	
 	
