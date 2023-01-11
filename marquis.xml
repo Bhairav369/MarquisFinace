@@ -21,9 +21,17 @@
 	<parameter name="browserType" value="Chrome"/>
 	<parameter name="userType" value="SeritiPortal"/>-->
 	
-	<parameter name="url" value="https://www.operations.uat-mqf.co.za/home" />
+	<!-- <parameter name="url" value="https://www.operations.uat-mqf.co.za/home" />
 	<parameter name="browserType" value="Chrome"/>
-	<parameter name="userType" value="SeritiPortal"/>
+	<parameter name="userType" value="SeritiPortal"/>-->
+	
+	
+	 <parameter name = "UserName" value="Bhairub  "/>
+	<parameter name = "Password" value="WFG6eKRvi3kvpQ"/>
+	<parameter name="url" value="https://www.operations.uat-mqf.co.za/login" />
+	
+	<parameter name="browserType" value="Chrome"/>
+	
 	
 
 	<listeners>

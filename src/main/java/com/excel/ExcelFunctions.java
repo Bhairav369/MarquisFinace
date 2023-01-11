@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -72,6 +73,15 @@ public class ExcelFunctions {
 			XSSFRow myExcelRow = myExcelSheet.getRow(rownum);
 			int colNum = myExcelRow.getLastCellNum();
 			return colNum;
+		}
+		
+		
+		public String getExceldata(String xlPath, String sheet,int rownum,int cellnum) throws FileNotFoundException, IOException {
+			XSSFWorkbook myExcelBook = new XSSFWorkbook(new FileInputStream(xlPath));
+			XSSFSheet myExcelSheet = myExcelBook.getSheet(sheet);
+            //  myExcelSheet.getRow(0).getCell(0);
+			DataFormatter format=new DataFormatter();
+			return  format.formatCellValue(myExcelSheet.getRow(rownum).getCell(cellnum));
 		}
 
 
