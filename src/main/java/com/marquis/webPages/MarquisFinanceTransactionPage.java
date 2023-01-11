@@ -487,7 +487,7 @@ public class MarquisFinanceTransactionPage {
 		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.documentCategory,
 				" document Category Click ");
 		Utilities.selectByVisibleTextByLocator(MarquisFinanceTransactionPage.documentCategory, "BANK STATEMENT");
-
+        Utilities.Wait(3000);
 		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.selectDocument, 15, " Select Document Tile ");
 		Utilities.JSClick(MarquisFinanceTransactionPage.selectDocument, " Select Document ");
 		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.saveButton, 15, " Save Button is Displayed ");
@@ -497,7 +497,7 @@ public class MarquisFinanceTransactionPage {
 		// Uploading 2nd Document-- ID
 		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.documentCategory, 15,
 				"Document Category Visible ");
-
+        Utilities.Wait(3000);
 		Utilities.type(MarquisFinanceTransactionPage.fileUploadButton,
 				"C:\\Users\\Likhitha\\Downloads\\ID_DOCUMENT_CLIENT.pdf", "");
 
