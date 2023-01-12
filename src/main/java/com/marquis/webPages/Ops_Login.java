@@ -111,14 +111,13 @@ public class Ops_Login {
 
 	// Enter OTP Text Placeholder
 	public static By EntrOtpTxtPlc = By
-			.xpath("//label[@for='Enter OTP']//span[@class='bg-white'] || (//span[@class='bg-white'])[3]");
+			.xpath("//input[@id='Enter OTP']//following::span[@class='bg-white']");
 
 	// Resend OTP Via Mobile no
 	public static By ResendOtpViMob = By.xpath("(//button[@type='button'])[1]");
 
 	// Resend OTP Via Email
-	public static By ResendOtpViEmail = By.xpath(
-			"(//button[@ng-reflect-text='Resent OTP Via Email on bh****'])[1] || /html[1]/body[1]/app-root[1]/app-login[1]/div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/button[2]");
+	public static By ResendOtpViEmail = By.xpath("//button[@ng-reflect-text='Resent OTP Via Email on bh****']/..//i[@class='pi pi-envelope pt-2']");
 
 	// Back Button
 	public static By Backbtns = By.xpath("(//button[@class='btn btn-danger'])[1]");
@@ -133,7 +132,7 @@ public class Ops_Login {
 	
 
 	public static void Login() throws Exception {
-		ExtentReporter.HeaderChildNode("Login");
+		ExtentReporter.HeaderChildNode("TC_001 " + "    " + "UI of the Login Screen" + "  "  +"TC_002" +"Verify the functionality of the Login Screen" +  "  "  +"TC_003" +"Verify the UI of the OTP Screen" + "  "  +"Tc_004"+"Verify the UI of the GET OTP Screen" + "  " +"TC_005" +"Verify the functionality of the GET OTP Screen");
 		Utilities.getTitle("Marquis Finance");
 
 		Utilities.verifyIsElementDisplayed(Ops_Login.MQLogo, "MQlogo");
@@ -245,7 +244,7 @@ public class Ops_Login {
 		 * 
 		 * Utilities.click(Ops_Login.GetotpBtn, "Get OTP Button");
 		 */
-		Utilities.waitTime(50000);
+		Utilities.waitTime(30000);
 		Utilities.click(Ops_Login.SubMitButton1, "SubMit Button");
 
 	}
