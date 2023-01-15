@@ -319,7 +319,9 @@ public class MarquisFinanceTransactionPage {
 
 		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.searchVehicle, "Seaarch Vehicle");
 
-		Utilities.switchFrame_id("vsVehicleCodeId_ifrm");
+		//Utilities.switchFrame_id("vsVehicleCodeId_ifrm");
+		Utilities.switchFrame_xpath("//*[@id='vsVehicleCodeId_ifrm']");
+
 
 		String vehicleCode = ExcelFunctions.getCellValue(xlpath, "Sheet1", 31, 12);
 		Utilities.type(MarquisFinanceTransactionPage.vehicleCode, vehicleCode, "Enter Vehicle Code ");
@@ -495,11 +497,9 @@ public class MarquisFinanceTransactionPage {
 		ExtentReporter.extentLoggerPass("Document 1", " passed ");
 
 		// Uploading 2nd Document-- ID
-		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.documentCategory, 15,
-				"Document Category Visible ");
+		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.documentCategory, 15,"Document Category Visible ");
         Utilities.Wait(3000);
-		Utilities.type(MarquisFinanceTransactionPage.fileUploadButton,
-				"C:\\Users\\Likhitha\\Downloads\\ID_DOCUMENT_CLIENT.pdf", "");
+		Utilities.type(MarquisFinanceTransactionPage.fileUploadButton,"C:\\Users\\Likhitha\\Downloads\\ID_DOCUMENT_CLIENT.pdf", "");
 
 		Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 10, "");
 		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.documentCategory, 15, " Document Category ");
@@ -532,11 +532,10 @@ public class MarquisFinanceTransactionPage {
 
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.marquisFinanceLinkLocator, 10);
 
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.marquisFinanceLinkLocator,
-				"Marquis finance link");
+		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.marquisFinanceLinkLocator,"Marquis finance link");
 		logger.info("Marquis Finance Link");
 		ExtentReporter.extentLoggerPass("Marquis Finance Link", "Marquis Finance link is clicked");
-
+        
 		// Supporting Documents
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.supportingDocuments, 10);
 
@@ -555,6 +554,7 @@ public class MarquisFinanceTransactionPage {
 
 		Utilities.moveToElementActionAndClick(MarquisFinanceTransactionPage.selDocument2, "select Documents ");
 
+		
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.doneButton, 10);
 		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.doneButton, "Done Submission ");
 

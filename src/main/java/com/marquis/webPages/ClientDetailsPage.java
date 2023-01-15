@@ -258,7 +258,10 @@ public class ClientDetailsPage {
 			Assert.assertEquals(addClientHeaderText,"Edit Client");
 			
 			Utilities.explicitWaitVisible(ClientDetailsPage.addClientFrame,10);
-			Utilities.switchFrame_id("personClient_ifrm");
+			//Utilities.switchFrame_id("personClient_ifrm");
+			
+			Utilities.switchFrame_xpath("//*[@id='personClient_ifrm']");
+			
 			logger.info("Switched to add client frame");
 			ExtentReporter.extentLoggerPass("Add client frame", "Switched to add client frame modal");
 			
@@ -379,7 +382,9 @@ public class ClientDetailsPage {
 			String addAddrTxt = Utilities.getText(ClientDetailsPage.addAddrTxt);
 			Assert.assertEquals(addAddrTxt, "Add Address");
 			
-			Utilities.switchFrame_id("addrPhysicalAddressId_ifrm");
+		//	Utilities.switchFrame_id("addrPhysicalAddressId_ifrm");
+			Utilities.switchFrame_xpath("//*[@id='addrPhysicalAddressId_ifrm']");
+
 			
 			String readAddrLine_1 = ExcelFunctions.getCellValue(xlpath,"Sheet1",13,12);
 			String readAddrLine_2 = ExcelFunctions.getCellValue(xlpath,"Sheet1",14,12);
@@ -389,7 +394,10 @@ public class ClientDetailsPage {
 			Utilities.click(ClientDetailsPage.postalCodeBtn,"Postal code button");
 			String findPostal = Utilities.getText(ClientDetailsPage.findPostalCodeHdr);
 			Assert.assertEquals(findPostal, "Find Postal Codes");
-			Utilities.switchFrame_id("conPCSearch_ifrm");
+			
+			//Utilities.switchFrame_id("conPCSearch_ifrm");
+			Utilities.switchFrame_xpath("//*[@id='conPCSearch_ifrm']");
+
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.findPostalCodeBtn,"Find postal code button");
 			Utilities.click(ClientDetailsPage.prePopPostalCodeSelectBtn,"Pre-populated select buttons");
 			
@@ -411,7 +419,10 @@ public class ClientDetailsPage {
 			ExtentReporter.extentLoggerPass("Physical address date since", "Typed"+ readPhyAddrDate+" in physical address date since text field");
 			
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.postalAddrSelBtn,"Postal address select button");
-			Utilities.switchFrame_id("addrPostalAddressId_ifrm");
+			
+			//Utilities.switchFrame_id("addrPostalAddressId_ifrm");
+			Utilities.switchFrame_xpath("//*[@id='addrPostalAddressId_ifrm']");
+
 			Utilities.explicitWaitVisibility(ClientDetailsPage.postalAddrInFrameSelBtn,10);
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.postalAddrInFrameSelBtn,"Selecting specific addres");
 			Utilities.switchFrame_parent();
@@ -494,8 +505,10 @@ public class ClientDetailsPage {
 			Utilities.ScrollToTheElement(ClientDetailsPage.selectSourceOfIncome);
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.selectSourceOfIncome,"Click Source of Income");
 
-			Utilities.switchFrame_id("sourceOfIncome_ifrm");
+		//	Utilities.switchFrame_id("sourceOfIncome_ifrm");
+			Utilities.switchFrame_xpath("//*[@id='sourceOfIncome_ifrm']");
 
+			
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.selectSourceOfIncomeCheckBox,"Source Salary ");
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.selectSourceOfIncomeSave,"Source of Income Saved");
 			Utilities.switchFrame_parent();
@@ -513,12 +526,17 @@ public class ClientDetailsPage {
 			//switchFrame_id("personClient_ifrm");
 			Utilities.ScrollToTheElement(ClientDetailsPage.selectBankAcc);
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.selectBankAcc,"Click add Bank Account");
-			Utilities.switchFrame_id("ifrm");
+			
+			//Utilities.switchFrame_id("ifrm");
+			Utilities.switchFrame_xpath("//*[@id='ifrm']");
+
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.selectAccountTypeRadio,"Select Account Type");
 
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.clickFindBankBranch,"Find Bank Branch");
 
-			Utilities.switchFrame_id("srchBankBranch_ifrm");
+			//Utilities.switchFrame_id("srchBankBranch_ifrm");
+			Utilities.switchFrame_xpath("//*[@id='srchBankBranch_ifrm']");
+
 
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.selectBankDropDown,"Click Bank Names");
 			Utilities.selectByVisibleTextByLocator(ClientDetailsPage.selectBankDropDown,"AFRICAN BANK LIMITED");
@@ -545,7 +563,10 @@ public class ClientDetailsPage {
 			// #3: Add Employer Address Details
 
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.addEmployerAddressDetails,"Add Employer Address button");
-			Utilities.switchFrame_id("addrEmp_ifrm");
+			
+			//Utilities.switchFrame_id("addrEmp_ifrm");
+			Utilities.switchFrame_xpath("//*[@id='addrEmp_ifrm']");
+
 
 			String readAddrLine_e1 = ExcelFunctions.getCellValue(xlpath,"Sheet1",13,12); String
 					readAddrLine_e2 = ExcelFunctions.getCellValue(xlpath,"Sheet1",14,12);
@@ -555,7 +576,10 @@ public class ClientDetailsPage {
 			Utilities.click(ClientDetailsPage.postalCodeBtn,"Postal code button"); String
 					findPostale = Utilities.getText(ClientDetailsPage.findPostalCodeHdr);
 			Assert.assertEquals(findPostale, "Find Postal Codes");
-			Utilities.switchFrame_id("conPCSearch_ifrm");
+			
+			//Utilities.switchFrame_id("conPCSearch_ifrm");
+			Utilities.switchFrame_xpath("//*[@id='conPCSearch_ifrm']");
+
 			Utilities.verifyElementPresentAndClick(ClientDetailsPage.findPostalCodeBtn,"Find postal code button");
 			Utilities.click(ClientDetailsPage.prePopPostalCodeSelectBtn,"Pre-populated select buttons");
 
@@ -624,7 +648,9 @@ public class ClientDetailsPage {
 			String selectClientHeaderText = Utilities.getText(ClientDetailsPage.selectClientHeader);
 			Assert.assertEquals(selectClientHeaderText,"Select Client");
 			
-			Utilities.switchFrame_id("personClient_ifrm");
+			//Utilities.switchFrame_id("personClient_ifrm");
+			Utilities.switchFrame_xpath("//*[@id='personClient_ifrm']");
+
 			Utilities.explicitWaitVisible(ClientDetailsPage.selectedClientName,10);
 			String selectedName_modal = Utilities.getText(ClientDetailsPage.selectedClientName);
 			
