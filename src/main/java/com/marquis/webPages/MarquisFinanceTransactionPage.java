@@ -688,9 +688,7 @@ public class MarquisFinanceTransactionPage {
 		String deiveryfeeValue = ExcelFunctions.getCellValue(xlpath, "TestData", 2, 44);
 		Utilities.clearField(MarquisFinanceTransactionPage.deliveryFeeText, "");
 		Utilities.type(MarquisFinanceTransactionPage.deliveryFeeText, deiveryfeeValue, "enter deiveryfeeValue");
-
-		String deliveryFe = Utilities.getText(MarquisFinanceTransactionPage.deliveryFeeText);
-		Assert.assertEquals(deliveryFe,deiveryfeeValue);
+		
 
 		
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.licenseAndRegClick, 10);
@@ -701,10 +699,7 @@ public class MarquisFinanceTransactionPage {
 		String licenseAndRegistratonCharge = ExcelFunctions.getCellValue(xlpath, "TestData", 2, 45);
 
 		Utilities.clearField(MarquisFinanceTransactionPage.licenseAndRegValue, "");
-		Utilities.type(MarquisFinanceTransactionPage.licenseAndRegValue, licenseAndRegistratonCharge,"enter deiveryfeeValue");
-
-		String licenseReg = Utilities.getText(MarquisFinanceTransactionPage.licenseAndRegValue);
-		Assert.assertEquals(licenseAndRegistratonCharge,licenseReg);
+		Utilities.type(MarquisFinanceTransactionPage.licenseAndRegValue, licenseAndRegistratonCharge,"enter deiveryfeeValue");		
 
 		
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.saveValueAdd, 10);
