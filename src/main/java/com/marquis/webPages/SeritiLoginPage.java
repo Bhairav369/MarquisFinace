@@ -14,6 +14,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 
 import com.driverInstance.DriverManager;
+import com.excel.ExcelFunctions;
 //import com.marquis.Financier.WebPages.portalLoginPage;
 import com.utility.ExtentReporter;
 import com.utility.LoggingUtils;
@@ -26,6 +27,8 @@ public class SeritiLoginPage {
 	//Login page title
 		public static By loginPageTitle = By.xpath("//*[@id=\"hedHeader\"]/title");
 		
+		public static String xlpath = "./XLSX/MarquisDataForm.xlsx";
+
 		//Login page header
 		public static By loginHeader = By.id("Heading1");
 		
@@ -69,9 +72,14 @@ public class SeritiLoginPage {
 		
 		public static void login(String userName, String password) throws Exception {
 			ExtentReporter.HeaderChildNode("TC_003 : Verify the Login functionality of Seriti portal");
-			userName = Utilities.getParameterFromXML("UserName");
+			//userName = Utilities.getParameterFromXML("UserName");
 			System.out.println(userName);
-			password = Utilities.getParameterFromXML("Password");
+			
+			 userName = ExcelFunctions.getCellValue(xlpath,"Credentials",2,0);
+			
+			//password = Utilities.getParameterFromXML("Password");
+			 password = ExcelFunctions.getCellValue(xlpath,"Credentials",2,1);
+
 			System.out.println(password);
 			
 			

@@ -2572,8 +2572,8 @@ public class Utilities extends ExtentReporter{
 	 * Method to swtich frames for given webElement
 	 * This is recommended to use in case switch frame using ID takes time 
 	 */
-	public static void switchFrame_xpath(String frame_id) {
-        WebElement element = DriverManager.getDriver().findElement(By.xpath(frame_id));
+	public static void switchFrame_xpath(By frame_xpath) {
+        WebElement element = DriverManager.getDriver().findElement(frame_xpath);
 		
 		DriverManager.getDriver().switchTo().frame(element);
 	}

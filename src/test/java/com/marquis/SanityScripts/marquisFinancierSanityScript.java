@@ -1,18 +1,15 @@
 package com.marquis.SanityScripts;
 
-import static org.testng.Assert.assertTrue;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.business.marquis.MarquisFinancierBusinessLogic;
-import com.driverInstance.DriverManager;
-import com.global.TestGroup;
-import com.marquis.webPages.*;
-import com.utility.CustomSoftAssert;
-import com.utility.Utilities;
+import com.marquis.webPages.ClientDetailsPage;
+import com.marquis.webPages.MarquisFinanceTransactionPage;
+import com.marquis.webPages.SeritiCreateCustomerFormPage;
+import com.marquis.webPages.SeritiLoginPage;
 
 public class marquisFinancierSanityScript {
 
@@ -24,6 +21,7 @@ public class marquisFinancierSanityScript {
 		MarquisFinancierBusinessLogic = new MarquisFinancierBusinessLogic("Chrome");	
 	}
 
+	
 //	@Test(priority = 1)
 //    @Parameters({"UserName","Password"})
 //    public void loginMark(String userName,String password) throws Exception {
@@ -55,7 +53,14 @@ public class marquisFinancierSanityScript {
 		MarquisFinanceTransactionPage.verifyApplicationStatus();
 		MarquisFinanceTransactionPage.documentUpload();
 		MarquisFinanceTransactionPage.sendDocuments();
+		
 		  
+		//Income Verification Underway
+		//xpath: //*[@id='lblInformationApplyBottom']  
+		//text= INCOME VERIFICATION UNDERWAY
+		
+		
+		
 	}
 	
 
