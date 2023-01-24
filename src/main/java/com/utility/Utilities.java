@@ -2623,5 +2623,27 @@ public class Utilities extends ExtentReporter{
 			}
 		}
 		
-	    
+		/**
+		 * Robot function to open new tab
+		 * @throws Exception
+		 */
+		public static void robotNewTab() throws Exception{
+			Robot robot = new Robot();
+			robot.keyPress(KeyEvent.VK_CONTROL);
+			robot.keyPress(KeyEvent.VK_T);
+			robot.keyRelease(KeyEvent.VK_T);
+			robot.keyRelease(KeyEvent.VK_CONTROL);
+			}
+		
+		/**
+		 * Robot function to open new window
+		 * @throws Exception
+		 */
+		public static void robotNewWindow() throws Exception{
+			Robot robot = new Robot();
+			robot.keyPress(KeyEvent.VK_CONTROL);
+			robot.keyPress(KeyEvent.VK_N);
+			robot.keyRelease(KeyEvent.VK_N);
+			robot.keyRelease(KeyEvent.VK_CONTROL);
+			} 
 }
