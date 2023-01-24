@@ -183,7 +183,7 @@ public class DriverInstance extends Drivertools {
 			options.addArguments("--disable-notifications");
 			try {
 				//DriverManager.setDriver(new RemoteWebDriver(new URL("http://3.7.152.250:4444/"), options));
-				DriverManager.setDriver(new RemoteWebDriver(new URL("http://192.168.0.191:4444/"), options));
+				DriverManager.setDriver(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options));
 				
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
