@@ -8,8 +8,10 @@ import org.testng.annotations.Test;
 import com.business.marquis.MarquisFinancierBusinessLogic;
 import com.marquis.webPages.ClientDetailsPage;
 import com.marquis.webPages.MarquisFinanceTransactionPage;
+import com.marquis.webPages.Ops_Login;
 import com.marquis.webPages.SeritiCreateCustomerFormPage;
 import com.marquis.webPages.SeritiLoginPage;
+import com.marquis.webPages.payouts;
 
 public class marquisFinancierSanityScript {
 
@@ -39,7 +41,7 @@ public class marquisFinancierSanityScript {
 	*/
 	
 	
-	@Test(priority = 1)
+	/*@Test(priority = 1)
 	@Parameters({"UserName","Password"})
     public void seritiApplicationE2Eflow(String userName,String password) throws Exception {
 		SeritiLoginPage.login(userName, password);
@@ -61,15 +63,19 @@ public class marquisFinancierSanityScript {
 		
 		
 		
-	}
+	}*/
 	
 
-//	@Test(priority = 1)
-//	public void Ops_Login() throws Exception{
-//		Ops_Login.Login();
-//		Ops_LandingPAge.OPs_LandPage();
-//		DocVals.DocVals_Landing_PAge();
-//	}
+	@Test(priority = 1)
+	public void Ops_Login1() throws Exception{
+Ops_Login.Login();
+	payouts.pendingdocumentsearch();
+	payouts.documentdetails();
+	payouts.verifyDocuments();
+	payouts.generated();
+	payouts.completed();
+		//DocVals.DocVals_Landing_PAge();
+	}
 	
 
 	@AfterMethod
