@@ -290,6 +290,24 @@ public class Utilities extends ExtentReporter{
         }
         return false;
     }
+    public static  boolean verifyElementExists(By byLocator,String str)
+	{
+		try {
+			WebElement element=findElement(byLocator);
+			if(element.isDisplayed())
+			{
+				ExtentReporter.extentLogger("checkElementPresent",""+ str+"is displayed");
+				logger.info(""+str+"is displayed");
+				return true;
+			}
+		}catch(Exception e)
+		{
+			ExtentReporter.extentLogger("checkElementPresent","" +str+ " is not displayed");
+			logger.info(str+"is not displayed");
+		return false;
+		}
+		return false;
+		}
 
     /**
      * boolean return type for conditions

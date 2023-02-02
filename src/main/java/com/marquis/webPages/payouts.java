@@ -3,6 +3,7 @@ package com.marquis.webPages;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
+import org.testng.asserts.SoftAssert;
 
 import com.excel.ExcelFunctions;
 import com.utility.ExtentReporter;
@@ -11,12 +12,22 @@ import com.utility.Utilities;
 
 public class payouts {
 	static LoggingUtils logger = new LoggingUtils();
-	public static String ReferenceNumber="2000006416";
-	public static String ReferenceNumber1="2000006843";
-	 public static String xlpath = "./XLSX/MarquisDataForm.xlsx";
-	 static ExcelFunctions xcl = new ExcelFunctions();
+
+	public static String xlpath = "./XLSX/MarquisDataForm.xlsx";
+	static ExcelFunctions xcl = new ExcelFunctions();
+
+	static SoftAssert softassert = new SoftAssert();
 	// payoutab
 	public static By payoutTab = By.xpath("//*[contains(text(),'Payouts')]");
+
+	// payouts text
+	public static By payoutsText = By.xpath("//div[text()=' Payouts ']");
+
+	// pending drawdown agreement text
+	public static By pendingDradownAgreementText = By.xpath("//*[text()='pending payouts: ']");
+
+	// drawdown generated agreement text
+	public static By DradownGeneratedAgreementText = By.xpath("//*[text()='drawdown payouts: ']");
 
 	// Hamberger Button
 	public static By payout_Hamberger_btn = By
@@ -36,11 +47,11 @@ public class payouts {
 
 	// Payouts search button
 	public static By search_btn = By
-			.xpath("//div[@class='col-2 pt-2 ng-star-inserted']/button[@class='btn btn-primary']/child::i");
+			.xpath("//div[@class='col-1 pt-2 ng-star-inserted']/child::button/child::i[@class='pi pi-search']");
 
 	// payouts cancel btn
 	public static By Cancel_btn = By
-			.xpath("//div[@class='col-2 pt-2 ng-star-inserted']/button[@class='btn btn-danger']");
+			.xpath("//div[@class='col-1 pt-2 ng-star-inserted']/child::button/following-sibling::button");
 
 	// Drawdown pending
 	public static By Drawdown_pendingtab = By.xpath("//span[text()='MIC Queue - Drawdown pending']");
@@ -58,10 +69,12 @@ public class payouts {
 	// pending contract document(searchd result)
 	public static By Searched_pndng_dcmt = By.xpath("(//*[@class='table-router ng-star-inserted'])[1]");
 
-	//generating contract document(searched result)
-	public static By searched_gnrtd_dcmt=By.xpath("(//*[@class='table-router ng-star-inserted'])[2]");
+	// generating contract document(searched result)
+	public static By searched_gnrtd_dcmt = By.xpath("(//*[@class='table-router ng-star-inserted'])[2]");
 
-
+	//completed contract document (searched result)
+	public static By searched_completed_dcmt=By.xpath("(//*[@class='table-router ng-star-inserted'])[3]");
+	
 	// lock icon
 	public static By lock_icon = By
 			.xpath("//button[@class='btn btn-success ng-star-inserted']/i[@class='pi pi-lock-open']");
@@ -69,51 +82,57 @@ public class payouts {
 	// Back button
 	public static By back_button = By
 			.xpath("//button[@class='btn btn-primary ']/i[@class='pi pi-chevron-circle-left pt-1']");
-	
-	//contract document text
-	public static By Contract_doc_text=By.xpath("//b[text()='Contract Document']");
+
+	// contract document text
+	public static By Contract_doc_text = By.xpath("//b[text()='Contract Document']");
 
 	// contract document verify button
-	public static By Contract_doc_v_b = By
-			.xpath("//b[text()='Contract Document']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-warning ng-star-inserted']");
+	public static By Contract_doc_v_b = By.xpath(
+			"//b[text()='Contract Document']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-warning ng-star-inserted']");
+
+	public static By objContractVerifyBtn = By.xpath("//b[text()='Verify']");
 
 	// contract document view button
-	public static By Contract_doc_view_b = By
-			.xpath("//b[text()='Contract Document']/ancestor::div[@class='col-12']/descendant::button/child::b[text()='View']");
+	public static By Contract_doc_view_b = By.xpath(
+			"//b[text()='Contract Document']/ancestor::div[@class='col-12']/descendant::button/child::b[text()='View']");
 
 	// stamped id verify button
-	public static By Stamped_id_v_b = By
-			.xpath("//b[text()='Stamped ID']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-warning ng-star-inserted']");
+	public static By Stamped_id_v_b = By.xpath(
+			"//b[text()='Stamped ID']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-warning ng-star-inserted']");
 
-	//Stamped id view btn
-	public static By StampedID_view_btn=By.xpath("//b[text()='Stamped ID']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@ptooltip='Click to un-verify']");
+	// Stamped id view btn
+	public static By StampedID_view_btn = By.xpath(
+			"//b[text()='Stamped ID']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@ptooltip='Click to un-verify']");
 
 	// release notes verify button
-	public static By release_notes_v_b = By
-			.xpath("//b[text()='Release Notes']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-warning ng-star-inserted']");
+	public static By release_notes_v_b = By.xpath(
+			"//b[text()='Release Notes']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-warning ng-star-inserted']");
 
-	//release notes view button 
-	public static By release_notes_view_b = By.xpath("//b[text()='Release Notes']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-success ng-star-inserted']");
+	// release notes view button
+	public static By release_notes_view_b = By.xpath(
+			"//b[text()='Release Notes']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-success ng-star-inserted']");
 
 	// Dealer invoice verify button
-	public static By dealer_invoice_v_b = By
-			.xpath("//b[text()='Dealer Invoice']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-warning ng-star-inserted']");
+	public static By dealer_invoice_v_b = By.xpath(
+			"//b[text()='Dealer Invoice']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-warning ng-star-inserted']");
 
-	//Dealer invoice view button
-	public static By Dealer_invoice_view_btn=By.xpath("//b[text()='Dealer Invoice']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-success ng-star-inserted']");
-
+	// Dealer invoice view button
+	public static By Dealer_invoice_view_btn = By.xpath(
+			"//b[text()='Dealer Invoice']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-success ng-star-inserted']");
 
 	// proof of insurence verify button
-	public static By proofof_insurance_v_b = By.xpath("//b[text()='Proof Of Insurance']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-warning ng-star-inserted']");
+	public static By proofof_insurance_v_b = By.xpath(
+			"//b[text()='Proof Of Insurance']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-warning ng-star-inserted']");
 
-	//proof of insurence view button
-	public static By proofof_insurence_view_btn=By.xpath("//b[text()='Proof Of Insurance']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-success ng-star-inserted']");
-	//Natice element
-	public static By Natice_element=By.xpath("//b[text()='Natis Document']");
+	// proof of insurence view button
+	public static By proofof_insurence_view_btn = By.xpath(
+			"//b[text()='Proof Of Insurance']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-success ng-star-inserted']");
+	// Natice element
+	public static By Natice_element = By.xpath("//b[text()='Natis Document']");
 
 	// Natice document verify verify button
-	public static By Natice_doc_v_b = By.xpath("//b[text()='Natis Document']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-warning ng-star-inserted']");
-
+	public static By Natice_doc_v_b = By.xpath(
+			"//b[text()='Natis Document']/ancestor::div[@class='col-12']/child::div[@class='row align-content-center bottom-line gotham ng-star-inserted']/descendant::button[@class='btn btn-block px-0 text-white btn-warning ng-star-inserted']");
 
 	// Approve document(contract document)
 	public static By selecct_doc_aprv = By.xpath("//*[@class='list-group-item ng-star-inserted']");
@@ -140,9 +159,6 @@ public class payouts {
 	// close Mic task
 	public static By CloseMicTask_btn = By.xpath("//*[@class='btn btn-warning  text-white']");
 
-	
-	
-
 	// select dropdown
 	public static By select = By.xpath("//select[@class='form-control ng-pristine ng-valid ng-touched']");
 
@@ -150,78 +166,102 @@ public class payouts {
 	public static By select_template = By.xpath("//input[@id='Select Template']");
 
 	// Approve document close button
-	public static By Arv_doc_cancl_btn = By.xpath("//*[@class='pi pi-times']");
+	public static By Arv_doc_cancl_btn = By.xpath("//div[@class='ui-dialog-titlebar-icons']/child::a");
 
-	//pagination
-	//pagination 1
-	public static By pgntion_1=By.xpath("(//li[@class='current ng-star-inserted']/descendant::span[text()='1'])[1]");
+	// pagination
+	// pagination 1
+	public static By pgntion_1 = By.xpath("(//li[@class='current ng-star-inserted']/descendant::span[text()='1'])[1]");
 
-	//pagination next 
-	public static By pgntion_Next=By.xpath("(//a[text()=' Next '])[1]");
+	// pagination next
+	public static By pgntion_Next = By.xpath("(//a[text()=' Next '])[1]");
 
-	//pagination previous
-	public static By pgntion_previous=By.xpath("(//pagination-controls/descendant::span[text()=' Previous '])[1]");
+	// pagination previous
+	public static By pgntion_previous = By.xpath("(//pagination-controls/descendant::span[text()=' Previous '])[1]");
 
-	//searched result agreement number
-	public static By SearchedAgreementNumber=By.xpath("(//th[text()='Agreement Number']/parent::tr/parent::thead/following-sibling::tbody/descendant::td)[2]");
+	// searched pending agreement number
+	public static By SearchedAgreementNumber = By.xpath(
+			"(//th[text()='Agreement Number']/parent::tr/parent::thead/following-sibling::tbody/descendant::td)[2]");
+//searched generated agreenment number
+	public static By SearchedAgreementNumber1 = By.xpath("//*[@id=\"drawdownFileUploaded\"]/table/tbody/tr/td[2]");
 
-	//documents
+	// searched completed agreement number
+	public static By SearchedAgreementNumber2 = By.xpath("//*[@id=\"complete\"]/table/tbody/tr/td[2]");
+	// documents
 	// Agreement text field
-	public static By Agreement_field = By.xpath("//b[text()='Agreement:']/parent::div/following-sibling::div/descendant::b");
+	public static By Agreement_field = By
+			.xpath("//b[text()='Agreement:']/parent::div/following-sibling::div/descendant::b");
 
 	// Customer full name
-	public static By Customer_Namefield = By.xpath("//b[text()='Customer Full Name:']/parent::div/following-sibling::div/descendant::b");
+	public static By Customer_Namefield = By
+			.xpath("//b[text()='Customer Full Name:']/parent::div/following-sibling::div/descendant::b");
 
 	// Customer ID
-	public static By Customer_IDfield = By.xpath("//b[text()='Customer ID:']/parent::div/following-sibling::div/descendant::b");
+	public static By Customer_IDfield = By
+			.xpath("//b[text()='Customer ID:']/parent::div/following-sibling::div/descendant::b");
 
 	// Entered date
-	public static By Entereddate_field = By.xpath("//b[text()='Entered Into Date:']/parent::div/following-sibling::div/descendant::b");
+	public static By Entereddate_field = By
+			.xpath("//b[text()='Entered Into Date:']/parent::div/following-sibling::div/descendant::b");
 
 	// Description of vehicle
-	public static By Descriptionf_vehicle_field = By.xpath("//b[text()='Description of Vehicle:']/parent::div/following-sibling::div/descendant::b");
+	public static By Descriptionf_vehicle_field = By
+			.xpath("//b[text()='Description of Vehicle:']/parent::div/following-sibling::div/descendant::b");
 
 	// Lightstone check
-	public static By Lightstonecheck__field = By.xpath("//b[text()='Lightstone Check:']/parent::div/following-sibling::div/descendant::b");
+	public static By Lightstonecheck__field = By
+			.xpath("//b[text()='Lightstone Check:']/parent::div/following-sibling::div/descendant::b");
 
 	// Chassis number field
-	public static By ChassisNumber_field = By.xpath("//b[text()='Chassis Number:']/parent::div/following-sibling::div/descendant::b");
-	
-	//Engine number field
-	public static By EngineNumber_field=By.xpath("//b[text()='Engine Number:']/parent::div/following-sibling::div/descendant::b");
-	
-	//police interest indicator field
-	public static By Police_itrst_indicator_field=By.xpath("//b[text()='Police Interest Indicator:']/parent::div/following-sibling::div/descendant::b");
-	
-	//Status field 
-	public static By Status_field=By.xpath("//b[text()='Status:']/parent::div/following-sibling::div/descendant::b");
-	
-	//comments
-	//comments field
-	public static By commentstext_field=By.xpath("//b[text()='Comments:']/parent::div/following-sibling::div/descendant::textarea");
-	
-	//add comment buttonn 
-	public static By Add_comment_button=By.xpath("//b[text()='Add Comment']");
-	
-	//view commwent
-	public static By View_comment_button=By.xpath("//b[text()='View Comments']");
-	
-	//View comments cncel button
-	public static By View_comment_cnclbutton=By.xpath("//a[@role='button']/child::span");
+	public static By ChassisNumber_field = By
+			.xpath("//b[text()='Chassis Number:']/parent::div/following-sibling::div/descendant::b");
 
-	
+	// Engine number field
+	public static By EngineNumber_field = By
+			.xpath("//b[text()='Engine Number:']/parent::div/following-sibling::div/descendant::b");
+
+	// police interest indicator field
+	public static By Police_itrst_indicator_field = By
+			.xpath("//b[text()='Police Interest Indicator:']/parent::div/following-sibling::div/descendant::b");
+
+	// Status field
+	public static By Status_field = By.xpath("//b[text()='Status:']/parent::div/following-sibling::div/descendant::b");
+
+	// comments
+	// comments field
+	public static By commentstext_field = By
+			.xpath("//b[text()='Comments:']/parent::div/following-sibling::div/descendant::textarea");
+
+	// add comment buttonn
+	public static By Add_comment_button = By.xpath("//b[text()='Add Comment']");
+
+	// view commwent
+	public static By View_comment_button = By.xpath("//b[text()='View Comments']");
+
+	// View comments cncel button
+	public static By View_comment_cnclbutton = By.xpath("//a[@role='button']/child::span");
+
+	// Error cancel button
+	public static By ErrorCancelButton = By
+			.xpath("//p-toastitem/descendant::a");
+
+	// complete payouts text
+	public static By CompletePayoutsText = By.xpath("//*[contains(text(),'complete payouts: ')]");
+
 	/**
 	 * Verify user is able to search the drawdown pending documnet
 	 * 
 	 * @param ReferenceNumber
 	 * @throws Exception
 	 */
+
 	public static void pendingdocumentsearch() throws Exception {
 
-		ExtentReporter.extentLogger("TC_019_TC_022_TC_023", "Verify the UI of the Payouts page");
-		ExtentReporter.HeaderChildNode("Payouts");
+		ExtentReporter.extentLogger("TC_019_TC_20_TC_022_TC_023", "Verify the UI of the Payouts page");
 		Utilities.waitTime(2000);
 		Utilities.JSClick(payoutTab, "payoutTab");
+		String ActualpayoutText = Utilities.getText(payoutsText);
+		System.out.println(ActualpayoutText);
+		softassert.assertEquals(ActualpayoutText, "Payouts");
 		Utilities.click(payout_Hamberger_btn, "payout_Hamberger_btn");
 		logger.info("payout_Hamberger_btn is clicked");
 		ExtentReporter.extentLoggerPass("Click onpayout_Hamberger_btn", "payout_Hamberger_btn is clicked");
@@ -230,6 +270,9 @@ public class payouts {
 		Utilities.click(payout_Hamberger_btn, "payout_Hamberger_btn");
 		Utilities.JSClick(payoutTab, "payoutTab");
 		Utilities.verifyElementExist(Drawdown_pendingtab, "Drawdown_pendingtab");
+		String expectedpendingName = "MIC Queue - Drawdown pending";
+		String ActualpendingName = Utilities.getText(Drawdown_pendingtab);
+		softassert.assertEquals(ActualpendingName, expectedpendingName);
 		Utilities.verifyElementExist(Drawdown_generatingtab, "Drawdown_generatingtab");
 		Utilities.verifyElementExist(Completed_tab, "Completed_tab");
 		Utilities.verifyElementExist(Marquis_icon, "Marquis_icon");
@@ -237,278 +280,74 @@ public class payouts {
 		Utilities.verifyElementExist(pgntion_Next, "pgntion_Next");
 		Utilities.verifyElementExist(pgntion_previous, "pgntion_previous");
 		Utilities.verifyElementExist(logout_btn, "logout_btn");
-		
-		Utilities.verifyElementPresentAndClick(payout_Hamberger_btn, "payout_Hamberger_btn");	
+		Utilities.verifyElementPresentAndClick(payout_Hamberger_btn, "payout_Hamberger_btn");
 		Utilities.waitTime(3000);
 		Utilities.JSClick(Manual_refresh_btn, "Manual_refresh_btn");
-		//Utilities.JSClick(pgntion_1, "pgntion_1");
-		Utilities.JSClick(pgntion_Next, "pgntion_Next");
+		// Utilities.JSClick(pgntion_Next, "pgntion_Next");
 		Utilities.Wait(3000);
-		Utilities.JSClick(pgntion_previous, "pgntion_previous");
-		Utilities.type(App_reference_no, ReferenceNumber, "AppReferenceNumber");
+		// Utilities.JSClick(pgntion_previous, "pgntion_previous");
+		String ReferenceNumber1 = xcl.getExceldata(xlpath, "RefNumber", 4, 0);
+		System.out.println(ReferenceNumber1);
+		Utilities.type(App_reference_no, ReferenceNumber1, "AppReferenceNumber");
 		logger.info("AppReferenceNumber is entered");
 		ExtentReporter.extentLoggerPass("AppReferenceNumber", "AppReferenceNumber is entered");
 		Utilities.JSClick(Cancel_btn, "cancel_btn");
 		logger.info("Searching cancelled");
 		Utilities.waitTime(3000);
-		Utilities.type(App_reference_no, ReferenceNumber, "AppReferenceNumber");
-		Utilities.explicitWaitVisible(search_btn, 10);
-		Utilities.waitTime(4000);
+		String ReferenceNumber2 = xcl.getExceldata(xlpath, "RefNumber", 4, 0);
+		System.out.println(ReferenceNumber2);
+		Utilities.type(App_reference_no, ReferenceNumber2, "AppReferenceNumber");
 		Utilities.JSClick(search_btn, "search_btn");
-		Utilities.Wait(3000);
-		/*String Searched_AgreementNumber = Utilities.getText(SearchedAgreementNumber);
+		Utilities.waitTime(3000);
+		String Searched_AgreementNumber = Utilities.getText(SearchedAgreementNumber);
 		System.out.println(Searched_AgreementNumber);
-		if(Searched_AgreementNumber.equals(ReferenceNumber)){
-			Utilities.verifyElementPresentAndClick(Searched_pndng_dcmt, "Searched_pndng_dcmt");
+		String ReferenceNumber3 = xcl.getExceldata(xlpath, "RefNumber", 4, 0);
+		if (Searched_AgreementNumber.equals(ReferenceNumber3)) {
+			Utilities.JSClick(Searched_pndng_dcmt, "Searched_pndng_dcmt");
+		} else {
+			ExtentReporter.extentLoggerFail("Agreement number", "Agreement number is not matched");
 		}
-		else
-		{
-			ExtentReporter.extentLoggerFail("Agreement number","Agreement number is not matched");
-		}*/
-		Utilities.explicitWaitVisible(Searched_pndng_dcmt, 10);
-		Utilities.verifyElementPresentAndClick(Searched_pndng_dcmt, "Searched_pndng_dcmt");
+
 	}
-	
-	public static void document() throws Exception, IOException
-	{
-		String Actl_AgreementID = xcl.getExceldata(xlpath, "Sheet1", 11, 2);
-		String Exptd_AgreementID = Utilities.getText(Agreement_field);
-		if(Exptd_AgreementID=="")
-		{
-			logger.info("Agreement id field is empty");
-			ExtentReporter.extentLoggerPass("AgreementID", "Agreement id field is empty");
-		}
-		
-		else if(Actl_AgreementID.equals(Exptd_AgreementID))
-		{
-			logger.info("Agreement id is matched");
-			ExtentReporter.extentLoggerPass("AgreementID", "Agreement id is matched");
-		}
-		else if(Actl_AgreementID!=Exptd_AgreementID)
-		{
-			logger.info("Agreement id is not  matched");
-			ExtentReporter.extentLoggerPass("AgreementID", "Agreement id is not matched");
-		}
-		
-		String Actl_Customer_Name = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
-		String Exptd_Customer_Name = Utilities.getText(Customer_Namefield);
-		if(Exptd_Customer_Name=="")
-		{
-			logger.info("Customer_Name field is empty");
-			ExtentReporter.extentLoggerPass("Customer_Name", "Customer_Name field is empty");
-		}
-		
-		else if(Actl_Customer_Name.equals(Exptd_Customer_Name))
-		{
-			logger.info("Customer_Name is matched");
-			ExtentReporter.extentLoggerPass("Customer_Name", "Customer_Name is matched");
-		}
-		else if(Actl_Customer_Name!=Exptd_Customer_Name)
-		{
-			logger.info("Customer_Name is not  matched");
-			ExtentReporter.extentLoggerPass("Customer_Name", "Customer_Name is not matched");
-		}
-		
-		String Actl_Customer_ID = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
-		String Exptd_Customer_ID = Utilities.getText(Customer_IDfield);
-		if(Exptd_Customer_ID=="")
-		{
-			logger.info("Customer_ID field is empty");
-			ExtentReporter.extentLoggerPass("Customer_ID", "Customer_ID field is empty");
-		}
-		
-		else if(Actl_Customer_ID.equals(Exptd_Customer_ID))
-		{
-			logger.info("Customer_ID is matched");
-			ExtentReporter.extentLoggerPass("Customer_ID", "Customer_ID is matched");
-		}
-		else if(Actl_Customer_ID!=Exptd_Customer_ID)
-		{
-			logger.info("Customer_ID is not  matched");
-			ExtentReporter.extentLoggerPass("Customer_ID", "Customer_ID is not matched");
-		}
-		
-		String Actl_Entereddate = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
-		String Exptd_Entereddate = Utilities.getText(Entereddate_field);
-		if(Exptd_Entereddate=="")
-		{
-			logger.info("Entereddate field is empty");
-			ExtentReporter.extentLoggerPass("Entereddate", "Entereddate field is empty");
-		}
-		
-		else if(Actl_Entereddate.equals(Exptd_Entereddate))
-		{
-			logger.info("Entereddate is matched");
-			ExtentReporter.extentLoggerPass("Entereddate", "Entereddate is matched");
-		}
-		else if(Actl_Entereddate!=Exptd_Entereddate)
-		{
-			logger.info("Entereddate is not  matched");
-			ExtentReporter.extentLoggerPass("Entereddate", "Entereddate is not matched");
-		}
-		
-		String Actl_Descriptionf_vehicle = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
-		String Exptd_Descriptionf_vehicle = Utilities.getText(Descriptionf_vehicle_field);
-		if(Exptd_Descriptionf_vehicle=="")
-		{
-			logger.info("Descriptionf_vehicle field is empty");
-			ExtentReporter.extentLoggerPass("Descriptionf_vehicle", "Descriptionf_vehicle field is empty");
-		}
-		
-		else if(Actl_Descriptionf_vehicle.equals(Exptd_Descriptionf_vehicle))
-		{
-			logger.info("Descriptionf_vehicle is matched");
-			ExtentReporter.extentLoggerPass("Descriptionf_vehicle", "Descriptionf_vehicle is matched");
-		}
-		else if(Actl_Descriptionf_vehicle!=Exptd_Descriptionf_vehicle)
-		{
-			logger.info("Descriptionf_vehicle is not  matched");
-			ExtentReporter.extentLoggerPass("Descriptionf_vehicle", "Descriptionf_vehicle is not matched");
-		}
-		
-		String Actl_Lightstonecheck = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
-		String Exptd_Lightstonecheck = Utilities.getText(Lightstonecheck__field);
-		if(Exptd_Lightstonecheck=="")
-		{
-			logger.info("Lightstonecheck field is empty");
-			ExtentReporter.extentLoggerPass("Lightstonecheck", "Lightstonecheck field is empty");
-		}
-		
-		else if(Actl_Lightstonecheck.equals(Exptd_Lightstonecheck))
-		{
-			logger.info("Lightstonecheck is matched");
-			ExtentReporter.extentLoggerPass("Lightstonecheck", "Lightstonecheck is matched");
-		}
-		else if(Actl_Lightstonecheck!=Exptd_Lightstonecheck)
-		{
-			logger.info("Lightstonecheck is not  matched");
-			ExtentReporter.extentLoggerPass("Lightstonecheck", "Lightstonecheck is not matched");
-		}
-		
-		String Actl_ChassisNumber = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
-		String Exptd_ChassisNumber = Utilities.getText(ChassisNumber_field);
-		if(Exptd_ChassisNumber=="")
-		{
-			logger.info("ChassisNumber field is empty");
-			ExtentReporter.extentLoggerPass("ChassisNumber", "ChassisNumber field is empty");
-		}
-		
-		else if(Actl_ChassisNumber.equals(Exptd_ChassisNumber))
-		{
-			logger.info("ChassisNumber is matched");
-			ExtentReporter.extentLoggerPass("ChassisNumber", "ChassisNumber is matched");
-		}
-		else if(Actl_ChassisNumber!=Exptd_ChassisNumber)
-		{
-			logger.info("ChassisNumber is not  matched");
-			ExtentReporter.extentLoggerPass("ChassisNumber", "ChassisNumber is not matched");
-		}
-		
-		String Actl_EngineNumber = xcl.getExceldata(xlpath, "Sheet1", 7, 7);
-		String Exptd_EngineNumber = Utilities.getText(EngineNumber_field);
-		if(Exptd_EngineNumber=="")
-		{
-			logger.info("EngineNumber field is empty");
-			ExtentReporter.extentLoggerPass("EngineNumber", "EngineNumber field is empty");
-		}
-		
-		else if(Actl_EngineNumber.equals(Exptd_EngineNumber))
-		{
-			logger.info("EngineNumber is matched");
-			ExtentReporter.extentLoggerPass("EngineNumber", "EngineNumber is matched");
-		}
-		else if(Actl_EngineNumber!=Exptd_EngineNumber)
-		{
-			logger.info("EngineNumber is not  matched");
-			ExtentReporter.extentLoggerPass("EngineNumber", "EngineNumber is not matched");
-		}
-		
+
+	public static void documentdetails() throws Exception {
+		String ActualpendingDrawdownText = Utilities.getText(pendingDradownAgreementText);
+		System.out.println(ActualpendingDrawdownText);
+		softassert.assertEquals(ActualpendingDrawdownText, "PENDING PAYOUTS:");
+		CustomerDetails(2, 44, Agreement_field, "Agreement ID");
+		String First_Name = xcl.getExceldata(xlpath, "TestData", 2, 0);
+		String Last_Name = xcl.getExceldata(xlpath, "TestData", 2, 1);
+		String Full_Name = First_Name + " " + Last_Name;
+		System.out.println(Full_Name);
+		CustomerDetails2(Full_Name, Customer_Namefield, "CustomerName");
+		// CustomerDetails(8, 7, Customer_Namefield, "CustomerName");
+		CustomerDetails(2, 4, Customer_IDfield, "CustomerID");
+		// CustomerDetails(10, 7, Entereddate_field, "EnteredDate");
+		// CustomerDetails(11, 7, Descriptionf_vehicle_field, "Description of Vehicle");
+		// CustomerDetails(12, 7, Lightstonecheck__field, "Lightstonecheck");
+		CustomerDetails(2, 27, ChassisNumber_field, "chassisNumber");
+		CustomerDetails(2, 28, EngineNumber_field, "EngineNumber");
 		ExtentReporter.extentLogger("Comment", "comment section");
-		Utilities.waitTime(3000);
+		Utilities.waitTime(2000);
 		Utilities.type(commentstext_field, "Comments", "comments text field");
-		
-		
-		Utilities.click(Add_comment_button, "add comment button is clicked");
-		
-		Utilities.waitTime(3000);
-		Utilities.click(View_comment_button, "view_comment_button is clicked");
-		
-		
-		Utilities.waitTime(3000);
-		Utilities.click(View_comment_cnclbutton, "view_comment_cnclbutton is clicked");	
-		
+		Utilities.click(Add_comment_button, "add comment_button");
+		Utilities.waitTime(2000);
+		Utilities.click(View_comment_button, "view_comment_button");
+		Utilities.waitTime(2000);
+		Utilities.click(View_comment_cnclbutton, "view_comment_cnclbutton");
 	}
 
-	public static void Drawdownpending() throws Exception {
-		ExtentReporter.extentLogger("TC_029_TC_030_TC_023", "Verify the UI of the pending Drawdown pending Agreement page");
+	public static void verifyDocuments() throws Exception {
 
-		
 		Utilities.ScrollToTheElement(Contract_doc_text);
-		Utilities.waitTime(2000);
-	if(Utilities.verifyElementExist(Contract_doc_view_b, "Contract_doc_view_b"))
-	{
-		logger.info("Contract_doc_view_b is displayed");
-		ExtentReporter.extentLoggerPass("Contract_doc_view_b is displayed", "Contract_doc_view_b is displayed");
-	}
-	else if(Utilities.verifyElementExist(Contract_doc_v_b, "Contract_doc_v_b"))
-	{
-		Utilities.JSClick(Contract_doc_v_b, "Contract_doc_v_b");
-
-
-		if (Utilities.verifyElementPresent(selecct_doc_aprv, "Please Select a Document to view")) {
-			Utilities.verifyElementPresentAndClick(selecct_doc_aprv, "Contract_doc");
-			Utilities.ScrollToTheElement(select_n_verify);
-			Utilities.verifyElementPresentAndClick(select_n_verify, "select_n_verify");
-		} 
-		else {
-			Utilities.verifyElementPresentAndClick(Arv_doc_cancl_btn, "There is no Documents for this process.");
-		}
-		
-		
-	}
-		
-		Utilities.explicitWaitVisible(Stamped_id_v_b, 10);
-		Utilities.JSClick(Stamped_id_v_b, "Stamped_id_v_b");
-		if (Utilities.verifyElementPresent(selecct_doc_aprv, "Please Select a Document to view")) {
-			Utilities.verifyElementPresentAndClick(selecct_doc_aprv, "Stamped_id");
-			Utilities.ScrollToTheElement(select_n_verify);
-			Utilities.verifyElementPresentAndClick(select_n_verify, "select_n_verify");
-		} 
-		else {
-			Utilities.verifyElementPresentAndClick(Arv_doc_cancl_btn, "There is no Documents for this process.");
-		}
-		Utilities.waitTime(2000);
-		Utilities.JSClick(release_notes_v_b, "release_notes_v_b");
-		if (Utilities.verifyElementPresent(selecct_doc_aprv, "Please Select a Document to view")) {
-			Utilities.verifyElementPresentAndClick(selecct_doc_aprv, "release_notes");
-			Utilities.ScrollToTheElement(select_n_verify);
-			Utilities.verifyElementPresentAndClick(select_n_verify, "select_n_verify");
-		} else {
-			Utilities.verifyElementPresentAndClick(Arv_doc_cancl_btn, "There is no Documents for this process.");
-			ExtentReporter.extentLoggerPass("clicked on Arv_doc_cancl_btn ", "There is no document in this process");
-		}
-		Utilities.waitTime(2000);
-		Utilities.verifyElementPresentAndClick(dealer_invoice_v_b, "dealer_invoice_v_b");
-		if (Utilities.verifyElementPresent(selecct_doc_aprv, "Please Select a Document to view")) {
-
-			Utilities.verifyElementPresentAndClick(selecct_doc_aprv, "dealer_invoice");
-			Utilities.ScrollToTheElement(select_n_verify);
-			Utilities.verifyElementPresentAndClick(select_n_verify, "select_n_verify");
-		} else {
-			Utilities.verifyElementPresentAndClick(Arv_doc_cancl_btn, "There is no Documents for this process.");
-			ExtentReporter.extentLoggerPass("Arv_doc_cancl_btn", "There is no document in this process");
-		}
-		Utilities.waitTime(2000);
-		Utilities.JSClick(proofof_insurance_v_b, "proofof_insurance_v_b");
-		if (Utilities.verifyElementPresent(selecct_doc_aprv, "Please Select a Document to view")) {
-			Utilities.verifyElementPresentAndClick(selecct_doc_aprv, "proofof_insurance");
-			Utilities.ScrollToTheElement(select_n_verify);
-			Utilities.verifyElementPresentAndClick(select_n_verify, "select_n_verify");
-		} else {
-			Utilities.verifyElementPresentAndClick(Arv_doc_cancl_btn, "There is no Documents for this process.");
-			ExtentReporter.extentLoggerPass("There is no proof of insurence document", "There is no document in this process");
-		}
-
+		VerifyButtons(Contract_doc_view_b, "Contract_doc_view_b", "Contract_Doc", Contract_doc_v_b, "Contract_doc_v_b");
+		VerifyButtons(StampedID_view_btn, "StampedID_view_btn", "StampedID_Doc", Stamped_id_v_b, "Stamped_id_v_b");
+		VerifyButtons(release_notes_view_b, "release_notes_view_b", "ReleaseNotes_Doc", release_notes_v_b,
+				"release_notes_v_b");
+		VerifyButtons(Dealer_invoice_view_btn, "Dealer_invoice_view_btn", "DealerInvoice_Doc", dealer_invoice_v_b,
+				"dealer_invoice_v_b");
+		VerifyButtons(proofof_insurence_view_btn, "proofof_insurence_view_btn", "ProofofInsurence_Doc",
+				proofof_insurance_v_b, "proofof_insurance_v_b");
 		Utilities.ScrollToTheElement(Refresh_btn);
 		Utilities.verifyElementExist(Refresh_btn, "Refresh_btn");
 		Utilities.verifyElementExist(Raises__btn, "Raises__btn");
@@ -516,32 +355,86 @@ public class payouts {
 		Utilities.verifyElementExist(CloseMicTask_btn, "CloseMicTask_btn");
 		Utilities.verifyElementExist(DeclineMicTask_btn__btn, "DeclineMicTask_btn__btn");
 		Utilities.verifyElementExist(request_drawdown_btn, "request_drawdown_btn");
-		if(Utilities.verifyElementExist(Natice_element, "Natice_element"))
-		{
-			Utilities.explicitWaitVisible(Natice_doc_v_b, 10);
-			Utilities.verifyElementPresentAndClick(Natice_doc_v_b, "Natice_doc_v_b");
-			if (Utilities.verifyElementPresent(selecct_doc_aprv, "Please Select a Document to view")) {
-
-				Utilities.verifyElementPresentAndClick(selecct_doc_aprv, "Natice_doc");
-				Utilities.ScrollToTheElement(select_n_verify);
-				Utilities.verifyElementPresentAndClick(select_n_verify, "select_n_verify");
-			} else {
-				Utilities.verifyElementPresentAndClick(Arv_doc_cancl_btn, "There is no Documents for this process.");
-			}
-		}
-		else
-		{
-			Utilities.verifyElementPresentAndClick(request_drawdown_btn, "request_drawdown_btn");
-		}
-
-
-
+		Utilities.verifyElementPresentAndClick(request_drawdown_btn, "request_drawdown_btn");
 
 	}
 
+	public static void generated() throws Exception {
+		ExtentReporter.extentLogger("TC_031", "Verify the user is able to complete the deal");
+		Utilities.ScrollToTheElement(back_button);
+		Utilities.JSClick(back_button, "back_button");
+		Utilities.JSClick(Drawdown_generatingtab, "Drawdown_generatingtab");
+		String expectedGeneratedName = "MIC Queue - Drawdown Generated";
+		String ActualGeneratedName = Utilities.getText(Drawdown_generatingtab);
+		softassert.assertEquals(ActualGeneratedName, expectedGeneratedName);
 
-	public static void pagination() throws Exception
-	{
+		Utilities.JSClick(Manual_refresh_btn, "Manual_refresh_btn");
+		Utilities.explicitWaitVisible(App_reference_no, 5);
+		String ReferenceNumber11 = xcl.getExceldata(xlpath, "RefNumber", 5, 0);
+		Utilities.type(App_reference_no, ReferenceNumber11, "AppReferenceNumber");
+		Utilities.Wait(3000);
+		Utilities.waitForElementAndClickIfPresent(search_btn, 5, "search_btn");
+		Utilities.waitTime(3000);
+		String Searched_AgreementNumber = Utilities.getText(SearchedAgreementNumber1);
+		System.out.println(Searched_AgreementNumber);
+		String ReferenceNumber3 = xcl.getExceldata(xlpath, "RefNumber", 5, 0);
+		if (Searched_AgreementNumber.equals(ReferenceNumber3)) {
+			Utilities.JSClick(searched_gnrtd_dcmt, "searched_gnrtd_dcmt");
+		} else {
+			ExtentReporter.extentLoggerFail("Agreement number", "Agreement number is not matched");
+		}
+		String ActualDrawdownGeneratedText = Utilities.getText(DradownGeneratedAgreementText);
+		System.out.println(ActualDrawdownGeneratedText);
+		softassert.assertTrue(ActualDrawdownGeneratedText.equals("DRAWDOWN PAYOUTS:"),
+
+				"DrawdownGeneratedAgreenment is displayed");
+		softassert.assertAll();
+		Utilities.ScrollToTheElement(Contract_doc_text);
+		VerifyButtons(Contract_doc_view_b, "Contract_doc_view_b", "Contract_Doc", Contract_doc_v_b, "Contract_doc_v_b");
+		VerifyButtons(StampedID_view_btn, "StampedID_view_btn", "StampedID_Doc", Stamped_id_v_b, "Stamped_id_v_b");
+		VerifyButtons(release_notes_view_b, "release_notes_view_b", "ReleaseNotes_Doc", release_notes_v_b,
+				"release_notes_v_b");
+		VerifyButtons(Dealer_invoice_view_btn, "Dealer_invoice_view_btn", "DealerInvoice_Doc", dealer_invoice_v_b,
+				"dealer_invoice_v_b");
+		VerifyButtons(proofof_insurence_view_btn, "proofof_insurence_view_btn", "ProofofInsurence_Doc",
+				proofof_insurance_v_b, "proofof_insurance_v_b");
+		Utilities.ScrollToTheElement(AcceptMicTask_btn);
+		Utilities.click(AcceptMicTask_btn, "AcceptMicTask_btn");
+		Utilities.waitTime(3000);
+		 Utilities.click(ErrorCancelButton, "cancel icon");
+
+	}
+
+	public static void completed() throws Exception {
+		Utilities.ScrollToTheElement(back_button);
+		Utilities.JSClick(back_button, "back_button");
+		Utilities.JSClick(Completed_tab, "Completed_tab");
+		Utilities.JSClick(Manual_refresh_btn, "Manual_refresh_btn");
+		String ReferenceNumber12 = xcl.getExceldata(xlpath, "RefNumber", 6, 0);
+		Utilities.type(App_reference_no, ReferenceNumber12, "AppReferenceNumber");
+		logger.info("AppReferenceNumber is entered");
+		ExtentReporter.extentLoggerPass("AppReferenceNumber", "AppReferenceNumber is entered");
+		Utilities.JSClick(search_btn, "search_btn");
+		Utilities.waitTime(3000);
+		String Searched_AgreementNumber = Utilities.getText(SearchedAgreementNumber2);
+		System.out.println(Searched_AgreementNumber);
+		String ReferenceNumber3 = xcl.getExceldata(xlpath, "RefNumber", 6, 0);
+		if (Searched_AgreementNumber.equals(ReferenceNumber3)) {
+			Utilities.JSClick(searched_completed_dcmt, "searched_completed_dcmt");
+		} else {
+			ExtentReporter.extentLoggerFail("Agreement number", "Agreement number is not matched");
+
+		}
+		String ActualCompletedText = Utilities.getText(CompletePayoutsText);
+		System.out.println(ActualCompletedText);
+		softassert.assertTrue(ActualCompletedText.equals("COMPLETE PAYOUTS:"),
+
+				"Deal is paid");
+		softassert.assertAll();
+
+	}
+
+	public static void pagination() throws Exception {
 		ExtentReporter.extentLogger("TC_032", "Verify the functionality of the pagination buttons");
 		Utilities.verifyElementDisplayed(pgntion_1);
 		logger.info("pgntion_1 is displayed");
@@ -552,56 +445,70 @@ public class payouts {
 		Utilities.verifyElementPresentAndClick(pgntion_previous, "pgntion_previous");
 		logger.info("previous button is functional");
 	}
-	public static void generated() throws Exception
-	{   
 
-		/*ExtentReporter.extentLogger("TC_031", "Verify the user is able to complete the deal");
-		Utilities.JSClick(payoutTab, "payoutTab");
-		System.out.println("clicked tab");
-		Utilities.click(payout_Hamberger_btn, "payout_Hamberger_btn");*/
-		 Utilities.ScrollToTheElement(back_button);
-		Utilities.JSClick(back_button, "back_button");
-	
-		Utilities.JSClick(Drawdown_generatingtab, "Drawdown_generatingtab");
-
-		Utilities.JSClick(Manual_refresh_btn, "Manual_refresh_btn");
-     	Utilities.explicitWaitVisible(App_reference_no, 5);
-		Utilities.type(App_reference_no, ReferenceNumber1, "AppReferenceNumber");
-		Utilities.Wait(3000);
-		Utilities.JSClick(search_btn, "search_btn");
-		Utilities.Wait(3000);
-		Utilities.JSClick(searched_gnrtd_dcmt, "searched_gnrtd_dcmt");
-		Utilities.ScrollToTheElement(AcceptMicTask_btn);
-		Utilities.click(AcceptMicTask_btn, "AcceptMicTask_btn");
-
+	/* Method for customer details */
+	public static void CustomerDetails(int rowNo, int clmNo, By bylocator, String validationText) throws Exception {
+		String ActualData = xcl.getExceldata(xlpath, "TestData", rowNo, clmNo);
+		String ExpectedData = Utilities.getText(bylocator);
+		if (ExpectedData == "") {
+			logger.info(validationText + " " + "field is empty");
+			ExtentReporter.extentLoggerPass("Check Matching", validationText + " " + "field is empty");
+		} else if (ActualData.equals(ExpectedData)) {
+			logger.info(validationText + " " + "is matched");
+			ExtentReporter.extentLoggerPass("Check Matching", validationText + " " + "is matched");
+		} else if (ActualData != ExpectedData) {
+			logger.info(validationText + " " + " is not matched");
+			ExtentReporter.extentLoggerPass("Check Matching", validationText + " " + "is not matched");
+		}
 	}
 
-	public static void completed() throws Exception
-	{
-		ReferenceNumber = Utilities.getParameterFromXML("ReferenceNumber");
-		System.out.println(ReferenceNumber);
-
-		Utilities.JSClick(payoutTab, "payoutTab");
-		System.out.println("clicked tab");
-		Utilities.click(payout_Hamberger_btn, "payout_Hamberger_btn");
-		Utilities.JSClick(Completed_tab, "Completed_tab");
-		logger.info("Completed_tab is clicked");
-		ExtentReporter.extentLoggerPass("Completed_tab", "Completed_tab is clicked");
-
-		Utilities.verifyElementPresentAndClick(Manual_refresh_btn, "Manual_refresh_btn");
-		logger.info("Manual_refresh_btn is clicked");
-		ExtentReporter.extentLoggerPass("Manual_refresh_btn", "Manual_refresh_btn is clicked");
-
-		Utilities.type(App_reference_no, ReferenceNumber, "AppReferenceNumber");
-		logger.info("AppReferenceNumber is entered");
-		ExtentReporter.extentLoggerPass("AppReferenceNumber", "AppReferenceNumber is entered");
-		Thread.sleep(3000);
-		Utilities.verifyElementPresentAndClick(search_btn, "search_btn");
-		logger.info("search_btn is clicked");
-		ExtentReporter.extentLoggerPass("search_btn", "search_btn is clicked and completed detail is displayed");
+	/* Method for customer name */
+	public static void CustomerDetails2(String Actual, By bylocator, String validationText) throws Exception {
+		// String ActualData = xcl.getExceldata(xlpath, "TestData", rowNo, clmNo);
+		String ActualData = Actual;
+		String ExpectedData = Utilities.getText(bylocator);
+		if (ExpectedData == "") {
+			logger.info(validationText + " " + "field is empty");
+			ExtentReporter.extentLoggerPass("Check Matching", validationText + " " + "field is empty");
+		} else if (ActualData.equals(ExpectedData)) {
+			logger.info(validationText + " " + "is matched");
+			ExtentReporter.extentLoggerPass("Check Matching", validationText + " " + "is matched");
+		} else if (ActualData != ExpectedData) {
+			logger.info(validationText + " " + " is not matched");
+			ExtentReporter.extentLoggerPass("Check Matching", validationText + " " + "is not matched");
+		}
 	}
-	
-	
+
+	/* Method for verifying the documents */
+	public static void VerifyButtons(By bylocator, String viewbtn, String DocumentName, By bylocator1, String verifybtn)
+			throws Exception {
+
+		if (Utilities.verifyElementExists(bylocator, viewbtn)) {
+			logger.info(DocumentName + " " + "is verified");
+			ExtentReporter.extentLoggerPass("DocumentName", DocumentName + " " + "is verified");
+		} else if (Utilities.verifyElementPresent(bylocator1, verifybtn)) {
+
+			Utilities.click(bylocator1, verifybtn);
+			if (Utilities.verifyElementPresent(selecct_doc_aprv, "Please Select a Document to view")) {
+				Utilities.verifyElementPresentAndClick(selecct_doc_aprv, "selected for approve");
+				Utilities.waitTime(2000);
+				Utilities.ScrollToTheElement(select_n_verify);
+				Utilities.verifyElementPresentAndClick(select_n_verify, "select_n_verify");
+				Utilities.waitTime(2000);
+				String view = Utilities.getText(bylocator);
+				System.out.println(view);
+				softassert.assertEquals(view, "VIEW", DocumentName + " " + "is verified");
+				logger.info(DocumentName + " " + "is verified");
+				ExtentReporter.extentLoggerPass("DocumentName", DocumentName + " " + "is verified");
+
+			} else {
+				Utilities.waitForElementAndClickIfPresent(Arv_doc_cancl_btn, 10, "cancel button");
+
+			}
+
+		}
+	}
+
 }
 
 
