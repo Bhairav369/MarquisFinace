@@ -70,15 +70,14 @@ public class SeritiLoginPage {
 		 *
 		 */
 		
-		public static void login(String userName, String password) throws Exception {
+		public static void login() throws Exception {
 			ExtentReporter.HeaderChildNode("TC_003 : Verify the Login functionality of Seriti portal");
 			//userName = Utilities.getParameterFromXML("UserName");
-			System.out.println(userName);
 			
-			 userName = ExcelFunctions.getCellValue(xlpath,"Credentials",2,0);
+			String userName = ExcelFunctions.getCellValue(xlpath,"Credentials",2,0);
 			
 			//password = Utilities.getParameterFromXML("Password");
-			 password = ExcelFunctions.getCellValue(xlpath,"Credentials",2,1);
+			String password = ExcelFunctions.getCellValue(xlpath,"Credentials",2,1);
 
 			System.out.println(password);
 			
