@@ -22,7 +22,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 public class ExcelFunctions {
-	
+public static	Map<String,String> testData = new HashMap<String,String>();
+
 	// Generic method to return the number of rows in the sheet.
 		public static int getRowCount(String xlPath, String sheet) {
 			int rc = 0;
@@ -50,6 +51,8 @@ public class ExcelFunctions {
 			}
 			return data;
 		}
+		
+
 
 		public static void writeData(String xlpath, String sheet, int row, int col, String data) {
 			try {
@@ -85,35 +88,41 @@ public class ExcelFunctions {
 		}
 
 
-//	    public static Map<String,String> getMapData(){
-//	    	
-//	    	Map<String,String> testData = new HashMap<String,String>();
-//	    	try {
-//	    		FileInputStream fis = new FileInputStream("C:\\Users\\IGS0026\\Documents\\HashMap.xlsx");
-//				Workbook wb = WorkbookFactory.create(fis);
-//				Sheet s = wb.getSheetAt(0);
-//				int lastRowNumber =  s.getLastRowNum();
-//				
-//				for(int i=0;i<=lastRowNumber;i++) {
-//					Row row = s.getRow(i);
-//					Cell keyCell = row.getCell(0);
-//					String key = keyCell.getStringCellValue().trim();
+	    public static Map<String,String> getMapData(String xlPath, String sheet, int rowInt){
+	    	
+	    	try {
+	    		
+				
+				XSSFWorkbook myExcelBook = new XSSFWorkbook(new FileInputStream(xlPath));
+				XSSFSheet myExcelSheet = myExcelBook.getSheet(sheet);
+				int noOfColumns = myExcelSheet.getRow(1).getPhysicalNumberOfCells();
+
+			//for(int i=2;i<noOfRows;i++) {
+					
+					for(int j=0; j<=noOfColumns;j++)
+					{
+					Row row = myExcelSheet.getRow(1);
+					Cell keyCell = row.getCell(j);
+					String key = keyCell.toString().trim();
 //					
-//					Cell valueCell = row.getCell(1);
-//					String value = valueCell.getStringCellValue().trim();
-//					testData.put(key, value);
-////					System.out.println(key+"   "+value);
-//				}
-//	    	}catch(Exception e) {
-//	    		
-//	    	}
-//			return testData;
-//	    }
-//
-//	    public static void main(String [] args) {
-//	    	Map<String,String> testData = getMapData();
-//	    	for(Entry<String,String> map : testData.entrySet()) {
-//	    		System.out.println(map.getKey()+"   "+map.getValue());
-//	    	}
-//	    }
+					Cell valueCell = myExcelSheet.getRow(rowInt).getCell(j);
+					String value = valueCell.toString();
+					testData.put(key, value);
+					
+					}
+			//	}
+	    	}
+	    	catch(Exception e) {
+	    		//e.printStackTrace();
+	    	}
+			return testData;
+	    }
+
+		/*
+		 * public static void main(String [] args) { Map<String,String> testData =
+		 * getMapData("./XLSX/MarquisDataForm.xlsx","TestData");
+		 * 
+		 * for(Entry<String,String> map : testData.entrySet()) {
+		 * System.out.println(map.getKey()+"   "+map.getValue()); } }
+		 */
 }

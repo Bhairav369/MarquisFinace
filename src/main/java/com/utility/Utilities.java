@@ -22,6 +22,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.TakesScreenshot;
@@ -394,7 +395,38 @@ public class Utilities extends ExtentReporter{
             return false;
         }
     }
-
+    
+    public static boolean clickByEnterKey(By byLocator, String validationtext) throws Exception {
+    	String platform = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getSuite().getName();
+    	WebElement element=null;
+    	try {
+    		if(platform.equalsIgnoreCase("web")) {
+    			element = DriverManager.getDriver().findElement(byLocator);
+    		}
+    		else if (platform.equalsIgnoreCase("mpwa")) {
+    			element = DriverManager.getAppiumDriver().findElement(byLocator);
+    		}
+            softAssert.assertEquals(element.isDisplayed(), true, "" + validationtext + " " + " is displayed");
+            logger.info("" + validationtext + " " + "is displayed");
+            ExtentReporter.extentLogger("checkElementPresent", "" + validationtext + " is displayed");
+            if(platform.equalsIgnoreCase("web")) {
+            	DriverManager.getDriver().findElement(byLocator).sendKeys(Keys.ENTER);
+    		}
+    		else if (platform.equalsIgnoreCase("mpwa")) {
+    			DriverManager.getAppiumDriver().findElement(byLocator).click();
+    		}
+            logger.info("Clicked on " + validationtext);
+            ExtentReporter.extentLoggerPass("click", "Clicked on " + validationtext);
+            return true;
+        } catch (Exception e) {
+            softAssert.assertEquals(false, true, "Element" + validationtext + " " + " is not visible");
+            logger.error("Element " + validationtext + " " + " is not visible");
+            ExtentReporter.extentLoggerFail("checkElementPresent", "" + validationtext + " is not displayed");
+            ExtentReporter.screencapture();
+            return false;
+        }
+    }
+    
     public static String getAdId() throws IOException {
         String cmd = "adb shell grep adid_key /data/data/com.google.android.gms/shared_prefs/adid_settings.xml";
         Process p = Runtime.getRuntime().exec(cmd);

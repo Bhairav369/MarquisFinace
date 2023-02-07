@@ -85,8 +85,7 @@ static ExcelFunctions xcl = new ExcelFunctions();
 	public static void createCustomerTransactionForm() throws Exception {
 		ExtentReporter.HeaderChildNode("TC_008 & TC_009 : Verify the UI & Functionality of Create Transaction page");
 		
-//		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.transactionHeader,20);
-		
+			
 		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.createCustomerTransactionButton,20);
 
 		Utilities.verifyElementPresentAndClick(SeritiCreateCustomerFormPage.createCustomerTransactionButton,"Create Transaction footer button");
@@ -98,7 +97,8 @@ static ExcelFunctions xcl = new ExcelFunctions();
 	    Assert.assertEquals(createTransactionHeaderText, "create transaction");
 	    
 		logger.info("Filling dealer section");
-		String readFinanceGroup = ExcelFunctions.getCellValue(xlpath,"TestData",5,0);
+		String readFinanceGroup = ExcelFunctions.testData.get("Dealer Group");
+		System.out.println("   readFinanceGroup  "+readFinanceGroup);
 		Utilities.selectByVisibleTextByLocator(SeritiCreateCustomerFormPage.groupSelect,readFinanceGroup);
 		
 		Utilities.JSClick(SeritiCreateCustomerFormPage.clickCreateText, "Sample click to bring Focus");
@@ -108,9 +108,9 @@ static ExcelFunctions xcl = new ExcelFunctions();
 		
 		logger.info("Dealer group selection");
 		ExtentReporter.extentLoggerPass("Dealer group select dropdown", "MARQUIS FINANCE TEST ENVIRONMENT is selected from DD");
-		
+		    
 		logger.info("Dealer branch selection");
-		String readFinanceBranch = ExcelFunctions.getCellValue(xlpath,"TestData",5,1);
+		String readFinanceBranch = ExcelFunctions.testData.get("Dealer Branch");
 		Utilities.selectByVisibleTextByLocator(SeritiCreateCustomerFormPage.branchSelect,readFinanceBranch);
 
 		ExtentReporter.extentLoggerPass("Dealer branch select dropdown", "MARQUIS FINANCE UAT TEST BRANCH is selected from DD");
@@ -120,14 +120,14 @@ static ExcelFunctions xcl = new ExcelFunctions();
 		Assert.assertEquals(selectedBranch,readFinanceBranch);
 		
 		logger.info("Filling Customer section");
-		String readCustomerType = ExcelFunctions.getCellValue(xlpath,"TestData",5,2);
+		String readCustomerType = ExcelFunctions.testData.get("Customer Type");
 		Utilities.selectByVisibleTextByLocator(SeritiCreateCustomerFormPage.custTypeSelect,readCustomerType);
 		String selectedCustType = Utilities.getText(SeritiCreateCustomerFormPage.custTypeSelected);
 		Assert.assertEquals(selectedCustType, readCustomerType);
 		
 		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.lastName,5);
 
-		String readLastName = ExcelFunctions.getCellValue(xlpath,"TestData",5,3);
+		String readLastName = ExcelFunctions.testData.get("Last Name");
 		Utilities.type(SeritiCreateCustomerFormPage.lastName,readLastName,"Last Name text field");
 		logger.info("LastName is entered");
 		ExtentReporter.extentLoggerPass("LastName field", "Last name is entered");
@@ -136,12 +136,16 @@ static ExcelFunctions xcl = new ExcelFunctions();
 //		Utilities.waitTime(3000);
 		
 		logger.info("Filling Finance section");
-		String readDeal = ExcelFunctions.getCellValue(xlpath,"TestData",5,4);
+		String readDeal = ExcelFunctions.testData.get("Finance/Cash Deal");
 		Utilities.selectByVisibleTextByLocator(SeritiCreateCustomerFormPage.financeSelect,readDeal);
 		String selectedFinanceType = Utilities.getText(SeritiCreateCustomerFormPage.financeSelected);
 		Assert.assertEquals(selectedFinanceType, readDeal);
 		
 		Utilities.JSClick(SeritiCreateCustomerFormPage.createSubmitButton,"Create Transaction ");
+		
+		Utilities.Wait(3000);
+//		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.transactionTab,5);
+//	    Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.transactionTab, "");
 	}
 
 }

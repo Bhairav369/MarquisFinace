@@ -14,23 +14,27 @@
 	<parameter name="runModule" value="Suite"/>
 	<parameter name="runMode" value="Suites"/>	
 	<parameter name="url" value="" />-->
-	<!-- 
-	<parameter name = "UserName" value="LIKHITHA"/>
-	<parameter name = "Password" value="Test@1234"/>
-	<parameter name="url" value="https://www.seritisolutions.co.za/DEMO/web/admin/SecurityUser.aspx?Status=View%22" />
+	
+
+	 <parameter name="url" value="https://www.seritisolutions.co.za/DEMO/web/admin/SecurityUser.aspx?Status=View%22" />
+	<parameter name="browserType" value="Chrome"/>
+	<parameter name="userType" value="SeritiPortal"/> 
+	
+<!-- 	<parameter name="url" value="https://www.operations.uat-mqf.co.za/home" />
 	<parameter name="browserType" value="Chrome"/>
 	<parameter name="userType" value="SeritiPortal"/> -->
 	
-	<!-- <parameter name="url" value="https://www.operations.uat-mqf.co.za/home" />
-	<parameter name="browserType" value="Chrome"/>
-	<parameter name="userType" value="SeritiPortal"/>-->
 	
+	<!-- <parameter name="url" value="https://web.financier.uat-mqf.co.za/LogOn?ReturnUrl=%2f" />
+	<parameter name="browserType" value="Chrome"/> 
+   <parameter name="userType" value="SeritiPortal"/>
+    -->
+    
+    
+<!--    	<parameter name="url" value="https://test.dealnet.co.za/StandAlone/WebUAT/Account/Login" />
+	<parameter name="browserType" value="Chrome"/> 
+   <parameter name="userType" value="DigiSign"/> -->
 	
-	  <parameter name = "UserName" value="raghup"/>
-	<parameter name = "Password" value="Fer1C623RGRvD4mN%C"/>
-	<parameter name="url" value="https://www.operations.uat-mqf.co.za/login" />
-	
-	<parameter name="browserType" value="Chrome"/>
 	 
 	
 
