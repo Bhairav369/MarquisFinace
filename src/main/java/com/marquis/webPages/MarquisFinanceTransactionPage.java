@@ -81,16 +81,15 @@ public class MarquisFinanceTransactionPage {
 	
 	// public static By fileUploadButton = By.xpath("//*[@id='drop-zone' and
 	// @for='file-upload']");
-	public static By fileUploadButton = By.xpath("//*[@id='file-upload']");
+	public static By fileUploadButton = By.xpath("//input[@id='file-upload' and @type='file']");
 
-	public static By spinningRole = By
-			.xpath("//*[@class='overlay-loader no-user-select ng-scope']//*[@class='loader-title']");
+	public static By spinningRole = By.xpath("//*[@class='overlay-loader no-user-select ng-scope']//*[@class='loader-title']");
 
 	public static By documentCategory = By.xpath("//*[@id='advanceduploaded']//select");
 
-	public static By selectDocument = By.xpath("//*[@class='ng-scope un_selected']");
-	public static By selectDocument2 = By.xpath("(//*[@class='ng-scope un_selected'])[2]");
-	public static By selectDocument3 = By.xpath("(//*[@class='ng-scope un_selected'])[3]");
+	public static By selectDocument = By.xpath("//*[contains(@id, 'INVOICE')]//img");
+	public static By selectDocument2 = By.xpath("//*[contains(@id, 'BANK STATEMENT')]//img");
+	public static By selectDocument3 = By.xpath("//*[contains(@id, 'ID DOCUMENT')]//img");
 	public static By transactionNumberElement = By.xpath("//*[@class='allow-user-select ng-binding']");
 
 	public static By feedbackIcon = By.xpath("//*[@class='fas fa-check-circle t-feedback-btn-icon']");
@@ -176,6 +175,8 @@ public class MarquisFinanceTransactionPage {
 		return By.xpath("//*[@id='rbnCarVehiclePurpose']//*[@value='" + vehicleUse + "']");
 	}
 
+	public static By residualValue = By.id("txtFinResidualValue");
+
 	public static By searchVehicle = By.xpath("//*[@id='btnSelect']");
 	public static By vehicleCode = By.id("txtVehicleCode");
 
@@ -208,7 +209,14 @@ public class MarquisFinanceTransactionPage {
 	}
 
 	public static By interestRate = By.id("txtFinPreferredInterestRate");
-	public static By interestRateTypeFixed = By.id("rbnFinInterestRateType_0");
+	
+	
+	public static By interestRateTypeLinked(String val)
+	{
+		return By.xpath("//*[@id='rbnFinInterestRateType']//input[@value='"+val+"']");
+	}
+	
+	
 	public static By financeTerm_72 = By.xpath("//*[@id='rbnFinTerm']//input[5]");
 	public static By paymentFrequency_monthly = By.id("rbnFinPaymentFrequency_0");
 	public static By vehicleSellingPrice = By.id("txtRetailPrice");
@@ -252,17 +260,14 @@ public class MarquisFinanceTransactionPage {
 
 	public static void marquisFinancePageForm() throws Exception {
 
+	
+
 		ExtentReporter.HeaderChildNode(
 				"TC_010 & TC_011 : Verify user is able to enter the all the fields of OTP information page");
 
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.transactionTab, 10);
 		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.transactionTab, " Click transaction Tab");
 
-//		ExtentReporter.HeaderChildNode("Marquis Finance Page Form");
-//		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.dashBoardHeader, 10);
-//
-//		String dashboardHeaderText = Utilities.getText(SeritiCreateCustomerFormPage.dashBoardHeader);
-//		Assert.assertEquals(dashboardHeaderText, "MY DASHBOARD");
 
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.financeHouseButton, 15);
 		System.out.println("Finance button is found");
@@ -278,6 +283,11 @@ public class MarquisFinanceTransactionPage {
 
 		Utilities.Wait(2000);
 		transactionNumberSaved = Utilities.getText(transactionNumberElement);
+		System.out.println(" transaction number********** "+transactionNumberSaved);
+		ExcelFunctions.writeData(xlpath, "RefNumber", 1, 1, transactionNumberSaved);
+		ExtentReporter.extentLoggerPass("Marquis Transaction Number ", "Marquis Transaction Number returned Successfully ");
+		logger.info(" Marquis Transaction Number is Returned : " + marquisRef);
+		
 		System.out.println(" Transaction Number *** " + transactionNumberSaved);
 
 		Assert.assertEquals(applicationsHeaderText, "APPLICATIONS");
@@ -401,6 +411,7 @@ public class MarquisFinanceTransactionPage {
 		String firstRegDate = ExcelFunctions.testData.get("firstRegDate");
 		Utilities.type(MarquisFinanceTransactionPage.firstRegDateVehicle, firstRegDate, " First Reg Date ");
 		
+
 		
 		Utilities.clearField(MarquisFinanceTransactionPage.firstDebitDate, " First Debt Date ");
 		String firstDebitDate = ExcelFunctions.testData.get("First Debit Date");
@@ -418,12 +429,18 @@ public class MarquisFinanceTransactionPage {
 		logger.info("Enter Interest Rate");
 		ExtentReporter.extentLoggerPass(" Enter Interest Rate ", "Entered Interest Rate ");
 
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.interestRateTypeFixed, "Interest Type");
+	  String interestRateType=	ExcelFunctions.testData.get("InterestRateType");
+		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.interestRateTypeLinked(interestRateType), "Interest Type");
 		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.financeTerm_72, "Finance Term ");
 		logger.info("Enter Finance Term");
 		ExtentReporter.extentLoggerPass(" Enter Finance Term Code ", "Finance Term Entered ");
 		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.paymentFrequency_monthly,
 				" Payment Frequency ");
+		
+		  String residualVar =	ExcelFunctions.testData.get("residualAmount");
+			Utilities.type(MarquisFinanceTransactionPage.residualValue, residualVar, "pref interest rate ");
+
+		
 	}
 
 	/**
@@ -481,7 +498,7 @@ public class MarquisFinanceTransactionPage {
 		
 		
 		
-		logger.info(" To Retrieve Marquis Reference Number ");
+		logger.info("To Retrieve Marquis Reference Number");
 
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.marquisRef, 10);
 		String marquisRef = Utilities.getText(MarquisFinanceTransactionPage.marquisRef);
@@ -489,7 +506,7 @@ public class MarquisFinanceTransactionPage {
 		marquisReferenceNumber = str[10].replace(".", "");
 
 		System.out.println(marquisRef);// E.g: 2000007321 Now it can be used in OPS portal
-		ExcelFunctions.writeData(xlpath, "RefNumber", 1, 0, marquisRef);
+		ExcelFunctions.writeData(xlpath, "RefNumber", 1, 0, marquisReferenceNumber);
 
 		ExtentReporter.extentLoggerPass("Submit Application ", "Application is Submitted Successfully ");
 		logger.info(" Marquis Reference Number is Returned : " + marquisRef);
@@ -556,67 +573,65 @@ public class MarquisFinanceTransactionPage {
 
 		System.out.println("Transaction Number  " + MarquisFinanceTransactionPage.transactionNumberSaved);
 		Utilities.type(MarquisFinanceTransactionPage.searchTransaction,MarquisFinanceTransactionPage.transactionNumberSaved, " Transaction Number Filtering ");
-
+        
 		//Uploading 1st Document
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.documentsUpload, 10);
 		
 		Utilities.JSClick(MarquisFinanceTransactionPage.documentsUpload, " Documents Upload ");
 		
 		Utilities.type(MarquisFinanceTransactionPage.fileUploadButton,"C:\\Code\\Docs Seriti Upload\\BANK STATEMENT.pdf", "");
+		Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 3, "");
+		Utilities.type(MarquisFinanceTransactionPage.fileUploadButton,"C:\\Code\\Docs Seriti Upload\\ID DOCUMENT - CLIENT.pdf", "");
+		Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 3, "");
+		Utilities.type(MarquisFinanceTransactionPage.fileUploadButton,"C:\\Code\\Docs Seriti Upload\\INVOICE.pdf", "");
+		Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 3, "");
+
 		
-		Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 10, "");
-		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.documentCategory, 15, " Document Category ");
+		
+		//Select and submit Doc1
+		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.selectDocument, 15);
+		Utilities.JSClick(MarquisFinanceTransactionPage.selectDocument, " Select Document ");		
 
 		documentType = ExcelFunctions.testData.get("DocumentUpload1");
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.documentCategory," document Category Click ");
+		//Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.documentCategory," document Category Click ");
 		Utilities.selectByVisibleTextByLocator(MarquisFinanceTransactionPage.documentCategory, "BANK STATEMENT");
-        Utilities.Wait(3000);
-		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.selectDocument, 15, " Select Document Tile ");
-		Utilities.JSClick(MarquisFinanceTransactionPage.selectDocument, " Select Document ");
+        Utilities.Wait(2000);
 		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.saveButton, 15, " Save Button is Displayed ");
 		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.saveButton, " Click Save Button ");
 		ExtentReporter.extentLoggerPass("Document 1", " passed ");
+		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.fileUploadSuccess, 15);
 
-		// Uploading 2nd Document-- ID
-		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.documentCategory, 15,"Document Category Visible ");
-        Utilities.Wait(3000);
-		Utilities.type(MarquisFinanceTransactionPage.fileUploadButton,"C:\\Code\\Docs Seriti Upload\\ID DOCUMENT - CLIENT.pdf", "");
-
-		Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 10, "");
-		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.documentCategory, 15, " Document Category ");
-
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.documentCategory, "");
-		documentType = ExcelFunctions.testData.get("DocumentUpload2");
-		Utilities.selectByVisibleTextByLocator(MarquisFinanceTransactionPage.documentCategory, documentType);
+		
+		
+		//Select and submit Doc 2
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.selectDocument2, 15);
 		Utilities.JSClick(MarquisFinanceTransactionPage.selectDocument2, " Select Document ");
-		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.saveButton, 15);
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.saveButton, " Click Save Button ");
-		ExtentReporter.extentLoggerPass("Document 2", " passed ");	
-	    
+		Utilities.waitForElementVisible(MarquisFinanceTransactionPage.documentCategory, 15, " Document Category ");
+			documentType = ExcelFunctions.testData.get("DocumentUpload2");
+	        Utilities.Wait(2000);
+			Utilities.selectByVisibleTextByLocator(MarquisFinanceTransactionPage.documentCategory, documentType);
+			Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.saveButton, 15);
+			Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.saveButton, " Click Save Button ");
+			ExtentReporter.extentLoggerPass("Document 2", " passed ");	
+			Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.fileUploadSuccess, 15); 
 
-		// Uploading 3rd Document-- ID
-				Utilities.waitForElementVisible(MarquisFinanceTransactionPage.documentCategory, 15,"Document Category Visible ");
-		        Utilities.Wait(3000);
-				Utilities.type(MarquisFinanceTransactionPage.fileUploadButton,"C:\\Code\\Docs Seriti Upload\\INVOICE.pdf", "");
 
-				Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 10, "");
-				Utilities.waitForElementVisible(MarquisFinanceTransactionPage.documentCategory, 15, " Document Category ");
+			
+			//Select and submit Doc 3
+	 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.selectDocument3, 15);
+			Utilities.JSClick(MarquisFinanceTransactionPage.selectDocument3, " Select Document ");
+			documentType = ExcelFunctions.testData.get("DocumentUpload3");
+	        Utilities.Wait(2000);
+			Utilities.selectByVisibleTextByLocator(MarquisFinanceTransactionPage.documentCategory, documentType);
+			Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.saveButton, 15);
+			Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.saveButton, " Click Save Button ");
+			ExtentReporter.extentLoggerPass("Document 3", " passed ");	
+			
+			Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.fileUploadSuccess, 15);
 
-				Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.documentCategory, "");
-				documentType = ExcelFunctions.testData.get("DocumentUpload3");
-				Utilities.selectByVisibleTextByLocator(MarquisFinanceTransactionPage.documentCategory, documentType);
-				Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.selectDocument2, 15);
-				Utilities.JSClick(MarquisFinanceTransactionPage.selectDocument3, " Select Document ");
-				Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.saveButton, 15);
-				Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.saveButton, " Click Save Button ");
-				ExtentReporter.extentLoggerPass("Document 3", " passed ");	
-				
-				Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.fileUploadSuccess, 15);
-
-			    String fileUploadSucessMsg=	Utilities.getText(MarquisFinanceTransactionPage.fileUploadSuccess);
-				Assert.assertEquals( fileUploadSucessMsg.trim(),"File upload successful");
-				ExtentReporter.extentLoggerPass("Documents Upload is Successful", " passed ");	
+		    String fileUploadSucessMsg=	Utilities.getText(MarquisFinanceTransactionPage.fileUploadSuccess);
+			Assert.assertEquals( fileUploadSucessMsg.trim(),"File upload successful");
+			ExtentReporter.extentLoggerPass("Documents Upload is Successful", " passed ");	
 
 	
 	}
@@ -631,7 +646,7 @@ public class MarquisFinanceTransactionPage {
 		ExtentReporter.HeaderChildNode("TC_018 To Verify if user is able to Send Documents Successfully");
 
 		// Supporting Documents
-		
+		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.supportingDocumentsTab, 10);
 		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.supportingDocumentsTab, "Send Documents Tab Click");
 	
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.sendDocuments, 10);
@@ -730,12 +745,16 @@ public class MarquisFinanceTransactionPage {
 		  ExtentReporter.extentLoggerPass("Marquis Finance Link","Marquis Finance link is clicked");
 				
 	}
+	
 
-	public static void RequestContractAndPin() throws Exception {
+	public static void RequestContract() throws Exception {
+		 Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.requestContract,10);
+		 Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.requestContract, "Request Contract ");		
+	}
+	
+	
 
-		  Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.requestContract,10);
-
-		  Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.requestContract, "Request Contract ");
+	public static void RequestPin() throws Exception {
 		 
 		  Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.requestPin,30);
 
@@ -745,6 +764,28 @@ public class MarquisFinanceTransactionPage {
 		  //Call for Financier to hack DigiSigin 
 		  
 		  
+		  
+		  
+		  
 	}
+
+	public static void searchAndGoToApplicationPage(String applicationNumber) throws Exception {
+	
+	Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.searchTransaction,30);
+    Utilities.type(MarquisFinanceTransactionPage.searchTransaction,MarquisFinanceTransactionPage.transactionNumberSaved, " Transaction Number Filtering ");
+	       
+  
+	Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.financeHouseButton, 15);
+	System.out.println("Finance button is found");
+	Utilities.JSClick(MarquisFinanceTransactionPage.financeHouseButton, "Finance House Button");
+
+	Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.marquisFinanceLinkLocator,"Marquis finance link");
+	logger.info("Marquis Finance Link");
+	ExtentReporter.extentLoggerPass("Marquis Finance Link", "Marquis Finance link is clicked");
+
+	
+	}
+
+
 
 }

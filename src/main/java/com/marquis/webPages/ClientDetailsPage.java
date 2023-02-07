@@ -12,7 +12,7 @@ public class ClientDetailsPage {
 
 	//ExcelFunctions xcl = new ExcelFunctions();
 		static ExcelFunctions xcl = new ExcelFunctions();
-
+   public static String idNumberForDigi = "";
 		static LoggingUtils logger = new LoggingUtils();
 
 		public static String xlpath = "./XLSX/MarquisDataForm.xlsx";
@@ -209,6 +209,7 @@ public class ClientDetailsPage {
 
 		//Save client details button
 		public static By saveClientDetailsBtn = By.id("btnSave");
+		
 
 		//add clients close button
 		public static By modalCloseButton = By.xpath("(//*[@class=\"ui-dialog-titlebar-close ui-corner-all\"])[1]");
@@ -327,6 +328,7 @@ public class ClientDetailsPage {
 			String readIdNumber = ExcelFunctions.testData.get("ID Number");
 			Utilities.type(ClientDetailsPage.idNumber,readIdNumber, "Typed "+readIdNumber+" in add client id number field");
 			String idNumberValue = Utilities.getAttributValue("value",ClientDetailsPage.idNumber);
+			idNumberForDigi = idNumberValue;
 			Assert.assertEquals(idNumberValue, readIdNumber);
 			logger.info("Add client id number");
 			ExtentReporter.extentLoggerPass("Add client id number", "Typed " +readIdNumber+" in add client id number field");

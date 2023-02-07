@@ -85,8 +85,7 @@ static ExcelFunctions xcl = new ExcelFunctions();
 	public static void createCustomerTransactionForm() throws Exception {
 		ExtentReporter.HeaderChildNode("TC_008 & TC_009 : Verify the UI & Functionality of Create Transaction page");
 		
-//		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.transactionHeader,20);
-		
+			
 		Utilities.explicitWaitVisible(SeritiCreateCustomerFormPage.createCustomerTransactionButton,20);
 
 		Utilities.verifyElementPresentAndClick(SeritiCreateCustomerFormPage.createCustomerTransactionButton,"Create Transaction footer button");
@@ -109,7 +108,7 @@ static ExcelFunctions xcl = new ExcelFunctions();
 		
 		logger.info("Dealer group selection");
 		ExtentReporter.extentLoggerPass("Dealer group select dropdown", "MARQUIS FINANCE TEST ENVIRONMENT is selected from DD");
-		
+		    
 		logger.info("Dealer branch selection");
 		String readFinanceBranch = ExcelFunctions.testData.get("Dealer Branch");
 		Utilities.selectByVisibleTextByLocator(SeritiCreateCustomerFormPage.branchSelect,readFinanceBranch);

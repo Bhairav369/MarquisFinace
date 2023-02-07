@@ -95,10 +95,9 @@ public static	Map<String,String> testData = new HashMap<String,String>();
 				
 				XSSFWorkbook myExcelBook = new XSSFWorkbook(new FileInputStream(xlPath));
 				XSSFSheet myExcelSheet = myExcelBook.getSheet(sheet);
-				int noOfRows = myExcelSheet.getPhysicalNumberOfRows();
 				int noOfColumns = myExcelSheet.getRow(1).getPhysicalNumberOfCells();
 
-			//	for(int i=2;i<noOfRows;i++) {
+			//for(int i=2;i<noOfRows;i++) {
 					
 					for(int j=0; j<=noOfColumns;j++)
 					{
