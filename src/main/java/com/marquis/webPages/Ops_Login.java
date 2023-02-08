@@ -3,6 +3,7 @@ package com.marquis.webPages;
 import org.openqa.selenium.By;
 import org.testng.asserts.SoftAssert;
 
+import com.emailReport.GmailInbox;
 import com.excel.ExcelFunctions;
 import com.utility.ExtentReporter;
 import com.utility.LoggingUtils;
@@ -128,7 +129,8 @@ public class Ops_Login {
 	// submit button
 	public static By SubMitButton1 = By.xpath("//button[@class='btn btn-success']");
 	
-	
+	//OTP field
+	public static By OTPfield=By.xpath("//*[@id='Enter OTP']");
 	
 
 	public static void Login() throws Exception {
@@ -245,6 +247,9 @@ public class Ops_Login {
 		 * Utilities.click(Ops_Login.GetotpBtn, "Get OTP Button");
 		 */
 		Utilities.waitTime(30000);
+		String OTP = GmailInbox.readEmail("FW: Login One Time Password");
+		 System.out.println(OTP +" Enterted the OTP correctly");
+Utilities.type(OTPfield, OTP, "OTP field");
 		Utilities.click(Ops_Login.SubMitButton1, "SubMit Button");
 
 	}

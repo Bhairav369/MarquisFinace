@@ -72,9 +72,9 @@ public class payouts {
 	// generating contract document(searched result)
 	public static By searched_gnrtd_dcmt = By.xpath("(//*[@class='table-router ng-star-inserted'])[2]");
 
-	//completed contract document (searched result)
-	public static By searched_completed_dcmt=By.xpath("(//*[@class='table-router ng-star-inserted'])[3]");
-	
+	// completed contract document (searched result)
+	public static By searched_completed_dcmt = By.xpath("(//*[@class='table-router ng-star-inserted'])[3]");
+
 	// lock icon
 	public static By lock_icon = By
 			.xpath("//button[@class='btn btn-success ng-star-inserted']/i[@class='pi pi-lock-open']");
@@ -241,8 +241,7 @@ public class payouts {
 	public static By View_comment_cnclbutton = By.xpath("//a[@role='button']/child::span");
 
 	// Error cancel button
-	public static By ErrorCancelButton = By
-			.xpath("//p-toastitem/descendant::a");
+	public static By ErrorCancelButton = By.xpath("//p-toastitem/descendant::a");
 
 	// complete payouts text
 	public static By CompletePayoutsText = By.xpath("//*[contains(text(),'complete payouts: ')]");
@@ -250,12 +249,12 @@ public class payouts {
 	/**
 	 * Verify user is able to search the drawdown pending documnet
 	 * 
-	 * @param ReferenceNumber
-	 * @throws Exception
+	 * 
+	 * 
 	 */
 
 	public static void pendingdocumentsearch() throws Exception {
-
+		//ExcelFunctions.getMapData(xlpath, "TestData", 2);
 		ExtentReporter.extentLogger("TC_019_TC_20_TC_022_TC_023", "Verify the UI of the Payouts page");
 		Utilities.waitTime(2000);
 		Utilities.JSClick(payoutTab, "payoutTab");
@@ -286,7 +285,8 @@ public class payouts {
 		// Utilities.JSClick(pgntion_Next, "pgntion_Next");
 		Utilities.Wait(3000);
 		// Utilities.JSClick(pgntion_previous, "pgntion_previous");
-		String ReferenceNumber1 = xcl.getExceldata(xlpath, "RefNumber", 4, 0);
+		// String ReferenceNumber1 = xcl.getExceldata(xlpath, "RefNumber", 4, 0);
+		String ReferenceNumber1 = xcl.testData.get("ReferenceNo1");
 		System.out.println(ReferenceNumber1);
 		Utilities.type(App_reference_no, ReferenceNumber1, "AppReferenceNumber");
 		logger.info("AppReferenceNumber is entered");
@@ -294,14 +294,14 @@ public class payouts {
 		Utilities.JSClick(Cancel_btn, "cancel_btn");
 		logger.info("Searching cancelled");
 		Utilities.waitTime(3000);
-		String ReferenceNumber2 = xcl.getExceldata(xlpath, "RefNumber", 4, 0);
+		String ReferenceNumber2 = xcl.testData.get("ReferenceNo1");
 		System.out.println(ReferenceNumber2);
 		Utilities.type(App_reference_no, ReferenceNumber2, "AppReferenceNumber");
 		Utilities.JSClick(search_btn, "search_btn");
 		Utilities.waitTime(3000);
 		String Searched_AgreementNumber = Utilities.getText(SearchedAgreementNumber);
 		System.out.println(Searched_AgreementNumber);
-		String ReferenceNumber3 = xcl.getExceldata(xlpath, "RefNumber", 4, 0);
+		String ReferenceNumber3 = xcl.testData.get("ReferenceNo1");
 		if (Searched_AgreementNumber.equals(ReferenceNumber3)) {
 			Utilities.JSClick(Searched_pndng_dcmt, "Searched_pndng_dcmt");
 		} else {
@@ -314,19 +314,23 @@ public class payouts {
 		String ActualpendingDrawdownText = Utilities.getText(pendingDradownAgreementText);
 		System.out.println(ActualpendingDrawdownText);
 		softassert.assertEquals(ActualpendingDrawdownText, "PENDING PAYOUTS:");
-		CustomerDetails(2, 44, Agreement_field, "Agreement ID");
-		String First_Name = xcl.getExceldata(xlpath, "TestData", 2, 0);
-		String Last_Name = xcl.getExceldata(xlpath, "TestData", 2, 1);
+		CustomerDetails("ReferenceNo1", Agreement_field, "Agreement ID");
+		String First_Name = xcl.testData.get("First Name");
+		String Last_Name = xcl.testData.get("Last Name");
 		String Full_Name = First_Name + " " + Last_Name;
 		System.out.println(Full_Name);
+
+        //String Data = xcl.testData.get("ID Number");
+        //System.out.println(Data);
+
 		CustomerDetails2(Full_Name, Customer_Namefield, "CustomerName");
 		// CustomerDetails(8, 7, Customer_Namefield, "CustomerName");
-		CustomerDetails(2, 4, Customer_IDfield, "CustomerID");
+		CustomerDetails("ID Number", Customer_IDfield, "CustomerID");
 		// CustomerDetails(10, 7, Entereddate_field, "EnteredDate");
 		// CustomerDetails(11, 7, Descriptionf_vehicle_field, "Description of Vehicle");
 		// CustomerDetails(12, 7, Lightstonecheck__field, "Lightstonecheck");
-		CustomerDetails(2, 27, ChassisNumber_field, "chassisNumber");
-		CustomerDetails(2, 28, EngineNumber_field, "EngineNumber");
+		CustomerDetails("Vehicle Chasis", ChassisNumber_field, "chassisNumber");
+		CustomerDetails("EngineNumber", EngineNumber_field, "EngineNumber");
 		ExtentReporter.extentLogger("Comment", "comment section");
 		Utilities.waitTime(2000);
 		Utilities.type(commentstext_field, "Comments", "comments text field");
@@ -359,6 +363,7 @@ public class payouts {
 
 	}
 
+	/* Method for Generated Agreement */
 	public static void generated() throws Exception {
 		ExtentReporter.extentLogger("TC_031", "Verify the user is able to complete the deal");
 		Utilities.ScrollToTheElement(back_button);
@@ -367,17 +372,29 @@ public class payouts {
 		String expectedGeneratedName = "MIC Queue - Drawdown Generated";
 		String ActualGeneratedName = Utilities.getText(Drawdown_generatingtab);
 		softassert.assertEquals(ActualGeneratedName, expectedGeneratedName);
-
 		Utilities.JSClick(Manual_refresh_btn, "Manual_refresh_btn");
 		Utilities.explicitWaitVisible(App_reference_no, 5);
-		String ReferenceNumber11 = xcl.getExceldata(xlpath, "RefNumber", 5, 0);
+		String ReferenceNumber11 = xcl.testData.get("ReferenceNo2");
 		Utilities.type(App_reference_no, ReferenceNumber11, "AppReferenceNumber");
 		Utilities.Wait(3000);
+		// changed
+		Utilities.JSClick(Cancel_btn, "cancel_btn");
+		logger.info("Searching cancelled");
+		// Changed
+		Utilities.JSClick(Manual_refresh_btn, "Manual_refresh_btn");
+		Utilities.explicitWaitVisible(App_reference_no, 5);
+
+		String ReferenceNumber12 = xcl.testData.get("ReferenceNo2");
+		Utilities.type(App_reference_no, ReferenceNumber12, "AppReferenceNumber");
+		Utilities.Wait(3000);
+		// changed
+
 		Utilities.waitForElementAndClickIfPresent(search_btn, 5, "search_btn");
 		Utilities.waitTime(3000);
 		String Searched_AgreementNumber = Utilities.getText(SearchedAgreementNumber1);
 		System.out.println(Searched_AgreementNumber);
-		String ReferenceNumber3 = xcl.getExceldata(xlpath, "RefNumber", 5, 0);
+		// String ReferenceNumber3 = xcl.getExceldata(xlpath, "RefNumber", 5, 0);
+		String ReferenceNumber3 = xcl.testData.get("ReferenceNo2");
 		if (Searched_AgreementNumber.equals(ReferenceNumber3)) {
 			Utilities.JSClick(searched_gnrtd_dcmt, "searched_gnrtd_dcmt");
 		} else {
@@ -400,17 +417,22 @@ public class payouts {
 				proofof_insurance_v_b, "proofof_insurance_v_b");
 		Utilities.ScrollToTheElement(AcceptMicTask_btn);
 		Utilities.click(AcceptMicTask_btn, "AcceptMicTask_btn");
-		Utilities.waitTime(3000);
-		 Utilities.click(ErrorCancelButton, "cancel icon");
+		Utilities.waitTime(6000);
+		// here i remove the comment of click
+		Utilities.click(ErrorCancelButton, "cancel icon");
 
 	}
 
+	/* Method for completed Agreement */
 	public static void completed() throws Exception {
+		// here i remove the comment of scroll and js click
 		Utilities.ScrollToTheElement(back_button);
 		Utilities.JSClick(back_button, "back_button");
+
 		Utilities.JSClick(Completed_tab, "Completed_tab");
 		Utilities.JSClick(Manual_refresh_btn, "Manual_refresh_btn");
-		String ReferenceNumber12 = xcl.getExceldata(xlpath, "RefNumber", 6, 0);
+		// String ReferenceNumber12 = xcl.getExceldata(xlpath, "RefNumber", 6, 0);
+		String ReferenceNumber12 = xcl.testData.get("ReferenceNo3");
 		Utilities.type(App_reference_no, ReferenceNumber12, "AppReferenceNumber");
 		logger.info("AppReferenceNumber is entered");
 		ExtentReporter.extentLoggerPass("AppReferenceNumber", "AppReferenceNumber is entered");
@@ -418,7 +440,8 @@ public class payouts {
 		Utilities.waitTime(3000);
 		String Searched_AgreementNumber = Utilities.getText(SearchedAgreementNumber2);
 		System.out.println(Searched_AgreementNumber);
-		String ReferenceNumber3 = xcl.getExceldata(xlpath, "RefNumber", 6, 0);
+		// String ReferenceNumber3 = xcl.getExceldata(xlpath, "RefNumber", 6, 0);.
+		String ReferenceNumber3 = xcl.testData.get("ReferenceNo3");
 		if (Searched_AgreementNumber.equals(ReferenceNumber3)) {
 			Utilities.JSClick(searched_completed_dcmt, "searched_completed_dcmt");
 		} else {
@@ -447,8 +470,8 @@ public class payouts {
 	}
 
 	/* Method for customer details */
-	public static void CustomerDetails(int rowNo, int clmNo, By bylocator, String validationText) throws Exception {
-		String ActualData = xcl.getExceldata(xlpath, "TestData", rowNo, clmNo);
+	public static void CustomerDetails(String CustomerData, By bylocator, String validationText) throws Exception {
+		String ActualData = xcl.testData.get(CustomerData);
 		String ExpectedData = Utilities.getText(bylocator);
 		if (ExpectedData == "") {
 			logger.info(validationText + " " + "field is empty");
