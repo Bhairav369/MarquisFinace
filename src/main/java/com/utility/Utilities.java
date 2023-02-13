@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Random;
@@ -214,6 +215,54 @@ public class Utilities extends ExtentReporter{
         }
     }
 
+    public static void selectByValue(By byLocator, String value) throws Exception {
+		explicitWaitVisibility(byLocator, 20);
+		Select select = new Select(findElement(byLocator));
+		select.selectByValue(value);
+	}
+    
+    public static void Switch_To_Window(int WindowsNo)
+    {
+    	try
+    	{
+    	ArrayList<String>tabs=new ArrayList<>(DriverManager.getDriver().getWindowHandles());
+    	System.out.println("The Total number of tabs are "+tabs.size());
+    	
+    	DriverManager.getDriver().switchTo().window(tabs.get(WindowsNo));
+    	}
+    	catch (Exception e) {
+			System.out.println("No Wndows"+e);
+		}
+    }
+
+    public static void Windowhandle(int windownum)
+    {
+    try {
+    	Set<String> WindowIDs = DriverManager.getDriver().getWindowHandles();
+    	System.out.println("The total number of windows "+WindowIDs);
+    	Iterator<String> itrator = WindowIDs.iterator();
+    	List<String>WinIndex=new ArrayList<String>();
+    	while(itrator.hasNext())
+    	{
+    		WinIndex.add(itrator.next());
+    	}
+    	DriverManager.getDriver().switchTo().window(WinIndex.get(windownum));
+    }
+    catch (Exception e) {
+		System.out.println("The exception is "+e);
+	}
+    }
+    
+    
+    
+	public static void fullScreen()
+	{
+		try {
+			DriverManager.getDriver().manage().window().fullscreen();
+		} catch (Exception e) {
+			
+		}
+	}
     /**
      * wait until element is displayed.
      *

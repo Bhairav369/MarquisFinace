@@ -7,8 +7,11 @@ import org.testng.annotations.Test;
 import com.business.marquis.MarquisFinancierBusinessLogic;
 import com.excel.ExcelFunctions;
 import com.marquis.webPages.ClientDetailsPage;
+import com.marquis.webPages.DocVals;
+import com.marquis.webPages.Financier;
 //import com.marquis.webPages.DigiSignInPage;
 import com.marquis.webPages.MarquisFinanceTransactionPage;
+import com.marquis.webPages.Ops_LandingPAge;
 import com.marquis.webPages.Ops_Login;
 import com.marquis.webPages.SeritiCreateCustomerFormPage;
 import com.marquis.webPages.SeritiLoginPage;
@@ -19,7 +22,7 @@ public class marquisFinancierSanityScript {
 
 	public  MarquisFinancierBusinessLogic MarquisFinancierBusinessLogic;
 	public static String xlpath = "./XLSX/MarquisDataForm.xlsx";
-
+	public static String ExcelPath = "./XLSX/Operational PortalDataForm.xlsx";
 	
 	@BeforeMethod(groups = { "All" })
 	public void beforemethodcode() throws Exception {
@@ -99,10 +102,18 @@ public class marquisFinancierSanityScript {
 //	//	DigiSignInPage.digiSignLogin("6212275118086","8awtba");
 //   }
    
-   
-  
-
 	@Test(priority = 1)
+	public void Doc_Vals() throws Exception{
+		ExcelFunctions.getMapData(ExcelPath, "DocVals", 2);
+		Ops_Login.Login();
+		Ops_LandingPAge.OPs_LandPage();
+		DocVals.DocVals_Landing_PAge();
+		Financier.Financier_Login();
+		Financier.Financier_Search();
+		Financier.Finacier_AML_Outcome();
+	}
+	
+/*	@Test(priority = 1)
 	public void Ops_Login1() throws Exception{
 		
 		
@@ -116,6 +127,7 @@ public class marquisFinancierSanityScript {
 	payouts.completed();
 		//DocVals.DocVals_Landing_PAge();
 	}
+	*/
 	
 
 	@AfterMethod
