@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import com.excel.ExcelFunctions;
+import com.marquis.SanityScripts.marquisFinancierSanityScript;
 import com.utility.ExtentReporter;
 import com.utility.LoggingUtils;
 import com.utility.Utilities;
@@ -65,7 +66,9 @@ public class MarquisFinanceTransactionPage {
 	public static By applicationTab = By.xpath("//*[@id='secondaryMenu']//a[.='Applications']");
 
 	public static By transactionTab = By.xpath("//*[@id='topMenu']//a[.='Transactions']");
-
+	
+	public static By transactionTabBtn = By.xpath("//*[@class='dropdown active']//a");
+	
 	// Client Details (Select, Add, Edit) buttons
 	public static By clientDetailsAddButton = By.id("personClient_btnAdd");
 
@@ -265,8 +268,8 @@ public class MarquisFinanceTransactionPage {
 		ExtentReporter.HeaderChildNode(
 				"TC_010 & TC_011 : Verify user is able to enter the all the fields of OTP information page");
 
-		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.transactionTab, 10);
-		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.transactionTab, " Click transaction Tab");
+//		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.transactionTab, 10);
+//		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.transactionTab, " Click transaction Tab");
 
 
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.financeHouseButton, 15);
@@ -280,11 +283,13 @@ public class MarquisFinanceTransactionPage {
 		String applicationsHeaderText = Utilities.getText(MarquisFinanceTransactionPage.applicationHeader);
 
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.transactionNumberElement, 15);
-
-		Utilities.Wait(2000);
+        
+		Utilities.Wait(4000);
 		transactionNumberSaved = Utilities.getText(transactionNumberElement);
 		System.out.println(" transaction number********** "+transactionNumberSaved);
-		ExcelFunctions.writeData(xlpath, "RefNumber", 1, 1, transactionNumberSaved);
+	//	ExcelFunctions.writeData(xlpath, "RefNumber", 1, 1, transactionNumberSaved);
+		ExcelFunctions.writeDataForExistingRow(xlpath,"RefNumber",marquisFinancierSanityScript.rowIterate,1,transactionNumberSaved);
+		
 		ExtentReporter.extentLoggerPass("Marquis Transaction Number ", "Marquis Transaction Number returned Successfully ");
 		logger.info(" Marquis Transaction Number is Returned : " + marquisRef);
 		
@@ -313,13 +318,17 @@ public class MarquisFinanceTransactionPage {
 	 */
 	public static void enterMandatoryTransactionMarquisFinancePage() throws Exception {
 		ExtentReporter.HeaderChildNode("TC_014 : Verify user is able to add the details to Marquis finance application");
-
+		
 		addVehicleDetails();
 		addInterestDetails();
 		ExtentReporter.extentLoggerPass(" enterMandatoryTransactionMarquisFinancePage ", " passed ");
 
 	}
 	
+	/***
+	 * Saves the Application Details
+	 * @throws Exception
+	 */
 	public static void saveTransaction() throws Exception
 	{
 		Utilities.ScrollToTheElement(MarquisFinanceTransactionPage.saveFooterBtn);
@@ -396,7 +405,8 @@ public class MarquisFinanceTransactionPage {
 	}
 
 	/**
-	 * Method to add Interest and Vehicle Selling price Details
+	 * Method to add Banking Interest
+	 *  and Vehicle Selling price Details as passed from excel data sheet
 	 * 
 	 * @throws Exception
 	 */
@@ -506,8 +516,9 @@ public class MarquisFinanceTransactionPage {
 		marquisReferenceNumber = str[10].replace(".", "");
 
 		System.out.println(marquisRef);// E.g: 2000007321 Now it can be used in OPS portal
-		ExcelFunctions.writeData(xlpath, "RefNumber", 1, 0, marquisReferenceNumber);
-
+	//	ExcelFunctions.writeData(xlpath, "RefNumber", 1, 0, marquisReferenceNumber);
+     	ExcelFunctions.writeDataForExistingRow(xlpath,"RefNumber",marquisFinancierSanityScript.rowIterate,0,marquisReferenceNumber);
+		
 		ExtentReporter.extentLoggerPass("Submit Application ", "Application is Submitted Successfully ");
 		logger.info(" Marquis Reference Number is Returned : " + marquisRef);
 
@@ -678,12 +689,24 @@ public class MarquisFinanceTransactionPage {
 
 		String successMessage = Utilities.getText(MarquisFinanceTransactionPage.documentSubmissionSuccess);
 		String expectedMessage = "Documents submitted successfully";
-
+        
 		//Documents Submitted Successfully
 		Assert.assertEquals(expectedMessage.trim(), successMessage.trim());
 		logger.info("End of Documents Submission ");
 		ExtentReporter.extentLoggerPass("Document Submission ", "Documents submitted successfully");
+		
+		
+		/**
+		 * Agreement process completes here and deal moves to OPS portal
+		 * Next step it goes to Dashboard to create next transaction
+		 * 
+		 */
+		System.out.println(" in Click Transaction page ");
+		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.transactionTabBtn, 10);
 
+		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.transactionTabBtn, " Click transaction Tab");
+
+		
 	}
 
 	/***
@@ -763,18 +786,22 @@ public class MarquisFinanceTransactionPage {
 
 		  //Call for Financier to hack DigiSigin 
 		  
-		  
-		  
-		  
+	
 		  
 	}
 
+	/***
+	 * This method is used to search the application number and then click on the respective finance link
+	 * @param applicationNumber
+	 * @throws Exception
+	 */
 	public static void searchAndGoToApplicationPage(String applicationNumber) throws Exception {
 	
 	Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.searchTransaction,30);
     Utilities.type(MarquisFinanceTransactionPage.searchTransaction,MarquisFinanceTransactionPage.transactionNumberSaved, " Transaction Number Filtering ");
-	       
-  
+    
+   
+    
 	Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.financeHouseButton, 15);
 	System.out.println("Finance button is found");
 	Utilities.JSClick(MarquisFinanceTransactionPage.financeHouseButton, "Finance House Button");

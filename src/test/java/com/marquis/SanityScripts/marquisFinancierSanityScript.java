@@ -23,6 +23,8 @@ public class marquisFinancierSanityScript {
 	public  MarquisFinancierBusinessLogic MarquisFinancierBusinessLogic;
 	public static String xlpath = "./XLSX/MarquisDataForm.xlsx";
 	public static String ExcelPath = "./XLSX/Operational PortalDataForm.xlsx";
+	public static int rowIterate = 0;
+
 	
 	@BeforeMethod(groups = { "All" })
 	public void beforemethodcode() throws Exception {
@@ -46,35 +48,37 @@ public class marquisFinancierSanityScript {
     }  
 	*/
 	
-//	
-//	@Test(priority = 1)
-//   public void seritiApplicationE2Eflow() throws Exception {
-//		
-//		
-//		//Count = No. of Test Data rows created in excel
-//		//Starting with 2nd row in loop as the actual value is read from 2nd row.
-//		int rowCount = ExcelFunctions.getRowCount(xlpath,"TestData");
-//		SeritiLoginPage.login();
-//		for(int i=2; i<=rowCount;i++ ) {
-//	    	ExcelFunctions.getMapData(xlpath, "TestData",i);
-//		    SeritiCreateCustomerFormPage.createCustomerTransactionForm();
-//		    MarquisFinanceTransactionPage.marquisFinancePageForm();
-//		    ClientDetailsPage.addClientDetails();
-//	        MarquisFinanceTransactionPage.enterMandatoryTransactionMarquisFinancePage();
-//		    MarquisFinanceTransactionPage.saveTransaction();
-//		   //ClientDetailsPage.selectClientDetails();	
-//		    MarquisFinanceTransactionPage.addValueAddedProducts();		
-//    	    MarquisFinanceTransactionPage.verifyApplicationStatus();
-//		    MarquisFinanceTransactionPage.documentUpload();
-//		    MarquisFinanceTransactionPage.sendDocuments();
-//     	    
-//          //Docs Vals Approval needed
-//		//   MarquisFinanceTransactionPage.RequestContract();
-//
-//		  
-//		}
-//	}
-//	
+	
+	@Test(priority = 1)
+   public void seritiApplicationE2Eflow() throws Exception {
+		
+		
+		//Count = No. of Test Data rows created in excel
+				//Starting with 2nd row in loop as the actual value is read from 2nd row.
+				
+				int rowCount = ExcelFunctions.getRowCount(xlpath,"TestData");
+				SeritiLoginPage.login();
+				for(int i=2; i<=rowCount;i++ ) {
+			    	ExcelFunctions.getMapData(xlpath, "TestData",i);			
+			    	rowIterate = i;
+			        SeritiCreateCustomerFormPage.createCustomerTransactionForm();
+				    MarquisFinanceTransactionPage.marquisFinancePageForm();
+				    ClientDetailsPage.addClientDetails();
+			        MarquisFinanceTransactionPage.enterMandatoryTransactionMarquisFinancePage();
+				    MarquisFinanceTransactionPage.saveTransaction();
+				   //ClientDetailsPage.selectClientDetails();	
+				    MarquisFinanceTransactionPage.addValueAddedProducts();		
+		  	        MarquisFinanceTransactionPage.verifyApplicationStatus();
+				    MarquisFinanceTransactionPage.documentUpload();
+				    MarquisFinanceTransactionPage.sendDocuments();
+				    
+		          //Docs Vals Approval needed
+				//   MarquisFinanceTransactionPage.RequestContract();
+
+			
+				}
+	}
+	
 //	
 //   //@Test(priority = 1)
 //    public void financierApprovalSetup() throws Exception
