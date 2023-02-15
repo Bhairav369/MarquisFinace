@@ -53,6 +53,28 @@ public static	Map<String,String> testData = new HashMap<String,String>();
 		}
 		
 
+		 public static void writeDataForExistingRow(String xlpath, String sheet, int row, int col, String data) throws IOException {
+				XSSFWorkbook myExcelBook = new XSSFWorkbook(new FileInputStream(xlpath));
+				try {
+					
+					FileOutputStream output = new FileOutputStream(xlpath);
+					XSSFSheet myExcelSheet = myExcelBook.getSheet(sheet);
+					myExcelSheet.getRow(row).getCell(col).setCellValue(data);	
+					myExcelBook.write(output);
+					output.flush();
+					
+				}
+				catch (Exception e) {
+					System.out.println(e);
+				}
+				finally {
+					
+					myExcelBook.close();	
+				}
+			
+			}
+		 
+		
 
 		public static void writeData(String xlpath, String sheet, int row, int col, String data) {
 			try {
