@@ -60,7 +60,11 @@ public class financierWebPage {
 
 	}
 	
-	
+	/**
+	 * This method is used for updating the Police Verification Check as Passed.
+	 * @param ref
+	 * @throws Exception
+	 */
 	public static void searchCustomerReference(String ref) throws Exception {
 
 		Utilities.explicitWaitVisible(financierWebPage.agreementReference, 10);

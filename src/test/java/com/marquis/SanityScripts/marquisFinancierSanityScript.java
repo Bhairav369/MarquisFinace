@@ -82,7 +82,12 @@ public class marquisFinancierSanityScript {
 				}
 	}
 	
-//	
+
+   
+   /***
+    * For Police Verification Check
+    * @throws Exception
+    */
    //@Test(priority = 1)
     public void financierApprovalSetup() throws Exception
     {
@@ -103,7 +108,8 @@ public class marquisFinancierSanityScript {
 	    MarquisFinanceTransactionPage.RequestPin();
     }
 //    
-//    
+
+    
   //@Test(priority = 1)
    public void digiSignIn() throws Exception
    {

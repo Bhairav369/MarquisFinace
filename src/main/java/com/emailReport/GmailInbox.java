@@ -20,18 +20,24 @@ import com.utility.ExtentReporter;
 public class GmailInbox {
 		
 	public static String readEmail(String subject){
-		ExtentReporter.HeaderChildNode("TC_003 : Verify the Login functionality of Seriti portal");
+		ExtentReporter.HeaderChildNode("To Read OTP from : Email");
 
 		GmailInbox gmail = new GmailInbox();
 		return gmail.fetchPassword2(gmail.read(subject));
 	}
 	
-	
+	/**
+	 * Created new method as the email content is different.
+	 * @param subject
+	 * @return
+	 * @throws InterruptedException
+	 */
 	public static String readEmailOtp(String subject) throws InterruptedException{
-		//ExtentReporter.HeaderChildNode("TC_003 : Verify the Login functionality of Seriti portal");
+		ExtentReporter.HeaderChildNode("To Read OTP PIN from : Email");
+		
            Thread.sleep(45000);
 		GmailInbox gmail = new GmailInbox();
-		return gmail.fetchPassword3(gmail.read(subject));
+		return gmail.fetchDigiPin(gmail.read(subject));
 	}
 	
 	@SuppressWarnings("unused")
@@ -135,7 +141,7 @@ public class GmailInbox {
 	}
 	
 	
-	public String fetchPassword3(String text)
+	public String fetchDigiPin(String text)
 	{
 		String [] array = text.split("Pin: ");
 		 String otp = array[1];

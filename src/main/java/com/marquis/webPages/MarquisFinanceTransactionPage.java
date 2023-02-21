@@ -815,6 +815,11 @@ public class MarquisFinanceTransactionPage {
 	
 	}
 
+	/**
+	 * This method is used to Verify the Status of Contract at Final stage in Seriti.
+	 * We are reading the marquis Ref number from excel for which status will be checked.
+	 * @throws Exception
+	 */
 	public static void verifyPaidStatus() throws Exception {
 		// TODO Auto-generated method stub
 		
@@ -835,10 +840,11 @@ public class MarquisFinanceTransactionPage {
 				Utilities.explicitWaitVisible(verifyPaid, 15);
 
 				
-				
-				if(Utilities.checkElementExist(verifyPaid, xpathPaid)) {
-				ExtentReporter.screencapture();}
+				//To Verify the PAID status for the given MArquis Reference number.
+				Assert.assertEquals(Utilities.checkElementExist(verifyPaid, xpathPaid), true);
+				ExtentReporter.screencapture();
 			
+				
 				
 	//	//*[@id='lblInformationApplyTop']
 		
