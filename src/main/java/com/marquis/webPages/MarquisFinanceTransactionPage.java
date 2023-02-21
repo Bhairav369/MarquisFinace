@@ -246,6 +246,8 @@ public class MarquisFinanceTransactionPage {
 	//public static By applicationHistAction = By.xpath("//*[@id='dgApplicationHistory']//td[.='Action']/../..//*[.='RECEIPT']");
 	public static By applicationHistAction = By.xpath("//*[@id='dgApplicationHistory']//td[.='Action']/../..//*[.='RECEIPT']");
 
+	public static By paidStatus = By.xpath("//*[@id='lblInformationApplyTop']");
+	
 	
 	// Methods
 	// --------------
@@ -263,13 +265,14 @@ public class MarquisFinanceTransactionPage {
 
 	public static void marquisFinancePageForm() throws Exception {
 
-	
+
 
 		ExtentReporter.HeaderChildNode(
 				"TC_010 & TC_011 : Verify user is able to enter the all the fields of OTP information page");
 
-//		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.transactionTab, 10);
-//		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.transactionTab, " Click transaction Tab");
+		
+		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.transactionTab, 10);
+		Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.transactionTab, " Click transaction Tab");
 
 
 		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.financeHouseButton, 15);
@@ -779,10 +782,9 @@ public class MarquisFinanceTransactionPage {
 
 	public static void RequestPin() throws Exception {
 		 
+		 Utilities.ScrollToTheElementWEB(MarquisFinanceTransactionPage.requestPin);
 		  Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.requestPin,30);
-
-		  
-		  Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.requestPin, "Request PIN");
+		  Utilities.JSClick(MarquisFinanceTransactionPage.requestPin, "Request PIN");
 
 		  //Call for Financier to hack DigiSigin 
 		  
@@ -798,7 +800,7 @@ public class MarquisFinanceTransactionPage {
 	public static void searchAndGoToApplicationPage(String applicationNumber) throws Exception {
 	
 	Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.searchTransaction,30);
-    Utilities.type(MarquisFinanceTransactionPage.searchTransaction,MarquisFinanceTransactionPage.transactionNumberSaved, " Transaction Number Filtering ");
+    Utilities.type(MarquisFinanceTransactionPage.searchTransaction,applicationNumber, " Transaction Number Filtering ");
     
    
     
@@ -811,6 +813,35 @@ public class MarquisFinanceTransactionPage {
 	ExtentReporter.extentLoggerPass("Marquis Finance Link", "Marquis Finance link is clicked");
 
 	
+	}
+
+	public static void verifyPaidStatus() throws Exception {
+		// TODO Auto-generated method stub
+		
+		Utilities.explicitWaitVisible(MarquisFinanceTransactionPage.paidStatus, 15);
+		String res= Utilities.getText(MarquisFinanceTransactionPage.paidStatus);
+		String expected = "This application is in paid state.";
+				
+				Assert.assertEquals(res.contains(expected), true);
+		
+				//To Fetch Application history and verify
+				Utilities.verifyElementPresentAndClick(MarquisFinanceTransactionPage.applicationHistory, "applicationHistory");
+				
+                String marquisRef = ExcelFunctions.getCellValue(xlpath,"RefNumber",2,0);
+				
+				String xpathPaid= "//*[@id='dgApplicationHistory']//td[.='"+marquisRef+"']/../..//tr//td[.='PAID']";
+				By verifyPaid = By.xpath(xpathPaid);
+
+				Utilities.explicitWaitVisible(verifyPaid, 15);
+
+				
+				
+				if(Utilities.checkElementExist(verifyPaid, xpathPaid)) {
+				ExtentReporter.screencapture();}
+			
+				
+	//	//*[@id='lblInformationApplyTop']
+		
 	}
 
 
