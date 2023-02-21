@@ -116,10 +116,10 @@ public class marquisFinancierSanityScript {
 		String IDnumber = ExcelFunctions.getCellValue(xlpath,"RefNumber",2,2); 
 		System.out.println(" ID number "+IDnumber);
 	  //Working on Email fetch for pin 
-	String passwordDigi= GmailInbox.readEmail("FW: Digi-Contract for Session");
+	String passwordDigi= GmailInbox.readEmailDigi("FW: Digi-Contract for Session");
 	DigiSignInPage.digiSignLogin(IDnumber,passwordDigi);
 	
-	String secondOtp = GmailInbox.readEmailOtp("FW: Digi-Contract for Session");
+	String secondOtp = GmailInbox.readEmailOtpDigi("FW: Digi-Contract for Session");
 	DigiSignInPage.secondLevelAuthentication(secondOtp);
    }
    

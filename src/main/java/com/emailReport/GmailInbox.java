@@ -23,22 +23,32 @@ public class GmailInbox {
 		ExtentReporter.HeaderChildNode("To Read OTP from : Email");
 
 		GmailInbox gmail = new GmailInbox();
-		return gmail.fetchPassword2(gmail.read(subject));
+		return gmail.FetchPassword1(gmail.read(subject));
 	}
 	
+	
+
 	/**
 	 * Created new method as the email content is different.
 	 * @param subject
 	 * @return
 	 * @throws InterruptedException
 	 */
-	public static String readEmailOtp(String subject) throws InterruptedException{
+	public static String readEmailDigi(String subject){
+		ExtentReporter.HeaderChildNode("To Read OTP from : Email");
+
+		GmailInbox gmail = new GmailInbox();
+		return gmail.fetchPassword2(gmail.read(subject));
+	}
+	
+	public static String readEmailOtpDigi(String subject) throws InterruptedException{
 		ExtentReporter.HeaderChildNode("To Read OTP PIN from : Email");
 		
            Thread.sleep(45000);
 		GmailInbox gmail = new GmailInbox();
 		return gmail.fetchDigiPin(gmail.read(subject));
 	}
+	
 	
 	@SuppressWarnings("unused")
 	/**
