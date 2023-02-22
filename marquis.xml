@@ -16,13 +16,13 @@
 	<parameter name="url" value="" />-->
 	
 
-	<!-- <parameter name="url" value="https://www.seritisolutions.co.za/DEMO/web/admin/SecurityUser.aspx?Status=View%22" />
+	<parameter name="url" value="https://www.seritisolutions.co.za/DEMO/web/admin/SecurityUser.aspx?Status=View%22" />
 	<parameter name="browserType" value="Chrome"/>
-	<parameter name="userType" value="SeritiPortal"/> -->
+	<parameter name="userType" value="SeritiPortal"/>
 	
-	<parameter name="url" value="https://www.operations.uat-mqf.co.za/home" />
+<!-- 	<parameter name="url" value="https://www.operations.uat-mqf.co.za/home" />
 	<parameter name="browserType" value="Chrome"/>
-	<!--<parameter name="userType" value="SeritiPortal"/> -->
+ -->	<!--<parameter name="userType" value="SeritiPortal"/> -->
 	
 	
 	<!-- <parameter name="url" value="https://web.financier.uat-mqf.co.za/LogOn?ReturnUrl=%2f" />

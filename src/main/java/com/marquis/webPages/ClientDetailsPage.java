@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import com.excel.ExcelFunctions;
+import com.marquis.SanityScripts.marquisFinancierSanityScript;
 import com.utility.ExtentReporter;
 import com.utility.LoggingUtils;
 import com.utility.Utilities;
@@ -303,7 +304,10 @@ public class ClientDetailsPage {
 			Utilities.type(ClientDetailsPage.addFirstName,readFirstName, "Typed " + readFirstName +" in add client first name field");
 		
 			String firstNameValue = Utilities.getAttributValue("value",ClientDetailsPage.addFirstName);
+
 			Assert.assertEquals(firstNameValue, readFirstName);
+			ExcelFunctions.writeDataForExistingRow(xlpath,"RefNumber",marquisFinancierSanityScript.rowIterate,3,firstNameValue);
+
 			logger.info("Add client first name");
 			ExtentReporter.extentLoggerPass("Add client first name", "Typed " + readFirstName +" in add client first name field");
 			
@@ -311,6 +315,8 @@ public class ClientDetailsPage {
 			Utilities.clearField(ClientDetailsPage.addLastName, "Clear last Name Field ");
 			Utilities.type(ClientDetailsPage.addLastName,readLastName, "Typed " +  readLastName+" in add client last name field");
 			String lastNameValue = Utilities.getAttributValue("value",ClientDetailsPage.addLastName);
+			ExcelFunctions.writeDataForExistingRow(xlpath,"RefNumber",marquisFinancierSanityScript.rowIterate,4,lastNameValue);
+
 			Assert.assertEquals(lastNameValue, readLastName);
 			logger.info("Add client last name");
 			ExtentReporter.extentLoggerPass("Add client last name", "Typed " + readLastName+" in add client last name field");
@@ -328,6 +334,8 @@ public class ClientDetailsPage {
 			String readIdNumber = ExcelFunctions.testData.get("ID Number");
 			Utilities.type(ClientDetailsPage.idNumber,readIdNumber, "Typed "+readIdNumber+" in add client id number field");
 			String idNumberValue = Utilities.getAttributValue("value",ClientDetailsPage.idNumber);
+			ExcelFunctions.writeDataForExistingRow(xlpath,"RefNumber",marquisFinancierSanityScript.rowIterate,2,idNumberValue);
+
 			idNumberForDigi = idNumberValue;
 			Assert.assertEquals(idNumberValue, readIdNumber);
 			logger.info("Add client id number");

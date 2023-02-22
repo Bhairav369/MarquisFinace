@@ -15,12 +15,40 @@ import javax.mail.search.FlagTerm;
 
 import org.jsoup.Jsoup;
 
+import com.utility.ExtentReporter;
+
 public class GmailInbox {
 		
 	public static String readEmail(String subject){
+		ExtentReporter.HeaderChildNode("To Read OTP from : Email");
+
 		GmailInbox gmail = new GmailInbox();
 		return gmail.FetchPassword1(gmail.read(subject));
 	}
+	
+	
+
+	/**
+	 * Created new method as the email content is different.
+	 * @param subject
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public static String readEmailDigi(String subject){
+		ExtentReporter.HeaderChildNode("To Read OTP from : Email");
+
+		GmailInbox gmail = new GmailInbox();
+		return gmail.fetchPassword2(gmail.read(subject));
+	}
+	
+	public static String readEmailOtpDigi(String subject) throws InterruptedException{
+		ExtentReporter.HeaderChildNode("To Read OTP PIN from : Email");
+		
+           Thread.sleep(45000);
+		GmailInbox gmail = new GmailInbox();
+		return gmail.fetchDigiPin(gmail.read(subject));
+	}
+	
 	
 	@SuppressWarnings("unused")
 	/**
@@ -96,6 +124,8 @@ public class GmailInbox {
 		return m.group(0);
 	}
 	
+	
+	
 	/**
 	 * Method to split the OTP text and retrieve only OTP number 
 	 * @param text
@@ -107,6 +137,31 @@ public class GmailInbox {
      //    System.out.println(array1[0]);
          return array1[0];
 	}
+	
+	
+	public String fetchPassword2(String text)
+	{
+		String [] array = text.split("Your ID number Password: ");
+		 String [] array1 = array[1].split("\\s");
+		 
+		 System.out.println(array1[0]);
+	     
+	     String res= array1[0];
+		return res;
+	}
+	
+	
+	public String fetchDigiPin(String text)
+	{
+		String [] array = text.split("Pin: ");
+		 String otp = array[1];
+		 
+		 System.out.println(otp);
+	     
+	     String res= otp;
+		return res;
+	}
+
 	
 }
 
