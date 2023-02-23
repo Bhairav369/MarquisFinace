@@ -5,6 +5,7 @@
 
 import com.driverInstance.DriverInstance;
 import com.driverInstance.DriverManager;
+import com.emailReport.GmailInbox;
 import com.excel.ExcelFunctions;
 	import com.utility.ExtentReporter;
 	import com.utility.LoggingUtils;
@@ -131,7 +132,8 @@ import com.excel.ExcelFunctions;
 		public static By SubMitButton1 = By.xpath("//button[@class='btn btn-success']");
 		
 		public static By free=By.id("free-trial-link-anchor");
-		
+		//Enter OTP field
+				public static By OTPfield=By.xpath("//*[@id='Enter OTP']");
 	
 		public static void Login() throws Exception {
 			ExtentReporter.HeaderChildNode("TC_001 " + "    " + "UI of the Login Screen" + "  "  +"TC_002" +"Verify the functionality of the Login Screen" +  "  "  +"TC_003" +"Verify the UI of the OTP Screen" + "  "  +"Tc_004"+"Verify the UI of the GET OTP Screen" + "  " +"TC_005" +"Verify the functionality of the GET OTP Screen");
@@ -153,12 +155,12 @@ import com.excel.ExcelFunctions;
 	
 			Utilities.verifyElementPresent(Ops_Login.frgtPswrd, "Fogot Password Option");
 			
-			DriverInstance t=new DriverInstance("Chrome");
-			Utilities.Windowhandle(1);
-			
-			DriverManager.getDriver().get("https://www.browserstack.com/guide/handle-multiple-windows-in-selenium");
-			Utilities.click(free, "freeeee button");
-			Utilities.Windowhandle(0);
+//			DriverInstance t=new DriverInstance("Chrome");
+//			Utilities.Windowhandle(1);
+//			
+//			DriverManager.getDriver().get("https://www.browserstack.com/guide/handle-multiple-windows-in-selenium");
+//			Utilities.click(free, "freeeee button");
+//			Utilities.Windowhandle(0);
 	
 			Utilities.click(Ops_Login.paswrdFld, "Password Field");
 	
@@ -257,7 +259,12 @@ import com.excel.ExcelFunctions;
 			 * Utilities.click(Ops_Login.GetotpBtn, "Get OTP Button");
 			 */
 			Utilities.waitTime(30000);
+		//	Utilities.click(Ops_Login.SubMitButton1, "SubMit Button");
+			String OTP = GmailInbox.readEmail("FW: Login One Time Password");
+			System.out.println(OTP +" Enterted the OTP correctly");
+			Utilities.type(OTPfield, OTP, "OTP field");
 			Utilities.click(Ops_Login.SubMitButton1, "SubMit Button");
+			
 	
 		}
 	}

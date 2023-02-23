@@ -51,7 +51,7 @@ public class marquisFinancierSanityScript {
     }  
 	*/
 	
-	
+	/*
    //@Test(priority = 1)
    public void seritiApplicationE2Eflow() throws Exception {
 		
@@ -88,6 +88,7 @@ public class marquisFinancierSanityScript {
     * For Police Verification Check
     * @throws Exception
     */
+	/*
    //@Test(priority = 1)
     public void financierApprovalSetup() throws Exception
     {
@@ -107,8 +108,9 @@ public class marquisFinancierSanityScript {
  	    MarquisFinanceTransactionPage.searchAndGoToApplicationPage(transactionNumber);
 	    MarquisFinanceTransactionPage.RequestPin();
     }
+    */
 //    
-
+/*
     
   //@Test(priority = 1)
    public void digiSignIn() throws Exception
@@ -123,9 +125,9 @@ public class marquisFinancierSanityScript {
 	DigiSignInPage.secondLevelAuthentication(secondOtp);
    }
    
+   */
    
-   
-   
+   /*
 	//@Test(priority = 1)
 	public void Doc_Vals() throws Exception{
 		ExcelFunctions.getMapData(ExcelPath, "DocVals", 2);
@@ -135,7 +137,7 @@ public class marquisFinancierSanityScript {
 		Financier.Financier_Login();
 		Financier.Financier_Search();
 		Financier.Finacier_AML_Outcome();
-	}
+	}*/
 	
 /*	@Test(priority = 1)
 	public void Ops_Login1() throws Exception{
@@ -153,7 +155,7 @@ public class marquisFinancierSanityScript {
 	}
 	*/
 	
-
+/*
 	@Test(priority = 1)
 	 public void seritiPaidStatusVerify() throws Exception
 	    {
@@ -161,7 +163,22 @@ public class marquisFinancierSanityScript {
 	 		String transactionNumber = ExcelFunctions.getCellValue(xlpath,"RefNumber",2,1); 		
 	 	    MarquisFinanceTransactionPage.searchAndGoToApplicationPage(transactionNumber);
 		    MarquisFinanceTransactionPage.verifyPaidStatus();
+	    }*/
+	
+	@Test(priority = 1)
+	 public void payouts() throws Exception
+	    {
+		ExcelFunctions.getMapData(ExcelPath, "DocVals", 2);
+        Ops_Login.Login();
+        ExcelFunctions.getMapData(xlpath, "RefNumber", 2);
+        ExcelFunctions.getMapData(xlpath, "TestData", 2);
+	    payouts.pendingdocumentsearch();
+	    payouts.documentdetails();
+	    payouts.verifyDocuments();
+	    payouts.generated();
+	    payouts.completed();
 	    }
+	
 	
 	@AfterMethod
 	public synchronized void tearDown() {
