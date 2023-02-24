@@ -127,8 +127,7 @@ public class marquisFinancierSanityScript {
    
    */
    
-   /*
-	//@Test(priority = 1)
+	@Test(priority = 1)
 	public void Doc_Vals() throws Exception{
 		ExcelFunctions.getMapData(ExcelPath, "DocVals", 2);
 		Ops_Login.Login();
@@ -137,7 +136,7 @@ public class marquisFinancierSanityScript {
 		Financier.Financier_Login();
 		Financier.Financier_Search();
 		Financier.Finacier_AML_Outcome();
-	}*/
+	}
 	
 /*	@Test(priority = 1)
 	public void Ops_Login1() throws Exception{
@@ -165,7 +164,7 @@ public class marquisFinancierSanityScript {
 		    MarquisFinanceTransactionPage.verifyPaidStatus();
 	    }*/
 	
-	@Test(priority = 1)
+	/*@Test(priority = 1)
 	 public void payouts() throws Exception
 	    {
 		ExcelFunctions.getMapData(ExcelPath, "DocVals", 2);
@@ -178,6 +177,7 @@ public class marquisFinancierSanityScript {
 	    payouts.generated();
 	    payouts.completed();
 	    }
+	    */
 	
 	
 	@AfterMethod

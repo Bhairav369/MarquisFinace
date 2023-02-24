@@ -234,8 +234,94 @@ public class Utilities extends ExtentReporter{
 			System.out.println("No Wndows"+e);
 		}
     }
+    
+	/*
+	 * public static void selectByValue(By byLocator, String value) throws Exception
+	 * { try { //List<WebElement> el=getDriver().findElements(byLocator); Select
+	 * select = new Select(findElement(byLocator)); select.selectByValue(value); }
+	 * catch (Exception e) {
+	 * 
+	 * }
+	 * 
+	 * }
+	 */
+    
+    public static void DropDown(By byLocator) throws Exception {
+		
+    	WebElement el=DriverManager.getDriver().findElement(byLocator);
+    	Select se=new Select(el);
+    	List<WebElement> lst = se.getOptions();
+    	int i=0;
+    	for(i=0;i<lst.size();i++);
+    	{
+    	String val=	lst.get(i).getText();
+    	if (val.equalsIgnoreCase("INVOICE")) 
+    	{
+    		
+			
+		}
+    	}
+    }
+    
+    
+    public static void Switch_To_Window1(int WindowsNo)
+    {
+    	try
+    	{
+    	ArrayList<String>tabs=new ArrayList<>(DriverManager.getDriver().getWindowHandles());
+    	System.out.println("The Total number of tabs are "+tabs.size());
+    	
+    	DriverManager.getDriver().switchTo().window(tabs.get(WindowsNo));
+    	}
+    	catch (Exception e) {
+			System.out.println("No Wndows"+e);
+		}
+    }
 
     public static void Windowhandle(int windownum)
+    {
+    try {
+    	Set<String> WindowIDs = DriverManager.getDriver().getWindowHandles();
+    	System.out.println("The total number of windows "+WindowIDs);
+    	Iterator<String> itrator = WindowIDs.iterator();
+    	List<String>WinIndex=new ArrayList<String>();
+    	while(itrator.hasNext())
+    	{
+    		WinIndex.add(itrator.next());
+    	}
+    	DriverManager.getDriver().switchTo().window(WinIndex.get(windownum));
+    }
+    catch (Exception e) {
+		System.out.println("The exception is "+e);
+	}
+    }
+    
+    public static void NewTabToChild() 
+    {
+    	
+    	((JavascriptExecutor) DriverManager.getDriver()).executeScript("window.open()");
+    	ArrayList<String> tabs = new ArrayList<String>(DriverManager.getDriver().getWindowHandles());
+    	DriverManager.getDriver().switchTo().window(tabs.get(1));
+    }
+    
+    public static void ChildTabToParent() 
+    {
+    	
+    	
+    	//((JavascriptExecutor) DriverManager.getDriver()).executeScript("window.open()");
+    	ArrayList<String> tabs = new ArrayList<String>(DriverManager.getDriver().getWindowHandles());
+    	DriverManager.getDriver().switchTo().window(tabs.get(0));
+    }
+    
+	/*
+	 * public static void fullScreen() { try {
+	 * DriverManager.getDriver().manage().window().fullscreen(); } catch (Exception
+	 * e) {
+	 * 
+	 * } }
+	 */
+
+    public static void Windowhandle1(int windownum)
     {
     try {
     	Set<String> WindowIDs = DriverManager.getDriver().getWindowHandles();
@@ -263,6 +349,126 @@ public class Utilities extends ExtentReporter{
 			
 		}
 	}
+	
+	
+	
+	public static void switchToWindow1(int noOfWindows) {
+		try {
+			wait.until(ExpectedConditions.numberOfWindowsToBe(noOfWindows));
+			for (String winHandle : DriverManager.getDriver().getWindowHandles()) {
+				win.add(winHandle);
+				DriverManager.getDriver().switchTo().window(winHandle);
+				DriverManager.getDriver().manage().window().maximize();
+			}
+		} catch (Exception e) {
+			System.out.println("\n No window is displayed!");
+		}
+	}
+	
+	
+	public static void window_Set_size()
+			{
+				try {
+				Dimension size=DriverManager.getDriver().manage().window().getSize();
+				int width=size.getWidth();
+				System.out.println("The width of the window is"+ " "+width);
+				int hight=size.getHeight();
+				System.out.println("The height of the window is"+ " "+hight);
+				DriverManager.getDriver().manage().window().setSize(new Dimension(1552, 832));
+				}
+				catch(Exception b) {
+					System.out.println("The Exception name is "+b);
+				}
+}
+	
+	
+	
+	public static void SwitchToChild()
+	{
+		try {
+			/*ArrayList<String> window=new ArrayList<String>(DriverManager.getDriver().getWindowHandles());
+			DriverManager.getDriver().switchTo().window(window.get(1));
+			
+			//DriverManager.getDriver().manage().window().maximize();*/
+			
+			Set<String> tabs=DriverManager.getDriver().getWindowHandles();
+			
+		/*Set<String> tabs=DriverManager.getDriver().getWindowHandles();
+		System.out.println(tabs.size());
+		for(String tab:tabs) {
+			DriverManager.getDriver().switchTo().window(tab);
+		}*/
+		
+		/*Iterator<String>tb=tabs.iterator();
+		String tab1 = tb.next();
+		String tab2=tb.next();*/
+		//DriverManager.getDriver().switchTo().window(tab2);
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
+	
+	
+	public static void SwitchToParent()
+	{
+		try {
+			ArrayList<String> window=new ArrayList<String>(DriverManager.getDriver().getWindowHandles());
+			DriverManager.getDriver().switchTo().window(window.get(0));
+		}
+		catch(Exception e)
+		{
+			
+		}}
+	
+	public static void Switch_To_Child_Tab()
+	{
+		try 
+		{	
+		Set<String>TabHandle=DriverManager.getDriver().getWindowHandles();
+		Iterator<String>itr=TabHandle.iterator();
+		//This provides the handle of parent tab
+		String ParentTab=itr.next();
+		
+		//This provides the handle of parent tab
+		String ChildTab=itr.next();
+		
+		//Switch to child tab
+		DriverManager.getDriver().switchTo().window(ChildTab);
+		}
+		catch(Exception b)
+		{
+			
+		}
+		
+		
+	}
+	
+	public static void switch_To_Child_Tab(String url3)
+	{
+		try {
+			ArrayList<String>tabs=new ArrayList<>(DriverManager.getDriver().getWindowHandles());
+			DriverManager.getDriver().switchTo().window(tabs.get(1));
+			waitTime(3000);
+			DriverManager.getDriver().get(url3);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	public static void switch_To_Parent_Tab()
+	{
+		try {
+			ArrayList<String>tabs=new ArrayList<>(DriverManager.getDriver().getWindowHandles());
+			DriverManager.getDriver().switchTo().window(tabs.get(0));
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
     /**
      * wait until element is displayed.
      *
