@@ -2,6 +2,7 @@ package com.marquis.webPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.asserts.SoftAssert;
 
@@ -20,9 +21,7 @@ public class Financier
 
 	public static String ExcelPath = "./XLSX/Operational PortalDataForm.xlsx";
 
-	static SoftAssert softassert = new SoftAssert();
-
-	public SoftAssert softAssert = new SoftAssert();
+	public static SoftAssert softassert = new SoftAssert();
 
 	public static String xlpath = "Marquis/XLSX/Operational PortalDataForm.xlsx";
 	
@@ -72,98 +71,123 @@ public class Financier
 	
 	//Save Button
 	public static By SaveBtns=By.xpath("//input[@id='btn-save-adddet']");
-	
-	//Right Coarsely Button
-	public static By RightCaroBtn=By.xpath("//div/a[contains(@id,'ribbonRight')]");
+
 	
 	//Upload Documents header menu
-	public static By UpldDocHedrMnu=By.xpath("//div/a/span[contains(@class, 's-icon-doc-uploads')]");
+	public static By UpldDocHedrMnu=By.xpath("//div[@class='ribbon-outerdiv']/child::div[@id='ribbon-Documents']");
 	
-	//Drop Down
-	public static By upldDoc_Dropdown=By.xpath("//h4[normalize-space()='Uploaded Documents']//following::button[@data-id='AgreementDetailsSection_AgreementDocumentUploadDetails_DocumentTypeCode']");
-	
+	//Drop down click
+	public static By Finadropdownclick=By.xpath("//dt[text()='Upload a document']/parent::dl/child::dd/div/child::button[@type='button']");
+
 	//Select File
-	public static By SelectFileBtn=By.xpath("//h4[normalize-space()='Uploaded Documents']//following::input[@id='fileupload']");
+	public static By SelectFileBtn=By.xpath("//span[@class='btn btn-primary btn-edit btn-attach-doc']");
+	//URL Field
+	public static By URLFld=By.id("AgreementDetailsSection_AgreementDocumentUploadDetails_documentUrl");
+	//Save Button
+	public static By URlSaveBtns=By.xpath("//div[@class='modal-footer']//child::button[text()='Save']");
+	//Cancel button
+	public static By CancelBtn=By.xpath("//button[@class='close close-library-modal']");
+	//Invoice
+	public static By Invoice=By.xpath("//*[@id=\"CreateAgreementPage\"]/div[3]/div[2]/div[2]/div[1]/div[2]/div[1]/dl/dd[1]/div/div/ul/li[13]/a/span");
+	//Signed option
+	public static By sig=By.xpath("//*[@id=\"CreateAgreementPage\"]/div[3]/div[2]/div[2]/div[1]/div[2]/div[1]/dl/dd[1]/div/div/ul/li[24]/a/span");
+	//Signed Contract PAck
+	public static By SignedContractPck=By.xpath("//*[@id=\"CreateAgreementPage\"]/div[3]/div[2]/div[2]/div[1]/div[2]/div[1]/dl/dd[1]/div/div/ul/li[25]/a/span");
+	
 	
 	
 	public static void Financier_Login() throws Exception
-	{
-		DriverInstance t=new DriverInstance("Chrome");
-		DriverManager.getDriver().get("https://web.financier.uat-mqf.co.za/LogOn?ReturnUrl=%2fCustomer");
-		
-		//String USERID=ExcelFunctions.getCellValue(ExcelPath, "Sheet1", 0, 0);
-		Utilities.clearField(UserID, "USER ID Field");
-		Utilities.type(UserID, "bhairub", "USER ID Field");
-		
-		//String Password=ExcelFunctions.getCellValue(ExcelPath, "Sheet1", 0, 0);
-		Utilities.clearField(PAssword, "Password Field");
-		Utilities.type(PAssword, "Caravelle", "Password Field");
-		
-		Utilities.click(LoginBtn, "Login Button");
-		
-	}
+		{
+			
+			DriverManager.getDriver().get("https://web.financier.uat-mqf.co.za/LogOn?ReturnUrl=%2fCustomer");//
 	
-	 public static void Financier_Search() throws Exception
-	{
-		
+			Utilities.clearField(UserID, "USER ID Field");
+			Utilities.type(UserID, "bhairub", "USER ID Field");
 	
-		Utilities.clearField(agreementRefFld, "Agreement Reference Field");
-		Utilities.type(agreementRefFld, "2000007422", "Agreement Reference Filed");
-
-		Utilities.click(SearchBtn, "Search Button");
+			Utilities.clearField(PAssword, "Password Field");
+			Utilities.type(PAssword, "Caravelle", "Password Field");
+			
+			Utilities.click(LoginBtn, "Login Button");
+			
+		}
+	
+	public static void Financier_Search() throws Exception
+		{
+			
 		
-		Utilities.waitTime(2000);
-		Utilities.click(CustOmerRefIcn, "customer Reference Icon");
-		
-	}
+			Utilities.clearField(agreementRefFld, "Agreement Reference Field");
+			Utilities.type(agreementRefFld, "2000007606", "Agreement Reference Filed");
+	
+			Utilities.click(SearchBtn, "Search Button");
+			
+			Utilities.waitTime(2000);
+			Utilities.click(CustOmerRefIcn, "customer Reference Icon");
+			
+		}
 	
 	public static void Finacier_AML_Outcome() throws Exception
-	{
+		{
+			
+			/*Financier_Login();
+			Financier_Search();*/
+			Utilities.ScrollToTheElement(Produ);
+			
+			
 		
-		
-		Utilities.ScrollToTheElement(Produ);
-		
-		
-	
-		Utilities.click(SelectAgreementNumber("2000007422"), "Aggrement No from the history");
-		
-		
+			Utilities.click(SelectAgreementNumber("2000007606"), "Aggrement No from the history");
+			
+			Payout_DocUpload();
+			
 		Utilities.click(AdditionalhedrMnu, "Additional Details Header menu");
-		
-		Utilities.click(EditAdditionalDetoption, "Edit Additional Details option");
-		
-		Utilities.ScrollToTheElement(AMLRespoFldTitle);
-		
-		Utilities.clearField(AMLRespoFld, "AML Response field");
-		
-		Utilities.type(AMLRespoFld, "APPROVED", "AML Response field");
-		
-		Utilities.ScrollToTheElement(SaveBtns);
-		
-		Utilities.click(SaveBtns, "Save Button");
-		
-		//Utilities.BrowsertearDown();
-		
-	}
+			
+			Utilities.click(EditAdditionalDetoption, "Edit Additional Details option");
+			
+			Utilities.ScrollToTheElement(AMLRespoFldTitle);
+			
+			Utilities.clearField(AMLRespoFld, "AML Response field");
+			
+			Utilities.type(AMLRespoFld, "APPROVED", "AML Response field");
+			
+			Utilities.ScrollToTheElement(SaveBtns);
+			
+			Utilities.click(SaveBtns, "Save Button");
+			
+			//Utilities.BrowsertearDown();
+			
+		}
 	
 	public static void Payout_DocUpload() throws Exception
-	{
-		//Utilities.DoubleClick(RightCaroBtn, "Right Coarsely Button");
-		//Utilities.click(RightCaroBtn, "Right Coarsely Button");
-		//Utilities.click(RightCaroBtn, "Right Coarsely Button");
-		
-		Utilities.click(UpldDocHedrMnu, "Upload Documents header menu");
-		
-		Utilities.selectByVisibleTextByLocator(upldDoc_Dropdown, "DELIVERY NOTE");
-		
-		Utilities.click(SelectFileBtn, "Select File Option");
-		Utilities.type(SelectFileBtn, "file:///C:/Users/User/Downloads/INVOICE.pdf", "DELIVERY NOTE");
-		
-		
-		Utilities.selectByVisibleTextByLocator(upldDoc_Dropdown, "SIGNED CONTRACT PACK");
-		Utilities.click(SelectFileBtn, "Select File Option");
-		Utilities.type(SelectFileBtn, "file:///C:/Users/User/Downloads/INVOICE.pdf", "SIGNED CONTRACT PACK");
-		
-		
-	}
+		{
+			
+				Utilities.waitTime(2000);
+				Utilities.click(UpldDocHedrMnu,"Upload Documents header menu");
+			
+				/*
+				     Invoice
+				*/
+				
+				Utilities.waitTime(3000);
+				Utilities.click(Finadropdownclick, "Acquisiton Validation drop down");
+				Utilities.click(Invoice, "Invoice Option");
+				Utilities.click(SelectFileBtn, "Attch From URL Option");
+				Utilities.type(URLFld, "C:\\Users\\User\\Marquis\\Daily Automation\\from MAster\\Documents\\INVOICE.pdf", "URL Field");
+				Utilities.click(URlSaveBtns, "Save Button");
+				Utilities.waitTime(1000);
+				Utilities.click(CancelBtn, "Cancel Button");
+				
+			/*
+			   Signed Contract PAck
+			*/
+			
+				Utilities.waitTime(2000);
+				Utilities.click(Finadropdownclick, "Acquisiton Validation drop down");
+				Utilities.ScrollToTheElement(sig);
+				Utilities.click(SignedContractPck, "Signed Contract Pack Option");
+				Utilities.click(SelectFileBtn, "Attch From URL Option");
+				Utilities.type(URLFld, "C:\\Users\\User\\Marquis\\Daily Automation\\from MAster\\Documents\\Signed Contract Pack.pdf", "URL Field");
+				Utilities.click(URlSaveBtns, "Save Button");
+				Utilities.waitTime(1000);
+				Utilities.click(CancelBtn, "Cancel Button");
+				
+         }
 }

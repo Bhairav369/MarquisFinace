@@ -27,7 +27,8 @@
 		public static String agremnt;
 		public static String interst;
 		public static String AMLSuccessApproved;
-		
+		public static String POIOutCmStatus;
+	    public static boolean serchResult;
 		
 		
 		    //Document Validations Side-Menu
@@ -50,37 +51,37 @@
 			
 			*/
 			//SI No 
-			public static By SINo=By.xpath("//th[1]//div[1]//div[1]");
+			public static By SINo=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[1]");
 			//Agreement Number
-			public static By AgrNo=By.xpath("//th[2]//div[1]//div[1]");
+			public static By AgrNo=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[2]");
 			//Customer Name
-			public static By custoName=By.xpath("//th[3]//div[1]//div[1]");
+			public static By custoName=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[3]");
 			//ID Number
-			public static By IDNo=By.xpath("//th[4]//div[1]//div[1]");
+			public static By IDNo=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[4]");
 			//DMS Status
-			public static By DMSStatus=By.xpath("//th[5]//div[1]//div[1]");
+			public static By DMSStatus=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[5]");
 			//Dealer NAme
-			public static By DlrNAme=By.xpath("//th[6]//div[1]//div[1]");
+			public static By DlrNAme=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[6]");
 			//FI Details
-			public static By FiDetails=By.xpath("//th[7]//div[1]//div[1]");
+			public static By FiDetails=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[7]");
 			//VAls Requested Date
-			public static By ValsReqDate=By.xpath("//th[8]//div[1]//div[1]");
+			public static By ValsReqDate=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[8]");
 			//Customer Type
-			public static By CustoType=By.xpath("//th[9]//div[1]//div[1]");
+			public static By CustoType=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[9]");
 			//Risk Band
-			public static By RiskBand=By.xpath("//th[10]//div[1]//div[1]");
+			public static By RiskBand=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[10]");
 			//TEam Name
-			public static By TeamName=By.xpath("//th[11]//div[1]//div[1]");
+			public static By TeamName=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[11]");
 			//Last Doc Uploaded
-			public static By LAstDocUplded=By.xpath("//th[12]//div[1]//div[1]");
+			public static By LAstDocUplded=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[12]");
 			//Quote Date
-			public static By QuoteDate=By.xpath("//th[13]//div[1]//div[1]");
+			public static By QuoteDate=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[13]");
 			//Locked By
-			public static By LockedBy=By.xpath("//th[14]//div[1]//div[1]");
+			public static By LockedBy=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[14]");
 			//Resubmit Count
-			public static By ResubmitCunt=By.xpath("//th[15]//div[1]//div[1]");
+			public static By ResubmitCunt=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[15]");
 			//Bucket Name
-			public static By BucketName=By.xpath("//th[16]//div[1]//div[1]");
+			public static By BucketName=By.xpath("(//table[@class='ng-star-inserted']/child::thead/child::tr/child::th/child::div)[16]");
 			//Previous Option
 			public static By Prevus=By.xpath("(//span[@class='ng-star-inserted'])[1]");
 			//Next Option
@@ -117,21 +118,21 @@
 			
 			
 			
-			//Status for all option
-			public static By AllstatusColumn=By.xpath("//td[text()='Status']/ancestor::table[1]/child::tbody[1]/child::tr[@class='ng-star-inserted']/child::td/small/descendant::b");
+			
 	
 			//30-Day Payout check- Retry Button 
 			public static By ThirtydayRetry=By.xpath("(//button[contains(text(),'Retry')])[1]");
 			//Add option for the 30-Day Payout check- Retry Button 
-			public static By Addthirtydaypaychk=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[1]/tbody[1]/tr[1]/td[8]/i[1]");
+			public static By Addthirtydaypaychk=By.xpath("(//td[text()='30-day pay out check']//parent::tr/child::td/child::i)[1]");
 			//View option for the 30-Day Payout check- Retry Button
-			public static By Viewthirtdaypayouchk=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[1]/tbody[1]/tr[1]/td[8]/i[2]");
+			public static By Viewthirtdaypayouchk=By.xpath("(//td[text()='30-day pay out check']//parent::tr/child::td/child::i)[2]");
+			
 			//KYC-Outcome Row name
 			public static By Kycoucm=By.xpath("(//td[normalize-space()='KYC Outcome'])[1]");
 			//Approve button for the KYC Outcome
 			public static By KycoutmApprove=By.xpath("//td[normalize-space()='KYC Outcome']/..//button[contains(text(),'Approve')]");
 			//Reject button for the KYC Outcome
-			public static By KYCReject=By.xpath("(//button[contains(text(),'Retry')])[2]");
+			public static By KYCReject=By.xpath("(//button[contains(text(),'Reject')])[1]");
 			//Popup- Reject button for the KYC Outcome
 			public static By Kycpopupheader=By.xpath("//u[@class='ng-star-inserted']");
 			//Resubmit checkbox
@@ -153,9 +154,9 @@
 			//Retry button for the KYC Outcome
 			public static By KycRetry=By.xpath("//td[normalize-space()='KYC Outcome']/..//button[contains(text(),'Retry')]");
 			//Add button for the KYC Outcome
-			public static By KycAddbtn=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[1]/tbody[1]/tr[2]/td[8]/i[1]");
+			public static By KycAddbtn=By.xpath("(//td[text()='KYC Outcome']//parent::tr/child::td/child::i)[1]");
 			//View button for the KYC Outcome
-			public static By KycViewbtn=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[1]/tbody[1]/tr[2]/td[8]/i[2]");
+			public static By KycViewbtn=By.xpath("(//td[text()='KYC Outcome']//parent::tr/child::td/child::i)[2]");
 			//Kyc Outcome Document View button
 			public static By KycDocuMntViewBtn=By.xpath("(//button[contains(text(),'View')])[2]");
 			//Kyc outcome Document page close button
@@ -166,7 +167,7 @@
 			public static By AVSApprove=By.xpath("//td[normalize-space()='AVS Outcome']/..//button[contains(text(),'Approve')]");
 			//Reject button for the AVS Outcome
 			public static By AVSRejctbtn=By.xpath("//td[normalize-space()='AVS Outcome']/..//button[contains(text(),'Reject')]");
-			//public static By AvsRejectBtnSec=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-process-agreement[1]/div[1]/div[1]/div[1]/div[2]/table[8]/tbody[3]/tr[1]/td[6]/button[1]");
+			
 			//Select Reason option header for AVS Outcome
 			public static By SlctResonAvsOutcmHeader=By.xpath("//u[@class='ng-star-inserted']");
 			//Bank details must belong to customer
@@ -180,9 +181,9 @@
 			//Retry button for the AVS Outcome
 			public static By AVSRetryBtn=By.xpath("(//button[contains(text(),'Retry')])[3]");
 			//Add button for the AVS Outcome
-			public static By AVSAddbtn=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[1]/tbody[1]/tr[3]/td[8]/i[1]");
+			public static By AVSAddbtn=By.xpath("(//td[text()='AVS Outcome']//parent::tr/child::td/child::i)[1]");
 			//View button for the AVS Outcome
-			public static By AVSViewbtn=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[1]/tbody[1]/tr[3]/td[8]/i[2]");
+			public static By AVSViewbtn=By.xpath("(//td[text()='AVS Outcome']//parent::tr/child::td/child::i)[2]");
 			//POI outcome Row NAme
 			public static By PoIRowname=By.xpath("(//td[normalize-space()='POI Outcome'])[1]");
 			//POI Outcome Approve button
@@ -265,7 +266,7 @@
 			//Month6 Salary Field
 			public static By Month6SlryFld=By.xpath("//td[normalize-space()='Month 6']//following::input[@formcontrolname='salMonthSix']");
 			//Monthly AVg Salary
-			public static By MonthlyAverage=By.id("Average Salary");
+			public static By MonthlyAverage=By.xpath("//input[@id='Average Salary']");
 			//Salary Date
 			public static By SalaryDate=By.xpath("//select[@ng-reflect-name='salaryDay']");
 			//Save Button
@@ -354,9 +355,9 @@
 			//POR Outcome Retry btn
 			public static By PORRetryBtn=By.xpath("(//button[contains(text(),'Retry')])[11]");
 			//POR outcome add button
-			public static By PORAddBtn=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[2]/tbody[1]/tr[5]/td[8]/i[1]");
+			public static By PORAddBtn=By.xpath("(//td[text()='POR Outcome']/parent::tr/child::td/child::i)[3]");
 			//POR outcome View button
-			public static By PORViewBtn=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[2]/tbody[1]/tr[5]/td[8]/i[2]");
+			public static By PORViewBtn=By.xpath("(//td[text()='POR Outcome']/parent::tr/child::td/child::i)[4]");
 			//KYC Fraud Outcome Approve Button
 			public static By KYCOutcomeApproveBtn=By.xpath("//td[normalize-space()='KYC Fraud Outcome']//following::button[contains(text(),'Approve')][4]");
 			//KYC Fraud Outcome Reject Button
@@ -374,13 +375,12 @@
 			//Save Button
 			public static By KYCFraudRejectionSaveBtn=By.xpath("//u[@class='ng-star-inserted']//following::i[@class='pi pi-save pt-1']");
 			//KYC Fraud Outcome Retry Button
-			public static By KYCOutcomeRetryBtn=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[2]/tbody[1]/tr[6]/td[7]/button[1]");
+			public static By KYCOutcomeRetryBtn=By.xpath("(//td[text()='KYC Fraud Outcome']/parent::tr/child::td/child::button[text()='Retry'])[2]");
 			//KYC Fraud Outcome Add Button
-			public static By KYCOutcomeAddbtn=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[2]/tbody[1]/tr[6]/td[8]/i[1]");
+			public static By KYCOutcomeAddbtn=By.xpath("(//td[text()='KYC Fraud Outcome']/parent::tr/child::td/child::i)[3]");
 			//KYC Fraud Outcome View Button
-			public static By KYCOutcomeViewbtn=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[2]/tbody[1]/tr[6]/td[8]/i[2]");
-			//AML Outcome Retry Button
-			public static By AMLOutcomeRetryBtn=By.xpath("//td[normalize-space()='AML Outcome']//following::button[contains(text(),'Retry')][8]");
+			public static By KYCOutcomeViewbtn=By.xpath("(//td[text()='KYC Fraud Outcome']/parent::tr/child::td/child::i)[4]");
+			
 			//AML- Failed In Proc Status
 			public static By AMLFailedInProc=By.xpath("//td[normalize-space()='AML Outcome']//following::b[normalize-space()='FAILED-In-Proc']");
 			//AML- SUCCESS-In-Proc Status
@@ -388,14 +388,11 @@
 			//AML- SUccess-IN-Approved Status
 			public static By AMLSucessApproved=By.xpath("//*[@id=\"ui-tabpanel-16\"]/process-agreement/div/table[2]/tbody/tr[7]/td[2]");
 			//AML Outcome ADD Button
-			public static By AMLOutcomeAddBtn=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[2]/tbody[1]/tr[7]/td[8]/i[1]");
+			public static By AMLOutcomeAddBtn=By.xpath("(//td[text()='AML Outcome']/parent::tr/child::td/child::i)[3]");
 			//AML Outcome View Button
-			public static By AMLOutcomeViewBtn=By.xpath("//body[1]/app-root[1]/div[1]/div[1]/div[2]/div[1]/app-summary-agreement[1]/p-tabview[1]/div[1]/div[1]/p-tabpanel[2]/div[1]/process-agreement[1]/div[1]/table[2]/tbody[1]/tr[7]/td[8]/i[2]");
+			public static By AMLOutcomeViewBtn=By.xpath("(//td[text()='AML Outcome']/parent::tr/child::td/child::i)[4]");
 			//AML Retry Button
 			public static By AMLRetryButton=By.xpath("//td[normalize-space()='AML Outcome']//following::button[contains(text(),'Retry')][8]");
-			//View Others Documents hyperlink
-			public static By ViewOthrDocmnthyprlnk=By.xpath("//table/thead/tr/th/a[contains(text(),'View Other documents')]");
-			
 			//Approve Vals Button
 			public static By ApproveValsBtn=By.xpath("//span[contains(text(),'APPROVE VALS')]");
 			//Approve Vals-Comment Box
@@ -413,6 +410,12 @@
 			public static By ThereNoRecrd=By.xpath("//div/div/b[contains(text(),'There are no record for page : 1')]");
 			//Interest Rate
 			public static By interestRate=By.xpath("//table/thead/tr/td[contains(text(),'Interest Rate')][1]");
+			//Doc Vals Deal in search result
+			public static By DocValsDelSerch=By.xpath("(//table[@class='ng-star-inserted']/child::thead/following-sibling::tbody)[1]");
+			//Search Result Table
+			public static By SrchTable=By.xpath("//div[@class='ui-tabview-panels']/descendant::p-tabpanel/child::div");
+			
+			
 			
 			/*
 			On the Operationl Portal,
@@ -435,8 +438,6 @@
 				Utilities.verifyElementPresent(DMSStatus, "DMS Status Column Name");
 				Utilities.verifyElementPresent(DlrNAme, "Dealer NAme as a Column Name");
 				
-				//Utilities.verifyElementPresent(FIName, "FI NAme As a Column Name");
-				//Utilities.verifyElementPresent(FIEmail, "FI Email as a Column Name");
 				
 				Utilities.verifyElementPresent(FiDetails, "FI Details as a Column Name");
 				Utilities.verifyElementPresent(ValsReqDate, "Vals Requested Date as a Column Name");
@@ -448,38 +449,77 @@
 				Utilities.verifyElementPresent(LockedBy, "Locked By as a Column Name");
 				Utilities.verifyElementPresent(ResubmitCunt, "Resubmit Count as a Column NAme");
 				Utilities.verifyElementPresent(BucketName, "Bucket Name as a Column Name");
-				//Utilities.verifyElementPresent(Prevus, "Previous Pagination Option");
-				//Utilities.verifyElementPresent(NxtPgnation, "Next Option in Pagination");
+			
 				Utilities.verifyElementPresent(searchIcon, "Search Icon");
-				
-				int retrysearch=10;
+
+				int retrysearch=30;
 				for(int i=1;i<=retrysearch;i++)
-					{
+				{
 					Utilities.clearField(SearchFld, "Search Bar");
-					Utilities.type(SearchFld, "2000007422", "Search Bar");
+					Utilities.type(SearchFld, "2000007606", "Search Bar");
 					Utilities.JSClick(SearchIcons, "Search Icon");
-					Utilities.waitTime(30000);
-				    agremnt=Utilities.getText(ThereNoRecrd);
-				    System.out.println(agremnt);
-		     	    
-						if (agremnt.equalsIgnoreCase("There are no record for page : 1"))
-							{
-								System.out.println("ABC");
-								Utilities.clearField(SearchFld, "Search Bar");
-								Utilities.type(SearchFld, "2000007422", "Search Bar");
-								Utilities.JSClick(SearchIcons, "Search Icon");
-							}
-						
-						else
-							{
-								interst=Utilities.getText(interestRate);
-								System.out.println(interst.equalsIgnoreCase("Interest Rate"));
-								logger.info("The Deal found");
-							
-							break;
-							}
 					
+					 Utilities.waitTime(10000);
+					 
+					//List<WebElement> FullTable = Utilities.findElements(SrchTable);
+					String FullTable= Utilities.getText(SrchTable);
+					//System.out.println("The list of elements are "+FullTable);
+					
+					if (FullTable.contains("There are no record for page : 1"))
+					{
+						Utilities.clearField(SearchFld, "Search Bar");
+						 Utilities.type(SearchFld, "2000007606", "Search Bar");
+						 Utilities.JSClick(SearchIcons, "Search Icon");
+						 logger.info("The Deal Not Found");
+						
 					}
+					else
+					{
+						logger.info("The Deal found");
+						 Utilities.click(DocValsDelSerch, "Deal from the Search Result");
+						 break; 
+					}
+						
+					}
+					 
+					/* try
+					 {
+						 Utilities.findElement(TotalRecords).isDisplayed();
+							 logger.info("The Deal found");
+							 Utilities.click(DocValsDelSerch, "Deal from the Search Result");
+							 break;
+						 
+					}
+					 catch (Exception e) 
+					 {
+						 Utilities.clearField(SearchFld, "Search Bar");
+						 Utilities.type(SearchFld, "2000007617", "Search Bar");
+						 Utilities.JSClick(SearchIcons, "Search Icon");
+						 logger.info("The Deal Not Found");
+					 }
+					}*/
+					 
+					 
+					
+						/* agremnt=Utilities.getTextb(ThereNoRecrd);
+		            if (agremnt.equalsIgnoreCase("There are no record for page : 1"))
+					 {
+						 Utilities.clearField(SearchFld, "Search Bar");
+						 Utilities.type(SearchFld, "2000007603", "Search Bar");
+						 Utilities.JSClick(SearchIcons, "Search Icon");
+						 logger.info("The Deal Not Found");
+						
+					 }
+					 else
+					 {
+						 Utilities.click(DocValsDelSerch, "Deal from the Search Result");
+						 interst=Utilities.getTextb(interestRate);
+						 System.out.println(interst.equalsIgnoreCase("Interest Rate"));
+						 logger.info("The Deal found");
+						 break;
+					 }*/
+				
+
 			   
 				Utilities.waitTime(2000);
 				Utilities.ScrollToTheElement(POIAddbtn);		
@@ -518,13 +558,9 @@
 				Utilities.clearField(Month3SlryFld, "Month3 Salary Field");
 				Utilities.JSClick(Month3SlryFld, "Month3 Salary Field");
 				Utilities.type(Month3SlryFld, monthlysalry, "Month3 Salary Field");	
-				
-				List<WebElement> MonthlyavgSly = Utilities.findElements(MonthlyAverage);
-				for(int i=0;i<MonthlyavgSly.size();i++) {
-					String monthSalary = MonthlyavgSly.get(0).getText();
-					logger.info(monthSalary);
-					Utilities.extentLoggerPass("The Average of the Monthly Salary is", monthSalary);
-				}		
+				String MonthlyavgSly=Utilities.getText(MonthlyAverage);
+				logger.info(MonthlyavgSly);
+				Utilities.extentLoggerPass("The Average of the Monthly Salary is", MonthlyavgSly);
 				Utilities.click(SalaryDate, "Salary Date");
 				Utilities.selectByValue(SalaryDate, "3");
 				Utilities.click(SalaryDate, "Salary Date");
@@ -602,7 +638,7 @@
 		
 					//Utilities.click(AMlpss1, "Pass checkbox");
 					logger.info("Clicked on the AML Response Approved pass Checkbox");
-					  com.utility.ExtentReporter.extentLoggerPass("AML Response Approved",  "Pass CheckBox");									
+					  com.utility.ExtentReporter.extentLoggerPass("AML Response Approved",  "Clicked on the AML Response Approved Pass CheckBox");									
 					}
 				else if (CheckList.equalsIgnoreCase("Fail")) 
 				{
@@ -612,7 +648,7 @@
 					
 					//Utilities.click(AMlpss, "Fail Checkbox");
 					logger.info("Clicked on the AML Response Approved Fail Checkbox");
-					  com.utility.ExtentReporter.extentLoggerPass("AML Response Approved",  "Fail CheckBox");				
+					  com.utility.ExtentReporter.extentLoggerPass("AML Response Approved",  "Clicked on the AML Response Approved Fail CheckBox");				
 				}
 				else if (CheckList.equalsIgnoreCase("N/A")) {
 					Utilities.waitForElementInVisible(AMlpss, 10, "NA");
@@ -620,7 +656,7 @@
 					AMLChk.get(2).click();
 					//Utilities.click(AMlpss, "N/A Checkbox");
 					logger.info("Clicked on the AML Response Approved N/A Checkbox");
-					  com.utility.ExtentReporter.extentLoggerPass("AML Response Approved",  "N/A CheckBox");
+					  com.utility.ExtentReporter.extentLoggerPass("AML Response Approved",  "Clicked on the AML Response Approved N/A CheckBox");
 				}	 
 				String CorrectDocCheckList=ExcelFunctions.testData.get("Correct Documentation submitted(refer to requirements under Salaried/Sole Prop/Agri)");
 				if (CorrectDocCheckList.equalsIgnoreCase("Pass"))
@@ -631,7 +667,7 @@
 					  info("Clicked on the Correct Documentation submitted(refer to requirements under Salaried/Sole Prop/Agri)checklist column option pass Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Correct Documentation submitted(refer to requirements under Salaried/Sole Prop/Agri)checklist column option"
-					  , "Pass CheckBox");	
+					  , "Clicked on the Correct Documentation submitted(refer to requirements under Salaried/Sole Prop/Agri) Pass CheckBox");	
 				}
 				else if (CorrectDocCheckList.equalsIgnoreCase("Fail")) {
 					List<WebElement> cred = Utilities.findElements(CrectDocPass);
@@ -640,7 +676,7 @@
 					  info("Clicked on the Correct Documentation submitted(refer to requirements under Salaried/Sole Prop/Agri)checklist column option Fail Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Correct Documentation submitted(refer to requirements under Salaried/Sole Prop/Agri)checklist column option"
-					  , "Fail CheckBox");
+					  , "Clicked on the Correct Documentation submitted(refer to requirements under Salaried/Sole Prop/Agri) Fail CheckBox");
 				}			
 				else if (CorrectDocCheckList.equalsIgnoreCase("N/A")) {
 					List<WebElement> cred = Utilities.findElements(CrectDocPass);
@@ -649,7 +685,7 @@
 					  info("Clicked on the Correct Documentation submitted(refer to requirements under Salaried/Sole Prop/Agri)checklist column option N/A Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Correct Documentation submitted(refer to requirements under Salaried/Sole Prop/Agri)checklist column option"
-					  , "N/A CheckBox");
+					  , "Clicked on the Correct Documentation submitted(refer to requirements under Salaried/Sole Prop/Agri) N/A CheckBox");
 				}
 				String Bankstarecived=ExcelFunctions.testData.get("Bank Statements received match bank account details captured under additional details in Financier");
 	
@@ -660,7 +696,7 @@
 					  info("Clicked on the Bank Statements received match bank account details captured under additional details in Financier checklist column option Pass Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Clicked on the Bank Statements received match bank account details captured under additional details in Financier checklist column option Pass Checkbox"
-					  , "Pass CheckBox");				
+					  , "Clicked on the Bank Statements received match bank account details captured under additional details in Financier Pass CheckBox");				
 				}
 				else if (Bankstarecived.equalsIgnoreCase("Fail")) {
 					List<WebElement> bnk = Utilities.findElements(BankstaPass);
@@ -669,7 +705,7 @@
 					  info("Clicked on the Bank Statements received match bank account details captured under additional details in Financier checklist column option Fail Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Clicked on the Bank Statements received match bank account details captured under additional details in Financier checklist column option Pass Checkbox"
-					  , "Fail CheckBox");
+					  , "Clicked on the Bank Statements received match bank account details captured under additional details in Financier Fail CheckBox");
 				}
 				else if (Bankstarecived.equalsIgnoreCase("N/A")) {
 					List<WebElement> bnk = Utilities.findElements(BankstaPass);
@@ -678,7 +714,7 @@
 					  info("Clicked on the Bank Statements received match bank account details captured under additional details in Financier checklist column option N/A Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Clicked on the Bank Statements received match bank account details captured under additional details in Financier checklist column option N/A Checkbox"
-					  , "N/A CheckBox");
+					  , "Clicked on the Bank Statements received match bank account details captured under additional details in Financier N/A CheckBox");
 				}
 				
 				String NAmeandAccunts=ExcelFunctions.testData.get("Name & Account number appear on statement");
@@ -689,7 +725,7 @@
 					  info("Clicked on the Name & Account number appear on statement checklist column option Pass Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Clicked on the Name & Account number appear on statement checklist column option Pass Checkbox"
-					  , "Pass CheckBox");
+					  , "Clicked on the Name & Account number appear on statement Pass CheckBox");
 				}
 				else if (NAmeandAccunts.equalsIgnoreCase("Fail")) {
 					List<WebElement> bnk = Utilities.findElements(NAmeAccPAss);
@@ -698,7 +734,7 @@
 					  info("Clicked on the Name & Account number appear on statement checklist column option Fail Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Clicked on the Name & Account number appear on statement checklist column option Fail Checkbox"
-					  , "Fail CheckBox");
+					  , "Clicked on the Name & Account number appear on statement Fail CheckBox");
 				}
 				else if (NAmeandAccunts.equalsIgnoreCase("N/A")) {
 					List<WebElement> bnk = Utilities.findElements(NAmeAccPAss);
@@ -707,7 +743,7 @@
 					  info("Clicked on the Name & Account number appear on statement checklist column option N/A Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Clicked on the Name & Account number appear on statement checklist column option Pass Checkbox"
-					  , "N/A CheckBox");
+					  , "Clicked on the Name & Account number appear on statement N/A CheckBox");
 				}	
 				String UIFCrect=ExcelFunctions.testData.get("UIF correct & Tax reasonability");
 				
@@ -718,7 +754,7 @@
 					  info("Clicked on the UIF correct & Tax reasonability checklist column option Pass Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Clicked on the Name & Account number appear on statement checklist column option Pass Checkbox"
-					  , "Pass CheckBox");				
+					  , "Clicked on the Name & Account number appear on statement Pass CheckBox");				
 				}
 				else if (NAmeandAccunts.equalsIgnoreCase("Fail")) {
 					List<WebElement> bnk = Utilities.findElements(UIFChlstPass);
@@ -727,7 +763,7 @@
 					  info("Clicked on the UIF correct & Tax reasonability checklist column option Fail Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Clicked on the Name & Account number appear on statement checklist column option Fail Checkbox"
-					  , "Fail CheckBox");
+					  , "Clicked on the Name & Account number appear on statement Fail CheckBox");
 				}
 				else if (NAmeandAccunts.equalsIgnoreCase("N/A")) {
 					List<WebElement> bnk = Utilities.findElements(UIFChlstPass);
@@ -737,7 +773,7 @@
 					  info("Clicked on the UIF correct & Tax reasonability checklist column option N/A Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Clicked on the Name & Account number appear on statement checklist column option N/A Checkbox"
-					  , "N/A CheckBox");
+					  , "Clicked on the the Name & Account number appear on statement N/A CheckBox");
 				}
 				
 				String garneshing=ExcelFunctions.testData.get("Garnishing order(Under R300/N/A -Pass)/(Over R300 -Fail)");
@@ -749,7 +785,7 @@
 					  info("Clicked on the Garnishing order(Under R300/N/A -Pass)/(Over R300 -Fail) checklist column option Pass Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Clicked on the Garnishing order(Under R300/N/A -Pass)/(Over R300 -Fail) checklist column option Pass Checkbox"
-					  , "Pass CheckBox");
+					  , "Clicked on the Garnishing order(Under R300/N/A -Pass)/(Over R300 -Fail) Pass CheckBox");
 				}
 				else if (garneshing.equalsIgnoreCase("Fail")) {
 					List<WebElement> bnk = Utilities.findElements(GarnecjklstPass);
@@ -759,7 +795,7 @@
 					  info("Clicked on the Garnishing order(Under R300/N/A -Pass)/(Over R300 -Fail) checklist column option Fail Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Clicked on the Garnishing order(Under R300/N/A -Pass)/(Over R300 -Fail) checklist column option Fail Checkbox"
-					  , "Fail CheckBox");
+					  , "Clicked on the Garnishing order(Under R300/N/A -Pass)/(Over R300 -Fail) Fail CheckBox");
 				}
 				else if (garneshing.equalsIgnoreCase("N/A")) {
 					List<WebElement> bnk = Utilities.findElements(GarnecjklstPass);
@@ -768,7 +804,7 @@
 					  info("Clicked on the Garnishing order(Under R300/N/A -Pass)/(Over R300 -Fail) checklist column option N/A Checkbox"
 					  ); com.utility.ExtentReporter.
 					  extentLoggerPass("Clicked on the Garnishing order(Under R300/N/A -Pass)/(Over R300 -Fail) checklist column option N/A Checkbox"
-					  , "N/A CheckBox");
+					  , "Clicked on the Garnishing order(Under R300/N/A -Pass)/(Over R300 -Fail) N/A CheckBox");
 				}			
 				String EmpAcctble=ExcelFunctions.testData.get("Employment acceptable");
 					
@@ -780,7 +816,7 @@
 						  info("Clicked on the Employment Acceptable checklist column option Pass Checkbox"
 						  ); com.utility.ExtentReporter.
 						  extentLoggerPass("Clicked on the Employment Acceptable checklist column option Pass Checkbox"
-						  , "Pass CheckBox");
+						  , "Clicked on the Employment Acceptable Pass CheckBox");
 					}
 					else if (EmpAcctble.equalsIgnoreCase("Fail")) {
 						List<WebElement> bnk = Utilities.findElements(EmpAccptChklstpass);
@@ -789,11 +825,16 @@
 						  info("Clicked on the Employment Acceptable checklist column option Fail Checkbox"
 						  ); com.utility.ExtentReporter.
 						  extentLoggerPass("Clicked on the Employment Acceptable checklist column option Fail Checkbox"
-						  , "Fail CheckBox");
+						  , "Clicked on the Employment Acceptable Fail CheckBox");
 					}
 					else if (EmpAcctble.equalsIgnoreCase("N/A")) {
 						List<WebElement> bnk = Utilities.findElements(EmpAccptChklstpass);
 						bnk.get(2).click();
+						logger.
+						  info("Clicked on the Employment Acceptable checklist column option NA Checkbox"
+						  ); com.utility.ExtentReporter.
+						  extentLoggerPass("Clicked on the Employment Acceptable checklist column option NA Checkbox"
+						  , "Clicked on the the Employment Acceptable NA CheckBox");
 					}
 				
 					String TwoorMr=ExcelFunctions.testData.get("Two or more unpaid  debit order(other than insurance/investment)");
@@ -805,7 +846,7 @@
 							  info("Clicked on the Two or more unpaid  debit order(other than insurance/investment) checklist column option Pass Checkbox"
 							  ); com.utility.ExtentReporter.
 							  extentLoggerPass("Clicked on the Two or more unpaid  debit order(other than insurance/investment) checklist column option Pass Checkbox"
-							  , "Pass CheckBox");
+							  , "Clicked on the Two or more unpaid  debit order(other than insurance/investment) Pass CheckBox");
 						}
 						else if (TwoorMr.equalsIgnoreCase("Fail")) {
 							List<WebElement> bnk = Utilities.findElements(TwoormrChkpass);
@@ -814,7 +855,7 @@
 							  info("Clicked on the Two or more unpaid  debit order(other than insurance/investment) checklist column option Fail Checkbox"
 							  ); com.utility.ExtentReporter.
 							  extentLoggerPass("Clicked on the Two or more unpaid  debit order(other than insurance/investment) checklist column option Fail Checkbox"
-							  , "Fail CheckBox");
+							  , "Clicked on the Two or more unpaid  debit order(other than insurance/investment) Fail CheckBox");
 						}
 						else if (TwoorMr.equalsIgnoreCase("N/A")) {
 							List<WebElement> bnk = Utilities.findElements(TwoormrChkpass);
@@ -823,7 +864,7 @@
 							  info("Clicked on the Two or more unpaid  debit order(other than insurance/investment) checklist column option N/A Checkbox"
 							  ); com.utility.ExtentReporter.
 							  extentLoggerPass("Clicked on the Two or more unpaid  debit order(other than insurance/investment) checklist column option N/A Checkbox"
-							  , "N/A CheckBox");
+							  , "Clicked on the the Two or more unpaid  debit order(other than insurance/investment) N/A CheckBox");
 						}					
 						String Multiprvdr=ExcelFunctions.testData.get("Multiple providers prepaid airtime");
 						
@@ -834,7 +875,7 @@
 							  info("Clicked on the Multiple providers prepaid airtime checklist column option Pass Checkbox"
 							  ); com.utility.ExtentReporter.
 							  extentLoggerPass("Clicked on the Multiple providers prepaid airtime checklist column option Pass Checkbox"
-							  , "Pass CheckBox");
+							  , "Clicked on the Multiple providers prepaid airtime Pass CheckBox");
 						}
 						else if (Multiprvdr.equalsIgnoreCase("Fail")) {
 							List<WebElement> bnk = Utilities.findElements(MultpleprvdrChkPass);
@@ -843,7 +884,7 @@
 							  info("Clicked on the Multiple providers prepaid airtime checklist column option Fail Checkbox"
 							  ); com.utility.ExtentReporter.
 							  extentLoggerPass("Clicked on the Multiple providers prepaid airtime checklist column option Fail Checkbox"
-							  , "Fail CheckBox");
+							  , "Clicked on the Multiple providers prepaid airtime Fail CheckBox");
 						}
 						else if (Multiprvdr.equalsIgnoreCase("N/A")) {
 							List<WebElement> bnk = Utilities.findElements(MultpleprvdrChkPass);
@@ -852,7 +893,7 @@
 							  info("Clicked on the Multiple providers prepaid airtime checklist column option N/A Checkbox"
 							  ); com.utility.ExtentReporter.
 							  extentLoggerPass("Clicked on the Multiple providers prepaid airtime checklist column option N/A Checkbox"
-							  , "N/A CheckBox");
+							  , "Clicked on the Multiple providers prepaid airtime N/A CheckBox");
 						}						
 						String prflebuldng=ExcelFunctions.testData.get("Profile Building");
 	
@@ -863,7 +904,7 @@
 							  info("Clicked on the Profile Building checklist column option Pass Checkbox"
 							  ); com.utility.ExtentReporter.
 							  extentLoggerPass("Clicked on the Profile Building checklist column option Pass Checkbox"
-							  , "Pass CheckBox");
+							  , "Clicked on the Profile Building checklist Pass CheckBox");
 						}
 						else if (prflebuldng.equalsIgnoreCase("Fail")) {
 							List<WebElement> bnk = Utilities.findElements(ProfilBuiChklstPass);
@@ -872,7 +913,7 @@
 							  info("Clicked on the Profile Building checklist column option Fail Checkbox"
 							  ); com.utility.ExtentReporter.
 							  extentLoggerPass("Clicked on the Profile Building checklist column option Fail Checkbox"
-							  , "Fail CheckBox");
+							  , "Clicked on the Profile Building checklist Fail CheckBox");
 						}
 						else if (prflebuldng.equalsIgnoreCase("N/A")) {
 							List<WebElement> bnk = Utilities.findElements(ProfilBuiChklstPass);
@@ -881,7 +922,7 @@
 							  info("Clicked on the Profile Building checklist column option N/A Checkbox"
 							  ); com.utility.ExtentReporter.
 							  extentLoggerPass("Clicked on the Profile Building checklist column option N/A Checkbox"
-							  , "N/A CheckBox");
+							  , "Clicked on the Profile Building checklist N/A CheckBox");
 						}			
 						String FrudChk=ExcelFunctions.testData.get("Fraud Checks - Multiple cash withdrawals after payday: round amounts: Capitec accounts(be weary):");
 	
@@ -892,7 +933,7 @@
 								  info("Clicked on the Fraud Checks - Multiple cash withdrawals after payday: round amounts: Capitec accounts(be weary) checklist column option Pass Checkbox"
 								  ); com.utility.ExtentReporter.
 								  extentLoggerPass("Clicked on the Fraud Checks - Multiple cash withdrawals after payday: round amounts: Capitec accounts(be weary) checklist column option Pass Checkbox"
-								  , "Pass CheckBox");
+								  , "Clicked on the Fraud Checks - Multiple cash withdrawals after payday: round amounts: Capitec accounts(be weary) Pass CheckBox");
 							}
 							else if (FrudChk.equalsIgnoreCase("Fail")) {
 								List<WebElement> bnk = Utilities.findElements(FraudchklstPass);
@@ -902,7 +943,7 @@
 								  info("Clicked on the Fraud Checks - Multiple cash withdrawals after payday: round amounts: Capitec accounts(be weary) checklist column option Fail Checkbox"
 								  ); com.utility.ExtentReporter.
 								  extentLoggerPass("Clicked on the Fraud Checks - Multiple cash withdrawals after payday: round amounts: Capitec accounts(be weary) checklist column option Fail Checkbox"
-								  , "Fail CheckBox");
+								  , "Clicked on the Fraud Checks - Multiple cash withdrawals after payday: round amounts: Capitec accounts(be weary) Fail CheckBox");
 							}
 							else if (FrudChk.equalsIgnoreCase("N/A")) {
 								List<WebElement> bnk = Utilities.findElements(FraudchklstPass);
@@ -911,7 +952,7 @@
 								  info("Clicked on the Fraud Checks - Multiple cash withdrawals after payday: round amounts: Capitec accounts(be weary) checklist column option N/A Checkbox"
 								  ); com.utility.ExtentReporter.
 								  extentLoggerPass("Clicked on the Fraud Checks - Multiple cash withdrawals after payday: round amounts: Capitec accounts(be weary) checklist column option N/A Checkbox"
-								  , "N/A CheckBox");
+								  , "Clicked on the Fraud Checks - Multiple cash withdrawals after payday: round amounts: Capitec accounts(be weary) N/A CheckBox");
 							}	
 							String Nodebtodr=ExcelFunctions.testData.get("No Debit Order, layout of bank statements");
 	
@@ -922,7 +963,7 @@
 								  info("Clicked on the No Debit Order, layout of bank statements checklist column option Pass Checkbox"
 								  ); com.utility.ExtentReporter.
 								  extentLoggerPass("Clicked on the No Debit Order, layout of bank statements checklist column option Pass Checkbox"
-								  , "Pass CheckBox");
+								  , "Clicked on the No Debit Order, layout of bank statements checklist Pass CheckBox");
 							}
 							else if (Nodebtodr.equalsIgnoreCase("Fail")) {
 								List<WebElement> bnk = Utilities.findElements(NodebiChklstPass);
@@ -931,7 +972,7 @@
 								  info("Clicked on the No Debit Order, layout of bank statements checklist column option Fail Checkbox"
 								  ); com.utility.ExtentReporter.
 								  extentLoggerPass("Clicked on the No Debit Order, layout of bank statements checklist column option Fail Checkbox"
-								  , "Fail CheckBox");
+								  , "Clicked on the No Debit Order, layout of bank statements Fail CheckBox");
 							}
 							else if (Nodebtodr.equalsIgnoreCase("N/A")) {
 								List<WebElement> bnk = Utilities.findElements(NodebiChklstPass);
@@ -939,7 +980,7 @@
 								logger.info("Clicked on the No Debit Order, layout of bank statements checklist column option N/A Checkbox"
 								  ); com.utility.ExtentReporter.
 								  extentLoggerPass("Clicked on the No Debit Order, layout of bank statements checklist column option N/A Checkbox"
-								  , "N/A CheckBox");
+								  , "Clicked on the No Debit Order, layout of bank statements checklist column option N/A Checkbox N/A CheckBox");
 							}	
 							Utilities.waitTime(2000);
 							Utilities.JSClick(ChklstSaveBtn, "CheckList Save Button");
@@ -963,16 +1004,13 @@
 				Utilities.verifyElementPresent(PORRetryBtn, "POR Outcome Retry Button");
 				softassert.assertEquals(PORRetryBtn, "RETRY", "POR Outcome RETRY Button is verified");
 				
-				Utilities.verifyElementPresent(PORAddBtn, "POR Outcome Add Button");
-				softassert.assertEquals(PORAddBtn, "ADD", "POR Outcome ADD Button is verified");
-				
 				Utilities.verifyElementPresent(PORViewBtn, "POR Outcome View Button");			
 				Utilities.verifyElementPresent(KYCOutcomeApproveBtn, "KYC Fraud Outcome Approve Button");			
 				Utilities.verifyElementPresent(KYCOutcomeRetryBtn, "KYC Fraud Outcome Retry Button");			
 				Utilities.verifyElementPresent(KYCOutcomeRejectbtn, "KYC Fraud Outcome Reject Button");			
 				Utilities.verifyElementPresent(KYCOutcomeAddbtn, "KYC Fraud Outcome Add Button");			
 				Utilities.verifyElementPresent(KYCOutcomeViewbtn, "KYC Fraud Outcome View Button");			
-				Utilities.verifyElementPresent(AMLOutcomeRetryBtn, "AML Outcome Retry Button");			
+				Utilities.verifyElementPresent(AMLRetryButton, "AML Outcome Retry Button");			
 				Utilities.verifyElementPresent(AMLOutcomeAddBtn, "AML Outcome Add Button");			
 				Utilities.verifyElementPresent(AMLOutcomeViewBtn, "AML Outcome View Button");
 				Utilities.verifyElementPresent(PORAddBtn, "POR Outcome Add Button");
@@ -1023,9 +1061,7 @@
 					com.utility.ExtentReporter.extentLogger("The POR Outcome Status is", porOuStatus);
 					
 				}
-				
-			
-				
+
 				String KycFraudOutCm=ExcelFunctions.testData.get("KYC Fraud Outcome");
 				if (KycFraudOutCm.equalsIgnoreCase("Approve")) 
 				{
@@ -1035,7 +1071,7 @@
 					com.utility.ExtentReporter.extentLogger("The KYC Fraud Outcome Status is", KYCFrudOutCmStatus);
 					softassert.assertEquals(KYCFrudOutCmStatus, "SUCCESS");
 				}
-				else if (KycFraudOutCm.equalsIgnoreCase("Reject")) 
+				/*else if (KycFraudOutCm.equalsIgnoreCase("Reject")) 
 					{
 						Utilities.JSClick(KYCOutcomeRejectbtn, "KYC Fraud Outcome Reject Button");
 						String ResubmitIDCPy=ExcelFunctions.testData.get("Resubmit ID Copy");
@@ -1073,7 +1109,7 @@
 						String	KYCFrudOutCmStatus=Utilities.getText(KycFraudStatus);
 						logger.info("POR Outcome Status is"+ "" +KYCFrudOutCmStatus);
 						com.utility.ExtentReporter.extentLogger("The KYC Fraud Outcome Status is", KYCFrudOutCmStatus);
-					}
+					}*/
 				
 				else if (KycFraudOutCm.equalsIgnoreCase("Retry")) 
 					{
@@ -1088,45 +1124,85 @@
 				AML Outcome- Financier Portal to hack the process.
 				
 				*/
+				/*Utilities.robotNewTab();
+				Thread.sleep(7000);
+				Utilities.switch_To_Child_Tab("https://web.financier.uat-mqf.co.za/LogOn?ReturnUrl=%2fCustomer");
 				
-				
-				DriverInstance t=new DriverInstance("Chrome");
-				DriverManager.getDriver().get("https://web.financier.uat-mqf.co.za/LogOn?ReturnUrl=%2fCustomer");
-				//Utilities.openNewTab(AMLRetryButton, "https://web.financier.uat-mqf.co.za/LogOn?ReturnUrl=%2fCustomer");
+			Utilities.window_Set_size();
 				Financier.Financier_Login();
 				Financier.Financier_Search();
 				Financier.Finacier_AML_Outcome();  
 		
+				Utilities.switch_To_Parent_Tab();
+				
+				Utilities.ScrollToTheElement(ApproveValsBtn);
 				
 				System.out.println("Again Controls come to the doc Vals Page");
 				int ClickRetryBtn=10;
 				for(int i=1;i<=ClickRetryBtn;i++)
-						{
-							AMLSuccessApproved=Utilities.getText(AMLOutcomeStatus);
-							System.out.println("The AML Outcome Present Status Is "+AMLSuccessApproved);
-							
-								if (!AMLSuccessApproved.equals("SUCCESS-APPROVED ")) {
-									Utilities.waitTime(30000);
-									Utilities.click(AMLRetryButton, "AML Retry Button");
-								}
+					{
+						AMLSuccessApproved=Utilities.getText(AMLOutcomeStatus);
+						System.out.println("The AML Outcome Present Status Is "+AMLSuccessApproved);
 						
-							     else 	
-									{
-										AMLSuccessApproved.equalsIgnoreCase("SUCCESS-APPROVED ");	
-									break;
-								 }
-						}
+							if (AMLSuccessApproved.equals("SUCCESS-APPROVED"))
+							{
+								break;
+							}
+					
+						     else	
+						     {
+						    	 Utilities.waitTime(30000);
+									Utilities.click(AMLRetryButton, "AML Retry Button");	
+								
+							 }
+					}*/
 				
-						String FinalApprove_ApproveVals=ExcelFunctions.getCellValue(ExcelPath, "Sheet1", 3, 25);
+						String FinalApprove_ApproveVals=ExcelFunctions.testData.get("Approve Vals");
 						if (FinalApprove_ApproveVals.equalsIgnoreCase("Click"))
 								{
+							   
+							Utilities.NewTabToChild();
+							Utilities.switch_To_Child_Tab("https://web.financier.uat-mqf.co.za/LogOn?ReturnUrl=%2fCustomer");
+							
+						    Utilities.window_Set_size();
+							Financier.Financier_Login();
+							Financier.Financier_Search();
+							Financier.Finacier_AML_Outcome();  
+					
+							Utilities.ChildTabToParent();
+							
+							Utilities.ScrollToTheElement(ApproveValsBtn);
+							
+							
+							int ClickRetryBtn=30;
+							for(int i=1;i<=ClickRetryBtn;i++)
+								{
+									AMLSuccessApproved=Utilities.getText(AMLOutcomeStatus);
+									System.out.println("The AML Outcome Present Status Is "+AMLSuccessApproved);
+									
+										if (AMLSuccessApproved.equals("SUCCESS-APPROVED"))
+										{
+											break;
+										}
+								
+									     else	
+									     {
+									    	 Utilities.waitTime(10000);
+												Utilities.click(AMLRetryButton, "AML Retry Button");	
+											
+										 }
+								}
+					
+							
 									Utilities.JSClick(ApproveValsBtn, "Approve Vals Button");
 									Utilities.type(ApproveValsCommentBox, "Successfully Validate all the Docs", "Approve Vals Comment Field");
 									Utilities.click(ApproveCmentSaveBtn, "Save Button");
 									
 								}
-						String FinalApprove_RejectVals=ExcelFunctions.getCellValue(ExcelPath, "Sheet1", 3, 26);
-						if (FinalApprove_RejectVals.equalsIgnoreCase("Reject")) 
+						
+						
+						String FinalApprove_RejectVals=ExcelFunctions.testData.get("Reject Vals");
+						if (FinalApprove_RejectVals.equalsIgnoreCase("Click")) 
 						{
 							Utilities.JSClick(RejectValsBtn, "Reject Vals Button");
 							Utilities.type(RejectVAlsCommentBox, "Operational Team Rejected the Deal", "Reject VAls Comment Box");
@@ -1134,12 +1210,6 @@
 						}   
 						
 					}
-				
-			
-				
-				
-				
-					
 				
 			
 				/*
@@ -1199,7 +1269,7 @@
 				else if (ThirtyDayPayoutChkApprove.equalsIgnoreCase("Retry"))
 				{
 					Utilities.JSClick(ThirtydayRetry, "Thirty Day Pay Out Check Retry Button");
-					String Thirtystatus=Utilities.getText(AllstatusColumn);
+					String Thirtystatus=Utilities.getText(ThirtyStatus);
 					logger.info("The Thiry Day Payout Check Status is"+Thirtystatus);
 					com.utility.ExtentReporter.extentLogger("The Satus Column status IS", Thirtystatus);
 					}
@@ -1207,24 +1277,21 @@
 				String KYCOutcomeTabl=ExcelFunctions.testData.get("KYC Outcome");
 				System.out.println(KYCOutcomeTabl);
 				if (KYCOutcomeTabl.equalsIgnoreCase("Approve"))
-				{
-					//Utilities.JSClick(KycoutmApprove, "KYC Outcome Approve Button");
-					Utilities.JSClick(KycDocuMntViewBtn, "KYC Outcome Document View Button");
-					Utilities.waitTime(2000);
-					Utilities.JSClick(KycDocCloseBtn, "Kyc Outcome Document Close button");
-					Utilities.waitForElementAndClickIfPresent(KycoutmApprove, 10, "KYC Outcome Approve Button");
+					{
+						//Utilities.JSClick(KycoutmApprove, "KYC Outcome Approve Button");
+						Utilities.JSClick(KycDocuMntViewBtn, "KYC Outcome Document View Button");
+						Utilities.waitTime(2000);
+						Utilities.JSClick(KycDocCloseBtn, "Kyc Outcome Document Close button");
+						Utilities.waitForElementAndClickIfPresent(KycoutmApprove, 10, "KYC Outcome Approve Button");
+						
+					String KycOutcm=Utilities.getText(KycOutcomeStatus);
+					logger.info("KYC OUTCOME The Status is"+KycOutcm);
+					com.utility.ExtentReporter.extentLoggerPass("KYC OUTCOME The Status is", KycOutcm);
+					softassert.assertEquals(KycOutcm, "SUCCESS");
 					
-				String KycOutcm=Utilities.getText(KycOutcomeStatus);
-				/*List<WebElement> KycStatus = Utilities.findElements(AllstatusColumn);
-				String status = KycStatus.get(1).getText();*/
-					
-				logger.info("KYC OUTCOME The Status is"+KycOutcm);
-				com.utility.ExtentReporter.extentLoggerPass("KYC OUTCOME The Status is", KycOutcm);
-				softassert.assertEquals(KycOutcm, "SUCCESS");
-				
-				}else if (KYCOutcomeTabl.equalsIgnoreCase("Reject"))
-				{
-					Utilities.waitForElementAndClick(KYCReject, 10, "KYC Outcome Reject Button");
+					}
+				    else if (KYCOutcomeTabl.equalsIgnoreCase("Reject"))
+				      {	
 					Utilities.JSClick(KYCReject, "KYC Outcome Reject Button");
 					
 					String KycoutRejctReasons_ResubmitID=ExcelFunctions.testData.get("Resubmit ID Copy-k");
@@ -1331,16 +1398,20 @@
 		String POIOutCmTable=ExcelFunctions.testData.get("POI Outcome");
 		if (POIOutCmTable.equalsIgnoreCase("Approve"))
 		{
-			
-			Utilities.JSClick(POIDocViewBtn, "POI Outcome Document View Button");
-			Utilities.waitTime(2000);
-			Utilities.JSClick(POIDocSubmtButton, "POI Outcome Document Submit Button");
-			Utilities.waitTime(2000);
-			Utilities.waitForElementAndClick(PoiotcmApproveBtn, 10, "POI Outcome Approve button");
-			Utilities.JSClick(PoiotcmApproveBtn, "POI Outcome Approve button");
-			Utilities.waitTime(3000);
-			Utilities.JSClick(PoiotcmApproveBtn, "POI Outcome Approve button");
-			String POIOutCmStatus=Utilities.getText(POIOutcomeStatus);
+			POIOutCmStatus=Utilities.getText(POIOutcomeStatus);
+			int Retrysuccess=10;
+			for(int i=1;i<=Retrysuccess;i++)
+				{
+					if(POIOutCmStatus.equals("SUCCESS"))
+					{
+						break;
+					}
+					else
+					{
+						Utilities.waitTime(3000);
+						Utilities.JSClick(PoiotcmApproveBtn, "POI Outcome Approve Button");
+					}
+				}
 			
 			logger.info("The POI Outocme Status is"+POIOutCmStatus);
 			com.utility.ExtentReporter.extentLoggerPass("The POI OUTCOME The Status is", POIOutCmStatus);
@@ -1351,8 +1422,7 @@
 		{
 			Utilities.JSClick(POIReject, "POI Outcome Reject button");
 			Utilities.waitTime(3000);
-			//Utilities.verifyElementPresentAndClick(POIReject, "POI Outcome Reject button");
-			Utilities.waitForElementAndClickIfPresent(POIReject, 10, "POI Outcome Reject button");
+			//Utilities.waitForElementAndClickIfPresent(POIReject, 10, "POI Outcome Reject button");
 			
 			String SubMt3Mnt=ExcelFunctions.testData.get("Submit 3 months’ BS");
 			if (SubMt3Mnt.equalsIgnoreCase("Click"))
@@ -1419,9 +1489,8 @@
 			softassert.assertEquals(POIOutCmStatus, "FAILED");
 			softassert.assertAll();
 			
-		}
-				
-				
+		     }
+		
 			}
 			}
 			

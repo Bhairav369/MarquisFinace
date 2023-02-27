@@ -5,7 +5,6 @@
 
 import com.driverInstance.DriverInstance;
 import com.driverInstance.DriverManager;
-import com.emailReport.GmailInbox;
 import com.excel.ExcelFunctions;
 	import com.utility.ExtentReporter;
 	import com.utility.LoggingUtils;
@@ -29,7 +28,7 @@ import com.excel.ExcelFunctions;
 		public static By MQLogo = By.xpath("//*[@src='assets/img/Marquis_main_logo.png']");
 	
 		// MQ Text Title
-		public static By MQText = By.xpath("/html/body/app-root/app-login/div/div/div/div[1]/div/div[2]");
+		public static By MQText = By.xpath("//div[@class='col-12 text-center pt-5']");
 	
 		// Username TextPlaceHolder
 		public static By UserNameTxtPlacHlder = By.xpath("//label[@for='Username']//span[@class='bg-white']");
@@ -38,7 +37,7 @@ import com.excel.ExcelFunctions;
 		public static By PasswrdTxtPlcHlder = By.xpath("//label[@for='Password']//span[@class='bg-white']");
 	
 		// Password Field Eye Icon
-		public static By EyeIcon = By.xpath("//i[@class='bg-white pointer pi pi-eye text-secondary ng-star-inserted']");
+		public static By EyeIcon = By.xpath("//span[@class='bg-white']/child::i");
 	
 		// I am Not a robot field
 		public static By ImNtRbtFld = By
@@ -71,11 +70,11 @@ import com.excel.ExcelFunctions;
 	
 		// Password text is in Decryption mode
 		public static By PswrdDecryption = By
-				.xpath("//i[@class='bg-white pointer pi pi-eye text-secondary ng-star-inserted']");
+				.xpath("//span[@class='bg-white']/child::i");
 	
 		// Password text is in Encryption mode
 		public static By PswrdTextEncryption = By.xpath(
-				"/html/body/app-root/app-login/div/div/div/div[2]/form/div/div[1]/field-display[2]/span/div/div/label/span/i");
+				"//span[@class='bg-white']/child::i");
 	
 		// I Am Not A Robot
 		public static By IamNtRobot = By
@@ -97,8 +96,7 @@ import com.excel.ExcelFunctions;
 		public static By usrName1 = By.xpath("(//span[@class='bg-white'])[1]");
 	
 		// Send OTP Title
-		public static By SendOtpTitle = By.xpath(
-				"//body/app-root/app-login[@class='ng-star-inserted']/div[@class='back-ground']/div[@class='container']/div[@class='row d-flex justify-content-center']/div[@class='col form-login py-5 m-0 shadow-lg bg-body']/form[@class='ng-invalid ng-dirty ng-touched']/div[@class='row ng-star-inserted']/div[@class='col-12']/label[1]");
+		public static By SendOtpTitle = By.xpath("//*[contains(text(),'Send OTP to')]");
 	
 		// Email Radio Button
 		public static By EmlRadioBtn = By.xpath("//label[@for='opt2']");
@@ -132,14 +130,14 @@ import com.excel.ExcelFunctions;
 		public static By SubMitButton1 = By.xpath("//button[@class='btn btn-success']");
 		
 		public static By free=By.id("free-trial-link-anchor");
-		//Enter OTP field
-				public static By OTPfield=By.xpath("//*[@id='Enter OTP']");
+		
 	
 		public static void Login() throws Exception {
 			ExtentReporter.HeaderChildNode("TC_001 " + "    " + "UI of the Login Screen" + "  "  +"TC_002" +"Verify the functionality of the Login Screen" +  "  "  +"TC_003" +"Verify the UI of the OTP Screen" + "  "  +"Tc_004"+"Verify the UI of the GET OTP Screen" + "  " +"TC_005" +"Verify the functionality of the GET OTP Screen");
 			Utilities.getTitle("Marquis Finance");
 			
 			//Utilities.Resize_Browser(1920, 571);
+			
 	
 			Utilities.verifyIsElementDisplayed(Ops_Login.MQLogo, "MQlogo");
 	
@@ -154,16 +152,10 @@ import com.excel.ExcelFunctions;
 			Utilities.verifyIsElementDisplayed(Ops_Login.ImNtRbtFld, "I am Not Robot Field");
 	
 			Utilities.verifyElementPresent(Ops_Login.frgtPswrd, "Fogot Password Option");
-			
-//			DriverInstance t=new DriverInstance("Chrome");
-//			Utilities.Windowhandle(1);
-//			
-//			DriverManager.getDriver().get("https://www.browserstack.com/guide/handle-multiple-windows-in-selenium");
-//			Utilities.click(free, "freeeee button");
-//			Utilities.Windowhandle(0);
 	
 			Utilities.click(Ops_Login.paswrdFld, "Password Field");
 	
+			System.out.println("The Thread name is"+Thread.currentThread().getName());
 			Utilities.click(Ops_Login.UserNAmeFld, "UserName Field");
 	
 			Utilities.verifyElementPresent(Ops_Login.UserNameReqIcon, "UserName Field I icon");
@@ -250,21 +242,9 @@ import com.excel.ExcelFunctions;
 	
 			Utilities.verifyElementPresent(Ops_Login.SubMtBtn, "Submit Button");
 	
-			/*
-			 * Utilities.JSClick(Ops_Login.Backbtns, "Back Button");
-			 * 
-			 * Utilities.verifyIsElementDisplayed(Ops_Login.SendOtpTitle,
-			 * "Send OTP To Title");
-			 * 
-			 * Utilities.click(Ops_Login.GetotpBtn, "Get OTP Button");
-			 */
-			Utilities.waitTime(30000);
-		//	Utilities.click(Ops_Login.SubMitButton1, "SubMit Button");
-			String OTP = GmailInbox.readEmail("FW: Login One Time Password");
-			System.out.println(OTP +" Enterted the OTP correctly");
-			Utilities.type(OTPfield, OTP, "OTP field");
-			Utilities.click(Ops_Login.SubMitButton1, "SubMit Button");
 			
+			Utilities.waitTime(30000);
+			Utilities.click(Ops_Login.SubMitButton1, "SubMit Button");
 	
 		}
 	}
