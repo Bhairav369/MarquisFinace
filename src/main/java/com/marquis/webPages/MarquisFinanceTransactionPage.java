@@ -594,11 +594,11 @@ public class MarquisFinanceTransactionPage {
 		Utilities.JSClick(MarquisFinanceTransactionPage.documentsUpload, " Documents Upload ");
 		
 		Utilities.type(MarquisFinanceTransactionPage.fileUploadButton,"C:\\Code\\Docs Seriti Upload\\BANK STATEMENT.pdf", "");
-		Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 3, "");
+		//Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 3, "");
 		Utilities.type(MarquisFinanceTransactionPage.fileUploadButton,"C:\\Code\\Docs Seriti Upload\\ID DOCUMENT - CLIENT.pdf", "");
-		Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 3, "");
+	//	Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 3, "");
 		Utilities.type(MarquisFinanceTransactionPage.fileUploadButton,"C:\\Code\\Docs Seriti Upload\\INVOICE.pdf", "");
-		Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 3, "");
+	//	Utilities.waitForElementInVisible(MarquisFinanceTransactionPage.spinningRole, 3, "");
 
 		
 		
